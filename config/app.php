@@ -146,6 +146,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+
         
         /*
          * Package Service Providers...
@@ -162,6 +163,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Nahid\Talk\TalkServiceProvider::class,
         MaddHatter\LaravelFullcalendar\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -213,6 +215,7 @@ return [
         'Talk' => Nahid\Talk\Facades\Talk::class,
         'Carbon' => 'Carbon\Carbon',
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

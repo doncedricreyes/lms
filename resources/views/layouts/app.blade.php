@@ -1,7 +1,18 @@
 
 <!DOCTYPE html>
 <html>
+    <style>
+        #body{
+          background: linear-gradient(to top, #ccff99 0%, #66ccff 100%);
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+        }
+      
+        </style>
 <head>
+ 
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>St. Catherine College of Valenzuela | Learning Management System</title>
@@ -28,7 +39,7 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition login-page">
+<body id="body" class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
     <img src="/storage/images/logo.jpg" class="img-circle" id="logo" width="60%" >

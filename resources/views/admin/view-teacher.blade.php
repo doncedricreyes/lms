@@ -50,6 +50,7 @@
                                       <th>Edit</th>
                                        <th>Delete</th>
                                        <th> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">Add</th>
+                                        <th> <a href="{{route('teacher_schedule.excel',$teachers->get(0)->id)}}"class="btn btn-primary">Export to Excel</a></th>
                                    </thead>
                     <tbody>
                     

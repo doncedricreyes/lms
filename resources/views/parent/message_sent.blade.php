@@ -4,7 +4,7 @@
 
 <style>
                 #inbox{
-                    position: absolute;
+                    position: relative;
             
                     left: 2%;
                     width: 100%;

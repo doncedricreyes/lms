@@ -91,7 +91,7 @@ class ParentController extends Controller
             return redirect()->back()->withErrors('Class/Student not found.');
         }
         
-        return view('parent');
+        return redirect()->back();
       
 
     }

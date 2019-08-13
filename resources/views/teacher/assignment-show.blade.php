@@ -11,7 +11,8 @@
 
   </style>
 
-  @if($assignments->get(0)->class_subject_teachers->teacher_id == auth::user()->id)
+  @if($assignments->get(0)->class_subject_teachers->teacher_id == auth::user()->id || $assignments->get(0)->class_subject_teachers->classes->get(0)->adviser_id == auth::user()->id)
+
 <div class="container" id="view">
  
     <div class="flash-message">
@@ -35,14 +36,14 @@
           @endforeach
         @foreach($assignments as $id)
    <div id="button">
-  
+    @if($assignments->get(0)->class_subject_teachers->teacher_id == Auth::user()->id)
           <a href="{{route('assignment.result',$id->id)}}" class="btn btn-primary">View Results</a>
-          @if($assignments->get(0)->class_subject_teachers->teacher_id == Auth::user()->id)
         <a href="{{route('assignment.edit',$id->id)}}"   class="btn btn-primary">Edit</a>
         @endif
    </div>
           @endforeach
 </div>
+
 @endif
 @endsection
 

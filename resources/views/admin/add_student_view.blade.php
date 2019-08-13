@@ -32,8 +32,12 @@
             <legend>Add Student</legend>
                         <form action = "{{route('add-student.store')}}" method="post">
                             {{csrf_field() }}
-                        <label for="name">Student's Name:</label>
+                        <label for="name">Student's Name:(Last Name, First Name Middle Initial)</label>
                         <input type="text" name="name" id="name" class="form-control"> 
+                        <label for="year">Year:</label>
+                        <input type="text" name="year" id="year" class="form-control"> 
+                        <label for="section">Section:</label>
+                        <input type="text" name="section" id="section" class="form-control"> 
                         <label for="username"> Username:</label>
                         <input type="username" name="username" id="username" class="form-control">
                         <label for="password"> Create a password:</label>

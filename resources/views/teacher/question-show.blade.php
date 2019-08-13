@@ -56,7 +56,7 @@
   
   
   
-
+      <?php $i=1  ?>
         @foreach($questions as $question)
         <div id="button">
             <form action="{{route('questions.delete',[$question->id])}}" method="POST">
@@ -71,11 +71,12 @@
   
       </nav>
             <div class="mdl-card__title">
-              
+             
+         
               <h2 class="mdl-card__title-text"> 
-                   <h3> Question no.  {{ $loop->iteration + $questions->firstItem() - 1 }}     {{$question->question}}</h3>
+                   <h3> Question no.   {{$i}}      {{$question->question}}</h3>
                                 </h2>
-                
+                                <?php $i++ ?>
                                
             </div>
         
@@ -122,11 +123,7 @@
             @endforeach
      
                
-            <div class="text-center">
-                {{ $questions->links() }}
-                Showing {{($questions->currentpage()-1)*$questions->perpage()+1}} to {{$questions->currentpage()*$questions->perpage()}}
-                of  {{$questions->total()}} entries
-                </div>
+          
             
                 
 </div>

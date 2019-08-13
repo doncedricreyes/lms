@@ -9,7 +9,7 @@ use App\AddSubject;
 use App\Student;
 use App\Class_Subject_Teacher;
 use Session;
-
+use Excel;
 
 
 class AddClassController extends Controller
@@ -31,6 +31,31 @@ class AddClassController extends Controller
         return view('admin.create-class', ['teachers' => $teachers,'classes'=>$classes]);
        
 
+    }
+
+    public function class_excel(){
+
+        $classes = AddClass::with('teachers')->get();
+
+        $classes_array[] = array('school year','year','section','section name','adviser','time','room');
+        foreach($classes as $class){
+        $classes_array[] = array(
+             'school year' => $class->school_year,
+             'year' => $class->year,
+             'section' => $class->section,
+             'section name' => $class->section_name,
+             'adviser' => $class->teachers->get(0)->name,
+             'time' => $class->time,
+             'room' => $class->room,
+        );
+    }
+ 
+        Excel::create('Classes', function($excel) use ($classes_array){
+         $excel->setTitle('Classes');
+         $excel->sheet('Classes', function($sheet) use ($classes_array){
+         $sheet->fromArray($classes_array, null, 'A1', false, false);
+         });
+        })->download('xlsx');
     }
 
     /**
@@ -55,8 +80,6 @@ class AddClassController extends Controller
             'section_name' => 'required|unique:classes,section_name',
             'time' => 'required',
             'room' => 'required',
-            'enrollment_key' => 'required',
-            'parent_key' => 'required',
             'school_year' => 'required',
         ], [
 
@@ -70,10 +93,8 @@ class AddClassController extends Controller
             $addclass->section=$request->section;
             $addclass->section_name=$request->section_name;
             $addclass->adviser_id=$adviserID;
-            $addclass->enrollment_key=$request->enrollment_key;
             $addclass->time=$request->time;
             $addclass->room=$request->room;
-            $addclass->parent_key=$request->parent_key;
             $addclass->school_year=$request->school_year;
             $addclass->save();
             $request->session()->flash('alert-success', 'Successfully created!');
@@ -115,8 +136,6 @@ class AddClassController extends Controller
             'section_name' => 'required',
             'time' => 'required',
             'room' => 'required',
-            'enrollment_key' => 'required',
-            'parent_key' => 'required',
             'school_year' => 'required',
         ], [
 
@@ -133,8 +152,6 @@ class AddClassController extends Controller
             $addclass->time=$request->time;
             $addclass->room=$request->room;
             $addclass->adviser_id=$adviserID;
-            $addclass->enrollment_key=$request->enrollment_key;
-            $addclass->parent_key=$request->parent_key;
             $addclass->school_year=$request->school_year;
             $addclass->save();
             $request->session()->flash('alert-success', 'Successfully updated!');

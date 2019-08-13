@@ -46,6 +46,7 @@
                                        <th>Delete</th>
                                        <th>Message</th>
                                        <th> <a href="{{url('admin/teachers/create')}}"class="btn btn-primary btn-xs">Add</a></th>
+                                       <th> <a href="{{url('admin/teachers/export/excel')}}"class="btn btn-primary btn-xs">Export to Excel</a></th>
                                    </thead>
                     <tbody>
                     

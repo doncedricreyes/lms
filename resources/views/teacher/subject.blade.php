@@ -369,6 +369,7 @@ right: 2%;
                                                   <th>Final Grade</th>
                                                   @if($class_subject_teachers->get(0)->teacher_id == Auth::user()->id)
                                                   <th>Add/Edit Grade</th>
+                                                  <th> <a href="{{route('grade.excel',[$class_subject_teachers->get(0)->id])}}"class="btn btn-primary btn-xs">Export to Excel</a></th>
                                                   @endif
                                               </tr>
                                           </thead>

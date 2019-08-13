@@ -14,6 +14,7 @@
                         <input type="email" name="email" id="email" class="form-control">
                         <label for="password"> Create a password:</label>
                         <input type="password" name="password" title="password" class="form-control">
+                        <br>
                         <input type="submit" class="btn btn-primary" value="Submit Information">
                         
                         

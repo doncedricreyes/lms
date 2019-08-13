@@ -8,7 +8,7 @@
 
 @section('content')
 
-@if($exams->get(0)->class_subject_teachers->teacher_id == Auth::user()->id)
+@if($exams->get(0)->class_subject_teachers->teacher_id == Auth::user()->id || $exams->get(0)->class_subject_teachers->classes->get(0)->adviser_id == auth::user()->id)
 <div class="container" id="view">
  
     <div class="flash-message">

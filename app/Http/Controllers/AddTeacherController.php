@@ -8,6 +8,7 @@ use App\AddSubject;
 use App\Class_Subject_Teacher;
 use App\Teacher_Profile;
 use App\Teacher;
+use Excel;
 use Hash;
 use Auth;
 use Session;
@@ -37,6 +38,25 @@ class AddTeacherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function teacher_excel(){
+        $teachers = Teacher::orderBy('name')->get();
+        $teachers_array[] = array('Teacher Name','Username','Email');
+        foreach($teachers as $teacher){
+            $teachers_array[] = array(
+                'Teacher Name' => $teacher->name,
+                'Username' => $teacher->username,
+                'Email' => $teacher->email,
+            );
+        }
+ 
+ 
+        Excel::create('Teacher', function($excel) use ($teachers_array){
+         $excel->setTitle('Teachers');
+         $excel->sheet('Teachers', function($sheet) use ($teachers_array){
+         $sheet->fromArray($teachers_array, null, 'A1', false, false);
+         });
+        })->download('xlsx');
+    }
     public function create()
     {
         return view('add-teacher');
@@ -171,6 +191,43 @@ class AddTeacherController extends Controller
   
         return view('admin.view-teacher',['classes'=>$classes,'teacher'=>$teacher,'subjects'=>$subjects,'teachers'=>$teachers,'class_subject_teachers'=>$class_subject_teachers]);
     }
+
+    public function view_excel($id)
+    {
+        $classes = AddClass::with('teachers')->get();
+        $subjects = AddSubject::get();
+        $teachers = Teacher::where('id','=',$id)->get();
+        $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('teacher_id','=',$id)->get();
+  
+        $subject_array[] = array('Subjects','Year','Section','Section Name','School Year','Schedule');
+        foreach($class_subject_teachers as $class_subject_teacher){
+            $subject_array[] = array(
+                'Subjects' => $class_subject_teacher->subjects->get(0)->title,
+                'Year' => $class_subject_teacher->classes->get(0)->year,
+                'Section' => $class_subject_teacher->classes->get(0)->section,
+                'Section Name' => $class_subject_teacher->classes->get(0)->section_name,
+                'School Year' => $class_subject_teacher->classes->get(0)->school_year,
+                'Schedule' => $class_subject_teacher->schedule,
+            );
+        }
+ 
+        $teacher_array[] = array('Teacher Name');
+        $teacher_array[] = array(
+             'Teacher Name' => $teachers->get(0)->name,
+            
+        );
+ 
+ 
+        Excel::create('Teacher Schedule', function($excel) use ($subject_array,$teacher_array){
+         $excel->setTitle('Teacher Schedule');
+         $excel->sheet('Teacher Schedule', function($sheet) use ($subject_array,$teacher_array){
+         $sheet->fromArray($teacher_array, null, 'A1', false, false);
+         $sheet->fromArray($subject_array, null, '', false, false);
+         });
+        })->download('xlsx');
+        
+     }
+    
 
     public function schedule_update(Request $request,$id)
     {

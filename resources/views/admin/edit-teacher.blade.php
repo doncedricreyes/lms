@@ -41,6 +41,7 @@
                         <input type="email" name="email" id="email" value="{{$teachers->get(0)->email}}" class="form-control">
                         <label for="password"> Create a password:</label>
                         <input type="password" name="password" title="password"  class="form-control">
+                        <br>
                         <input type="submit" id="submit" class="btn btn-primary" value="Submit Information">
                         
                         

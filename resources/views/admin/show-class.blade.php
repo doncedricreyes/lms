@@ -43,13 +43,12 @@
                                         <th>Adviser</th>
                                         <th>Time</th>
                                         <th>Room</th>
-                                        <th>Enrollment Key</th>
-                                        <th>Parent Enrollment key</th>
-                                        <th>View</th>
+                                        <th>Subjects</th>
+                                        <th>Class List</th>
                                       <th>Edit</th>
                                        <th>Delete</th>
-                                       <th> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">Add</th>
-                                       
+                                       <th> <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#create">Add</th>
+                                        <th> <a href="{{url('admin/class/export/excel')}}"class="btn btn-primary btn-xs">Export to Excel</a></th>
                                    </thead>
                     <tbody>
                     
@@ -61,10 +60,8 @@
                                      <td>{{$class->teachers->get(0)->name}}</td> 
                                      <td>{{$class->time}}</td>
                                      <td>{{$class->room}}</td> 
-                                     <td>{{$class->enrollment_key}}</td>
-                                     <td>{{$class->parent_key}}</td>
                                 <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="class/{{$class->id}}"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#view" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
-                   
+                                <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="class/students/{{$class->id}}"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#view" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
                                 <td><p data-placement="top" data-toggle="tooltip"  title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-id="{!! $class->id !!}" data-target="#edit-{{$class->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
                                 
                                 <form action="{{route('class.destroy',[$class->id])}}" method="POST">
@@ -145,13 +142,7 @@
                                     <label for="room">Room:</label>
                                     <input class="mdl-textfield__input" type="text" name="room" id="room">
                       
-                         
-                             <label for="enrollment_key">Enrollment Key:</label>
-                                    <input class="mdl-textfield__input" type="text" name="enrollment_key" id="enrollment_key">
-                                       
-                                   
-                                    <label for="parent_key">Parent Key:</label>
-                                            <input class="mdl-textfield__input" type="text" name="parent_key" id="parent_key">
+    
                                           
         </div>
         
@@ -227,14 +218,7 @@
                                                 <label for="room">Room:</label>
                                                 <input class="mdl-textfield__input" type="text" value="{{$class->room}}" name="room" id="room">
                                                 </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                    <label for="enrollment_key">Enrollment Key:</label>
-                                    <input class="mdl-textfield__input" type="text" value="{{$class->enrollment_key}}" name="enrollment_key" id="enrollment_key">
-                                    </div>   
-                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <label for="parent_key"> Parent Enrollment Key:</label>
-                                            <input class="mdl-textfield__input" type="text" value="{{$class->parent_key}}" name="parent_key" id="parent_key">
-                                            </div>          
+         
         </div>
         
             <div class="modal-footer">

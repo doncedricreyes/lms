@@ -12,10 +12,7 @@ if(version_compare(PHP_VERSION, '7.2.0', '>=')) {
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Auth\StudentLoginController@showLoginForm')->name('student.login');
 
 
 
@@ -62,29 +59,33 @@ Route::delete('/teachers/{id}','AddTeacherController@destroy')->name('add-teache
 Route::delete('/teachers/{id}/subjects','AddTeacherController@schedule_delete')->name('schedule.delete');
 Route::post('/teachers/{id}','AddTeacherController@addsubject')->name('addsubject');
 Route::get('/teachers/{id}','AddTeacherController@view')->name('schedule.index');
+Route::get('/teachers/{id}/export/excel','AddTeacherController@view_excel')->name('teacher_schedule.excel');
 Route::put('/teachers/{id}','AddTeacherController@schedule_update')->name('schedule.update');
 Route::get('/teachers/{id}/edit','AddTeacherController@edit');
 Route::put('/teachers/{id}/edit','AddTeacherController@update')->name('add-teacher.update');
-
+Route::get('/teachers/export/excel','AddTeacherController@teacher_excel')->name('teacher.excel');
 
 Route::get('/add-subject', 'AddSubjectController@create');
 Route::post('/add-subject', 'AddSubjectController@store')->name('subject.store');
 Route::get('/subjects', 'AddSubjectController@index')->name('subject.show');
 Route::delete('/subjects/{id}', 'AddSubjectController@destroy')->name('subject.destroy');
 Route::get('/class', 'AddClassController@show')->name('class.show');
+Route::get('/class/export/excel','AddClassController@class_excel');
 Route::get('/class/{id}', 'AddClassController@view')->name('add-class.show');
 Route::put('/class/{id}', 'AddClassController@update')->name('class.update');
 Route::delete('/class/{id}', 'AddClassController@destroy')->name('class.destroy');
 Route::delete('/class/{id}/subjects', 'Class_Subject_Teacher_Controller@destroy')->name('class_subject.destroy');
-
+Route::get('/class/students/{id}','AdminController@class_list');
+Route::get('/class/students/{id}/excel','AdminController@class_list_excel')->name('class_list.excel');
 Route::get('/admins','AdminController@admin');
 Route::get('/students', 'AdminController@show_student')->name('admin.student.show');
 Route::get('/students/{id}', 'AdminController@view_student')->name('admin.student.view');
 Route::delete('/students/{id}', 'AdminController@destroy_student')->name('admin.student.destroy');
+Route::get('/students/export/excel', 'AdminController@student_excel')->name('student.excel');
 Route::get('/parents', 'AdminController@show_parent')->name('admin.parent.show');
 Route::get('/parents/{id}', 'AdminController@view_parent')->name('admin.parent.view');
 Route::delete('/parents/{id}', 'AdminController@destroy_parent')->name('admin.parents.destroy');
-
+Route::get('/parents/export/excel', 'AdminController@parent_excel');
 Route::get('/admins/{id}/message','MessageController@index')->name('admin.message.index');
 Route::post('/admins/{id}/message','MessageController@store')->name('admin.message.store');
 Route::get('/students/{id}/message','MessageController@index')->name('admin.student.message.index');
@@ -100,8 +101,8 @@ Route::get('/create/students','AdminController@add_student_view');
 Route::post('/create/students','AdminController@add_student_store')->name('add-student.store');
 Route::get('/create/parents','AdminController@add_parent_view');
 Route::post('/create/parents','AdminController@add_parent_store')->name('add-parent.store');
-
-
+Route::post('/enrollment','AdminController@enrollment_store')->name('parent.enrollment.store');
+Route::put('/enrollment/{id}','AdminController@enrollment_destroy')->name('enrollment.destroy');
 
 });
 
@@ -120,6 +121,7 @@ Route::post('/account/email','TeacherController@edit_email')->name('teacher.edit
 Route::post('/account/pass','TeacherController@edit_pass')->name('teacher.edit.pass');
 Route::get('/subjects','TeacherController@class')->name('teachers.subject');
 Route::get('/subjects/{id}','TeacherController@subject')->name('subject.index');
+Route::get('/subjects/{id}/export/excel','TeacherController@grade_excel')->name('grade.excel');
 Route::post('/subjects/{id}/lectures','LectureController@store')->name('lecture.store');
 Route::get('/exams/{id}/create','ExamController@index')->name('exam.index');
 Route::post('/exams/{id}/create','ExamController@store')->name('exam.store');
@@ -201,8 +203,7 @@ Route::get('/password/reset/{token}', 'Auth\ParentResetPasswordController@showRe
 Route::get('/account','ParentController@account');
 Route::post('/account/email','ParentController@edit_email')->name('parent.edit.email');
 Route::post('/account/pass','ParentController@edit_pass')->name('parent.edit.pass');
-Route::get('/enrollment','ParentController@enrollment')->name('parent.enrollment');
-Route::post('/enrollment','ParentController@enrollment_store')->name('parent.enrollment.store');
+
 Route::get('/classes','ParentController@class')->name('parent.class');
 Route::get('/classes/{id}','ParentController@class_id')->name('parent.class_id');
 Route::get('/classes/{student}/subjects/{id}/','ParentController@subject')->name('parent.subject');
@@ -255,8 +256,6 @@ Route::get('/class/exam/{id}/results','Exam_GradeController@show')->name('studen
 Route::post('/class/exam/{id}/questions','AnswerController@store')->name('student.store.answer');
 
 Route::post('/class/exam/{id}/results','Exam_GradeController@store')->name('store.result');
-Route::get('/enroll','Class_StudentController@enroll')->name('enroll');
-Route::post('/enroll','Class_StudentController@store')->name('class.student.store');
 Route::get('/class/assignment/{id}','Class_StudentController@showassignment')->name('student.assignment.show');
 Route::post('/class/assignment/{id}','Student_AssignmentController@store')->name('student.assignment.store');
 

@@ -17,6 +17,7 @@ use App\Exam;
 use App\Lecture;
 use Auth;
 use Hash;
+use Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class TeacherController extends Controller
@@ -89,8 +90,12 @@ class TeacherController extends Controller
     }
 
     public function showresult($id){
-        $exam_grades = Exam_Grade::with('students','exams')->where('exam_id',$id)->get();
+        $exam_grades = Exam_Grade::with('students','exams')->where('exam_id',$id)->get()
+        ->sortBy(function($exam_grades){
+            return $exam_grades->students->get(0)->name;
+        });
         $exams = Exam::with('class_subject_teachers')->where('id',$id)->get();
+     
         return view('teacher.exam-results',['exam_grades'=>$exam_grades,'exams'=>$exams]);
     }
 
@@ -357,4 +362,42 @@ class TeacherController extends Controller
         return redirect()->back();
     }
   
+    public function grade_excel($id){
+        
+        $class_students = Class_Student::with('class_subject_teachers','students')
+        ->where('class_subject_teacher_id','=',$id)
+        ->get()
+        ->sortBy(function($class_students){
+            return $class_students->students->get(0)->name;
+        });
+
+        $class_subject_teachers = Class_Subject_Teacher::where('id',$id)->first();
+
+        $grades[] = array('name','1st grading','2nd grading','3rd grading','4th grading','final');
+        foreach($class_students as $grade){
+        $grades[] = array(
+             'name' => $grade->students->get(0)->name,
+             '1st grading' => $grade->first,
+             '2nd grading' => $grade->second,
+             '3rd grading' => $grade->third,
+             '4th grading' => $grade->fourth,
+             'final' => $grade->final,
+        );
+    }
+    $subject[] = array('subject','year','section');
+    $subject[] = array(
+         'subject' => $class_subject_teachers->subjects->get(0)->title,
+         'year' => $class_subject_teachers->classes->get(0)->year,
+         'section' => $class_subject_teachers->classes->get(0)->section,
+    );
+
+ 
+        Excel::create('Grades', function($excel) use ($grades,$subject){
+         $excel->setTitle('Grades');
+         $excel->sheet('Grades', function($sheet) use ($grades,$subject){
+         $sheet->fromArray($subject, null, 'A1', false, false);
+         $sheet->fromArray($grades, null, '', false, false);
+         });
+        })->download('xlsx');
+    }
 }
