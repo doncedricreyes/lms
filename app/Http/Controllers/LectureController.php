@@ -68,7 +68,7 @@ class LectureController extends Controller
             $request->session()->flash('alert-success', 'Lecture Successfully Added!');
             $students = Class_Student::with('class_subject_teachers','students')->where('class_subject_teacher_id','=',$id)->get();
             foreach($students as $student){
-            Notification::route('mail',$student->students->get(0)->email)->notify(new LectureAdded($assignment));
+            Notification::route('mail',$student->students->get(0)->email)->notify(new LectureAdded($lecture));
             }
             return redirect()->route('subject.index',['id'=>$id]);
             

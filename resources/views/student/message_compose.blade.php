@@ -26,7 +26,16 @@
           <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
           @endif
         @endforeach
-      </div> <!-- end .flash-message -->
+      </div>
+@if ($errors->any())
+<div class="alert alert-danger">
+<ul>
+    @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+    @endforeach
+</ul>
+</div>
+@endif
         <section class="content">
                         <div class="row">
                           <div class="col-md-3">

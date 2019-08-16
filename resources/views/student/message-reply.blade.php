@@ -26,6 +26,23 @@
 <div class="container" id="view">
 
                 <section class="content">
+                    <div class="flash-message">
+                        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                          @if(Session::has('alert-' . $msg))
+                    
+                          <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                          @endif
+                        @endforeach
+                      </div>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
                                 <div class="row">
                                   <div class="col-md-3">
                                   <legend>Messages</legend>
@@ -70,10 +87,7 @@
                                                                   <div class="box-body">
                                                                     <div class="form-group">
                                                                                 @foreach($messages as $message)
-                                                                      <input readonly class="form-control" id="name" name="name" value="{{$message->students->name}} 
-                                                                      {{$message->parents->name}}
-                                                                      {{$message->teachers->name}}
-                                                                      {{$message->admins->name}} ">
+                                                                      <input readonly class="form-control" id="name" name="name" value="{{$message->students['name']}}{{$message->parents['name']}}{{$message->teachers['name']}}{{$message->admins['name']}}">
                                                                     
                                                                 
                                                                     </div>

@@ -388,10 +388,10 @@ return redirect()->back();
 
     public function student_sent_show($id){
       $messages = Message::with('students','teachers','parents','admins')->where('id','=',$id)->get();
-      $admins = Admin::where('id','=',$messages->get(0)->recipient_admin_id)->get();
-      $students = Student::where('id','=',$messages->get(0)->recipient_student_id)->get();
-      $teachers = Teacher::where('id','=',$messages->get(0)->recipient_teacher_id)->get();
-      $parents = Parents::where('id','=',$messages->get(0)->recipient_parent_id)->get();
+      $admins = Admin::where('id','=',$messages->get(0)['recipient_admin_id'])->get();
+      $students = Student::where('id','=',$messages->get(0)['recipient_student_id'])->get();
+      $teachers = Teacher::where('id','=',$messages->get(0)['recipient_teacher_id'])->get();
+      $parents = Parents::where('id','=',$messages->get(0)['recipient_parent_id'])->get();
 
       return view('student.message_sent_show',['messages'=>$messages,'admins'=>$admins,'students'=>$students,'teachers'=>$teachers,'parents'=>$parents]);
     }
@@ -456,6 +456,16 @@ return redirect()->back();
     
     
     public function compose_store(Request $request,$id){
+      $input = request()->validate([
+        'name'=> 'required|string|max:255',
+        'role'=> 'required|string|max:255',
+    ], [
+
+  
+        
+        
+
+    ]);
        $sender_id = Auth::user()->id;
        $sender_role = Auth::user()->role;
        $name = $request->name;
@@ -491,29 +501,29 @@ return redirect()->back();
 
        $messages = new Message();
        if ($student) {
-          $messages->recipient_student_id = $student->get(0)->id;
+          $messages->recipient_student_id = $student->get(0)['id'];
         }
         if ($parent) {
-         $messages->recipient_parent_id = $parent->get(0)->id;
+         $messages->recipient_parent_id = $parent->get(0)['id'];
        }
        if ($teacher) {
-         $messages->recipient_teacher_id = $teacher->get(0)->id;
+         $messages->recipient_teacher_id = $teacher->get(0)['id'];
        }
        if ($admin) {
-         $messages->recipient_admin_id = $admin->get(0)->id;
+         $messages->recipient_admin_id = $admin->get(0)['id'];
        }
 
        if ($sender_student) {
-         $messages->sender_student_id = $sender_student->get(0)->id;
+         $messages->sender_student_id = $sender_student->get(0)['id'];
        }
        if ($sender_parent) {
-        $messages->sender_parent_id = $sender_parent->get(0)->id;
+        $messages->sender_parent_id = $sender_parent->get(0)['id'];
       }
       if ($sender_teacher) {
-        $messages->sender_teacher_id = $sender_teacher->get(0)->id;
+        $messages->sender_teacher_id = $sender_teacher->get(0)['id'];
       }
       if ($sender_admin) {
-        $messages->sender_admin_id = $sender_admin->get(0)->id;
+        $messages->sender_admin_id = $sender_admin->get(0)['id'];
       }
      $messages->message_title = $request->message_title;
 $messages->message_body = $request->message_body;

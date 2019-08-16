@@ -39,10 +39,10 @@
                                 <div class="mdl-card__title">
                                         <h2 class="mdl-card__title-text">    <h5> From: 
                                                         @foreach($messages as $message)
-                                                        {{$message->students->name}} 
-                                                            {{$message->parents->name}}
-                                                            {{$message->teachers->name}}
-                                                            {{$message->admins->name}} 
+                                                        {{$message->students['name']}} 
+                                                            {{$message->parents['name']}}
+                                                            {{$message->teachers['name']}}
+                                                            {{$message->admins['name']}} 
                                                     @endforeach
                                                     <br>
                                                     {{$messages->get(0)->created_at}}</h5></h2>

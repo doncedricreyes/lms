@@ -72,7 +72,7 @@ class AddTeacherController extends Controller
     {
         $input = request()->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|email|max:255|unique:teachers',
+            'username' => 'required|max:255|unique:teachers',
             'password' => 'required|string|min:6',
 
         ], [
@@ -93,10 +93,10 @@ class AddTeacherController extends Controller
         
         if ($teacher->save()){
 
-            $teachers = Teacher::where('name','=',$request->teacher_name)->get();
+            $teachers = Teacher::where('name','=',$request->name)->get();
 
             $teacher_profile = new Teacher_Profile();
-            $teacher_profile->teacher_id = $teachers->get(0)->id;
+            $teacher_profile->teacher_id = $teachers->get(0)['id'];
             $teacher_profile->profile_pic = 'noimage.jpg';
             $teacher_profile->bio = 'add a bio';
             $teacher_profile->save();

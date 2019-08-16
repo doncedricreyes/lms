@@ -86,10 +86,10 @@
        @foreach($message_sender as $message)
                     <tr >
                         
-                        <td>{{$message->student->name}} 
-                        {{$message->parent->name}} 
-                        {{$message->teacher->name}}
-                        {{$message->admin->name}}</td>
+                        <td>{{$message->student['name']}} 
+                        {{$message->parent['name']}} 
+                        {{$message->teacher['name']}}
+                        {{$message->admin['name']}}</td>
                         <td><a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="outbox/{{$message->id}}">{{$message->message_title}} </a></td> 
                         <td>{{$message->created_at}}</td>
                         

@@ -84,10 +84,10 @@
        @foreach($message_recipient as $recipient)
                     <tr >
                         
-                        <td>{{$recipient->students->name}} 
-                        {{$recipient->parents->name}} 
-                        {{$recipient->teachers->name}}
-                        {{$recipient->admins->name}}</td>
+                        <td>{{$recipient->students['name']}} 
+                        {{$recipient->parents['name']}} 
+                        {{$recipient->teachers['name']}}
+                        {{$recipient->admins['name']}}</td>
                         <td><a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="inbox/{{$recipient->id}}">{{$recipient->message_title}} </a></td> 
                         <td>{{$recipient->created_at}}</td>
 

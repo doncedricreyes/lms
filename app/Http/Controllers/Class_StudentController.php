@@ -178,7 +178,7 @@ class Class_StudentController extends Controller
     $assignment = $collection->flatten();
     $assignment->all();   
 
-        return view('student.subject',['subject_grade'=>$subject_grade,'assignments'=>$assignments,'subject_announcements'=>$subject_announcements,'students'=>$students,'grade_subjects'=>$grade_subjects,'exam_grades'=>$exam_grades,'class_subject_teachers'=>$class_subject_teachers,'lectures'=>$lectures,'class_students'=>$class_students,'exams'=>$exams,'student_assignments'=>$student_assignments]);
+        return view('student.subject',['subject_grade'=>$subject_grade,'assignments'=>$assignments,'subject_announcements'=>$subject_announcements,'students'=>$students,'exam_grades'=>$exam_grades,'class_subject_teachers'=>$class_subject_teachers,'lectures'=>$lectures,'class_students'=>$class_students,'exams'=>$exams,'student_assignments'=>$student_assignments]);
       
     }
 

@@ -69,7 +69,7 @@ $exams = Exam::with('class_subject_teachers')->where('quarter','=',$quarter)
             $request->session()->flash('alert-success', 'Exam/Quiz Successfully Created!');
             $students = Class_Student::with('class_subject_teachers','students')->where('class_subject_teacher_id','=',$id)->get();
             foreach($students as $student){
-            Notification::route('mail',$student->students->get(0)->email)->notify(new QuizCreated($quiz));
+            Notification::route('mail',$student->students->get(0)->email)->notify(new QuizCreated($exam));
             }
             return redirect()->route('subject.index',['id'=>$id]);
             }

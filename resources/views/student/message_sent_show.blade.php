@@ -34,10 +34,10 @@
                     <div style="width:100%" class="mdl-card mdl-shadow--2dp demo-card-wide mdl-cell mdl-cell--6-col material">
                                 <div class="mdl-card__title">
                                         <h2 class="mdl-card__title-text">    <h5> To: 
-                                                        {{$admins->get(0)->name}}
-                                                        {{$students->get(0)->name}}
-                                                        {{$teachers->get(0)->name}}
-                                                        {{$parents->get(0)->name}}
+                                                        {{$admins->get(0)['name']}}
+                                                        {{$students->get(0)['name']}}
+                                                        {{$teachers->get(0)['name']}}
+                                                        {{$parents->get(0)['name']}}
                                                     <br>
                                                     {{$messages->get(0)->created_at}}</h5></h2>
                                 </div>
