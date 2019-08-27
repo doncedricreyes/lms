@@ -10,7 +10,7 @@ return [
     | based disks are available to your application. Just store away!
     |
     */
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'public'),
     /*
     |--------------------------------------------------------------------------
     | Default Cloud Filesystem Disk
