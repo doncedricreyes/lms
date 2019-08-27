@@ -51,7 +51,7 @@ class LectureController extends Controller
                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
                 $extension = $request->file('file_name')->getClientOriginalExtension();
                 $fileNametoStore = $filename.'_'.time().'.'.$extension;
-                $path = $request->file('file_name')->storeAs('/public/storage/lectures',$fileNametoStore);
+                $path = $request->file('file_name')->storeAs('lectures',$fileNametoStore);
                 
             }
           
