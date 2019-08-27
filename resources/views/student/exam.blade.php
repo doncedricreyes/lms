@@ -28,13 +28,13 @@
         @if ($id->date_start <= Carbon\Carbon::now('Asia/Manila')) 
         @if ($id->date_end > Carbon\Carbon::now('Asia/Manila')) 
        {{$exam_grades}}
-        @if($id->attempts > $exam_grades->get(0)['attempt'] )
+        
      
         
           <a href="{{route('student.show.question',$id->id)}}" class="btn btn-primary">Attempt Quiz/Exam</a>       
         @else <h3> Exam is  closed </h3> 
     
-        @endif
+       
 @endif
 @endif
 
