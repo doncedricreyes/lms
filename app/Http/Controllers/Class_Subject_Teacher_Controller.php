@@ -48,9 +48,9 @@ class Class_Subject_Teacher_Controller extends Controller
     public function store(Request $request,$id)
     {
         $input = request()->validate([
-            'subject_id' => 'required|unique:class_subject_teacher,subject_id',
+            'subject_id' => 'required',
             'teacher_id' => 'required',
-            'schedule' => 'required|unique:class_subject_teacher,schedule',
+            'schedule' => 'required',
         ], [
 
             'subject_id.required'=>'Subject is already created',

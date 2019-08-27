@@ -77,7 +77,7 @@ class AddClassController extends Controller
             'adviser_id' => 'required|unique:classes,adviser_id',
             'year' => 'required',
             'section' => 'required',
-            'section_name' => 'required|unique:classes,section_name',
+            'section_name' => 'required',
             'time' => 'required',
             'room' => 'required',
             'school_year' => 'required',

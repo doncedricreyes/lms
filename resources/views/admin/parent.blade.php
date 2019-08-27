@@ -41,6 +41,7 @@
                                         <th>Username</th> 
                                         <th>Email</th>
                                         <th>View</th>
+                                        <th>Edit</th>
                                        <th>Delete</th>
                                        <th>Message</th>
                                        <th> <a href="{{url('/admin/create/parents')}}"class="btn btn-primary btn-xs">Add</a></th>
@@ -54,7 +55,7 @@
                                 <td>{{$row->username}}</td>
                                 <td>{{$row->email}}</td>
                                 <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="/admin/parents/{{$row->id}}"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
-                   
+                                <td><p data-placement="top" data-toggle="tooltip" title="Edit"><a href="/admin/parents/{{$row->id}}/edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
                              
                                 
                                 <form action="{{route('admin.parents.destroy',[$row->id])}}" method="POST">

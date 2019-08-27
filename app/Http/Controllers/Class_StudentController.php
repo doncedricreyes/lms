@@ -148,11 +148,7 @@ class Class_StudentController extends Controller
         ->get();
         }
         
-        foreach($assignments as $assignment){
-            $student_assignments = Student_Assignment::with('students','assignments')->where('student_id',auth::user()->id)
-            ->where('assignment_id',$assignment->id)
-            ->get();
-        }
+      
         
         foreach($exams as $exam){
 
@@ -175,10 +171,10 @@ class Class_StudentController extends Controller
         $assignment_grade_all[]=$student_assignments;
     }
     $collection = collect([$assignment_grade_all]);
-    $assignment = $collection->flatten();
-    $assignment->all();   
+    $student_assignment = $collection->flatten();
+    $student_assignment->all();   
 
-        return view('student.subject',['subject_grade'=>$subject_grade,'assignments'=>$assignments,'subject_announcements'=>$subject_announcements,'students'=>$students,'exam_grades'=>$exam_grades,'class_subject_teachers'=>$class_subject_teachers,'lectures'=>$lectures,'class_students'=>$class_students,'exams'=>$exams,'student_assignments'=>$student_assignments]);
+        return view('student.subject',compact('student_assignment','exam_grades','subject_grade','assignments','subject_announcements','students','class_subject_teachers','lectures','class_students','exams'));
       
     }
 

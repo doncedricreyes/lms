@@ -124,7 +124,31 @@ class AdminController extends Controller
         return view('admin.view-students',['students'=>$students,'class_students'=>$class_students]);
     }
 
-    
+     public function edit_student($id)
+    {
+        $students = Student::where('id','=',$id)->get();
+        return view('admin.edit-student',['students'=>$students]);
+    }
+    public function update_student(Request $request, $id)
+    {
+        $input = request()->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|max:255|max:255',
+            'password' => 'required|string|min:6',
+        ], [
+      
+            
+            
+        ]);
+        $students = Student::find($id);
+        $students->name = $request->name;
+        $students->username = $request->username;
+        $students->password = Hash::make($request->password);
+        $students->role = 'student';
+        $students->save();
+        $request->session()->flash('alert-success', 'Student was successful updated!');
+        return redirect()->route('admin.student.show');
+    }
 
     public function show_parent()
     {
@@ -169,6 +193,33 @@ class AdminController extends Controller
         }
       
        
+    }
+    public function edit_parent($id)
+    {
+        $parents = Parents::where('id','=',$id)->get();
+        return view('admin.edit-parent',['parents'=>$parents]);
+    }
+    public function update_parent(Request $request, $id)
+    {
+        $input = request()->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|max:255|max:255',
+            'password' => 'required|string|min:6',
+        ], [
+      
+            
+            
+        ]);
+        $parents = Parents::find($id);
+        $parents->name = $request->name;
+        $parents->username = $request->username;
+        $parents->password = Hash::make($request->password);
+        $parents->role = 'parent';
+        $parents->save();
+        $request->session()->flash('alert-success', 'Parent was successful updated!');
+     
+        return redirect()->back();
+        
     }
 
     public function account()

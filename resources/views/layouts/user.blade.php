@@ -4,7 +4,13 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
+<style>
+ #pname {
+  font-size:85%;
+}
+</style>
 <html>
+
 
 <head>
   <meta charset="utf-8">
@@ -160,11 +166,13 @@ desired effect
                   @if(Auth::user()->role == "student")
                   <a href="/student/profile/{{Auth::user()->id}}"><img src="/storage/images/{{$profiles->get(0)->profile_pic}}" class="img-circle" alt="User Image" height="100"></a>
                   @endif
-
+    
+  
                 <p>
                   {{Auth::user()->name}}
                
                 </p>
+
               </li>
               <!-- Menu Body -->
               <li class="user-body">
@@ -278,11 +286,17 @@ desired effect
             <img src="/storage/images/{{$profiles->get(0)->profile_pic}}" class="img-circle" alt="User Image">
             @endif
         </div>
+      
+      @if(Auth::user()->role == "student" || Auth::user()->role == "teacher")
+  <div class="pull-left info" id="pname">
+          <p1>{{Auth::user()->name}}</p1>
+</div>
+    @endif
+    @if(Auth::user()->role == "admin" || Auth::user()->role == "parent")
         <div class="pull-left info">
-          <p>{{Auth::user()->name}}</p>
-          <!-- Status -->
-    
-        </div>
+          <p1>{{Auth::user()->name}}</p1>
+</div>
+    @endif
       </div>
 
 
@@ -295,6 +309,7 @@ desired effect
         <li><a href="/parent/classes"><i class="fa fa-user"></i> <span>Students</span></a></li>
         <li><a href="/parent/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
         <li><a href="/parent/students/grades"><i class="fa fa-graduation-cap"></i> <span>Grades</span></a></li>
+        <li><a href="/parent/account"><i class="fa fa-user"></i> <span>Account</span></a></li>
         <li><a href="/parent/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
       </ul>
       @endif
@@ -318,6 +333,7 @@ desired effect
           <li><a href="{{url('admin/class')}}"><i class="fa fa-graduation-cap"></i> <span>Class</span></a></li>
           <li><a href="/admin/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
           <li><a href="/admin/calendar"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
+          <li><a href="/admin/account"><i class="fa fa-user"></i> <span>Account</span></a></li>
           <li><a href="/admin/logout"><i class="fa fa-sign-out"></i>  <span>Logout</span></a></li>
         </ul>
         @endif
@@ -331,6 +347,7 @@ desired effect
             <li><a href="/student/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
             <li><a href="/student/profile/{{Auth::user()->id}}"><i class="fa  fa-user"></i> <span>Profile</span></a></li>
             <li><a href="/student/calendar"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
+             <li><a href="/student/account"><i class="fa fa-user"></i> <span>Account</span></a></li>
             <li><a href="/student/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
           </ul>
           @endif
@@ -342,6 +359,7 @@ desired effect
               <li><a href="/teacher/profile/{{Auth::user()->id}}"><i class="fa  fa-user"></i> <span>Profile</span></a></li>
               <li><a href="/teacher/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
               <li><a href="/teacher/calendar"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
+              <li><a href="/teacher/account"><i class="fa fa-user"></i> <span>Account</span></a></li>
               <li><a href="/teacher/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
             </ul>
             @endif

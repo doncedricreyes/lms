@@ -208,6 +208,7 @@ right: 2%;
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                 <label for="file_title">File Title:</label>
                 <input class="mdl-textfield__input" type="text" name="file_title" id="file_title">
+                <br>
                 <input class="mdl-textfield__input" type="file" name="file_name" id="file_name" >
             </div>
         </div>

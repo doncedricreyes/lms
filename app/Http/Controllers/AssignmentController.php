@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Student;
 use App\Assignment;
 use App\Student_Assignment;
-use App\Class_Subject_teacher;
+use App\Class_Subject_Teacher;
 use App\Class_Student;
 use Auth;
 use Notification;

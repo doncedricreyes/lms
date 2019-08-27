@@ -38,10 +38,10 @@
                                         <th>School Year</th>
                                       <th>Schedule</th>
                                       <th><a href="/admin/students/{{$students->get(0)->id}}/message"> <button type="button" class="btn btn-primary">Message</button></a></th>
-                                      @empty(!$class_student->parent_id)
+                                      @empty(!$class_students->get(0)->parent_id)
                                       <th><a href="/admin/parents/{{$class_students->get(0)->parent_id}}/message"> <button type="button" class="btn btn-primary">Message Parent</button></a></th>
                                       @endempty
-                                      @empty($class_student->parent_id)
+                                      @empty($class_students->get(0)->parent_id)
                                       <th>Parent/Guardian is not yet registered!</th>
                                       @endempty
                                      

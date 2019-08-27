@@ -202,20 +202,24 @@ class TeacherController extends Controller
 
 
     public function adviser(){
-        $classes = AddClass::with('teachers')->where('adviser_id','=',Auth::user()->id)->first();
-            $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('class_id',$classes->id)->get();
-            $class_students = Class_Student::with('students','class_subject_teachers')->where('class_subject_teacher_id',$class_subject_teachers->get(0)->id)->get()
+        $classes = AddClass::with('teachers')->where('adviser_id','=',Auth::user()->id)->get();
+       
+            $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('class_id','=',$classes->get(0)['id'])->get();
+            $class_announcements = Class_Announcement::with('classes')->where('class_id','=',$classes->get(0)['id'])->orderBy('updated_at')->get();
+        
+        
+        $class_students = Class_Student::with('students','class_subject_teachers')->where('class_subject_teacher_id','=',$class_subject_teachers->get(0)['id'])->get()
             ->sortBy(function($class_students){
-                return $class_students->students->get(0)->name;
+                return $class_students->students->get(0)['name'];
             });
-            $class_announcements = Class_Announcement::with('classes')->where('class_id','=',$classes->id)->orderBy('updated_at')->get();
       
-     if($classes){
-        return view('adviser.class',['class_announcements'=>$class_announcements,'classes'=>$classes,'class_subject_teachers'=>$class_subject_teachers,'class_students'=>$class_students]);
+     if($classes->isEmpty()){
+                 return redirect()->route('teachers.subject');
      }
      else{
       
-         return redirect()->route('teachers.subject');
+
+         return view('adviser.class',['class_announcements'=>$class_announcements,'classes'=>$classes,'class_subject_teachers'=>$class_subject_teachers,'class_students'=>$class_students]);
          
      }  
      
@@ -228,7 +232,7 @@ class TeacherController extends Controller
     }
 
     public function announcement_create(){
-        $classes = AddClass::with('teachers')->where('adviser_id','=',Auth::user()->id)->first();
+        $classes = AddClass::with('teachers')->where('adviser_id','=',Auth::user()->id)->get();
         return view('adviser.announcement-create',['classes'=>$classes]);
     }
 

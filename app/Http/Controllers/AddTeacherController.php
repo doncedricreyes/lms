@@ -143,7 +143,7 @@ class AddTeacherController extends Controller
     {
         $input = request()->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:parents|unique:students|unique:teachers|unique:admins',
+            'username' => 'required|max:255|max:255',
             'password' => 'required|string|min:6',
 
         ], [
@@ -154,8 +154,8 @@ class AddTeacherController extends Controller
 
         ]);
         $teachers = Teacher::find($id);
-        $teachers->name = $request->teacher_name;
-        $teachers->email = $request->email;
+        $teachers->name = $request->name;
+        $teachers->username = $request->username;
         $teachers->password = Hash::make($request->password);
         $teachers->role = 'teacher';
         $teachers->save();

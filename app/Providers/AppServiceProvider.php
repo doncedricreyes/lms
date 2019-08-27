@@ -16,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
+         
         view()->composer('layouts.user', function ($view) {
             $profiles = Profile::with('students')->where('student_id','=',Auth::user()->id)->get();
             $view->profiles = $profiles;

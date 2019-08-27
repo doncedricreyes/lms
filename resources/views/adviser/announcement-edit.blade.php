@@ -1,41 +1,39 @@
-@extends('layouts.user')
+
+        
+        
+        @extends('layouts.user')
 <style>
         #content{
                 position: relative;
                 width: 100%;
         }
         #submit{
-                position: absolute;
-                right: 10%;
-                top: 100%;
+                position: relative;
+                float:right;
+                
         }
-
         </style>
 @section('content')
 <div class="container" id ="view">
-	<div >
+	<legend>Edit Announcement</legend>
             <div class="col-lg-12 p-t-20">
-                    <form action = "{{route('announcement.update',$class_announcements->first()->id)}}" method="post" enctype="multipart/form-data">
+                     <form action = "{{route('announcement.update',$class_announcements->first()->id)}}" method="post" enctype="multipart/form-data">
                             {{csrf_field() }}
                             <input name="_method" type="hidden" value="PUT">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                        <input class="mdl-textfield__input" type="text" name="title" value="{{$class_announcements->first()->title}}" >
-                        <label class="mdl-textfield__label">Subject</label>
-                    </div>
-                </div>
+                            <div class="box-body">
+                                        <div class="form-group">
+                                          <input class="form-control"  name="title" id="title" value="{{$class_announcements->first()->title}}" >
+                                        </div>
 
-                <div class="col-lg-12 p-t-20">
-                        <div id="content" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                <label class="mdl-textfield__label" >Content</label>
-                            <textarea class="mdl-textfield__input" type="text" rows= "7"  id="body" name="body">{{$class_announcements->first()->body}}</textarea>
-    
+                                        <div class="form-group">
+                                                        <textarea id="body" name="body" class="form-control" style="height: 300px">{{$class_announcements->first()->body}}             
+                                                        </textarea>
+                        <br>
+                    <button id="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+                           Update
+                       </button>
                                         </div>
                                     </div>
-
-                    <button id="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
-                            Submit
-                       </button>
-                      
 </div>
 
         @endsection

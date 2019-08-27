@@ -4,7 +4,7 @@
 <style>
     #submit{
         position: relative;
-        left: 80%;
+        float: right;
      
     }
     </style>

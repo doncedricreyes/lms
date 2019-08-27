@@ -20,7 +20,7 @@
                   <div class="demo-card-wide mdl-card mdl-shadow--2dp">
                     <div class="mdl-card__title">
                       <h2 class="mdl-card__title-text"> 
-                       <h3>Name: {{$students->first()->name}}</h3>
+                       <h3>{{$students->first()->name}}</h3>
                                        </h2>
                     </div>
                 
@@ -92,7 +92,7 @@
                       <div class="mdl-tabs__panel" id="resources-panel">
                       <legend>Lectures</legend>
                       @foreach($lectures as $lecture)
-                      <a href="/storage/lectures/{{$lecture->file_name}}" download="{{$lecture->file_name}}"><div class="icon material-icons">file_copy</div>{{$lecture->file_title}}</a>
+                      <a href="/public/storage/lectures/{{$lecture->file_name}}" download="{{$lecture->file_name}}"><div class="icon material-icons">file_copy</div>{{$lecture->file_title}}</a>
                       <br>
                         @endforeach
                       <br><br>
@@ -199,8 +199,7 @@
                                     <table class="mdl-data-table mdl-js-data-table col-lg-12" >
                                     <thead>
                                         <tr>
-
-                                          @foreach($student_assignments as $assign)
+ @foreach($student_assignment as $assign)
                                             <th>{{$assign->assignments->title}}</th>
                                             @endforeach
                                         </tr >
@@ -212,9 +211,10 @@
                                   
                             <tr>
 
-                                  @foreach($student_assignments as $assign)
+                                  @foreach($student_assignment as $assign)
                                 <td>{{$assign->grade}}</td>
                                 @endforeach
+                                         
                             </tr>
                                            
                                     </tbody>

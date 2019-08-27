@@ -80,7 +80,7 @@
    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
       <div class="mdl-card__title">
         <h2 class="mdl-card__title-text"> 
-            <h2>Section: {{$classes->year}}-{{$classes->section}}
+            <h2>Section: {{$classes->get(0)['year']}}-{{$classes->get(0)['section']}}
            </h2>
                           </h2>
       </div>
@@ -88,10 +88,10 @@
       <div class="mdl-card__actions mdl-card--border">
         <div class="mdl-card__supporting-text">
             <p>Adviser:   <a href="profile/{{auth::user()->id}}" >{{auth::user()->name}}</a></p>
-          <p>Section Name:  {{$classes->section_name}}</p>
-        <p>School year: {{$classes->school_year}}</p>
-        <p>School year: {{$classes->time}}</p>
-        <p>School year: {{$classes->room}}</p>
+          <p>Section Name:  {{$classes->get(0)['section_name']}}</p>
+        <p>School year: {{$classes->get(0)['school_year']}}</p>
+        <p>Time: {{$classes->get(0)['time']}}</p>
+        <p>Room: {{$classes->get(0)['room']}}</p>
      
         
         </div>
@@ -108,7 +108,8 @@
 
       <div class="mdl-tabs__panel is-active" id="announcements-panel">
               <br><br>
-           <legend><a href="{{route('announcement.create',$classes->first()->id)}}" class="btn btn-primary">Create Announcement</a></legend>  
+  
+           <legend><a href="{{route('announcement.create',$classes->get(0)['id'])}}" class="btn btn-primary">Create Announcement</a></legend>  
 <br><br>
 @foreach($class_announcements as $announcement)
 <div class="demo-card-wide mdl-card mdl-shadow--2dp">

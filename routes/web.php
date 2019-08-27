@@ -2,6 +2,7 @@
 if(version_compare(PHP_VERSION, '7.2.0', '>=')) {
     error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 }
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -103,7 +104,10 @@ Route::get('/create/parents','AdminController@add_parent_view');
 Route::post('/create/parents','AdminController@add_parent_store')->name('add-parent.store');
 Route::post('/enrollment','AdminController@enrollment_store')->name('parent.enrollment.store');
 Route::put('/enrollment/{id}','AdminController@enrollment_destroy')->name('enrollment.destroy');
-
+Route::get('/students/{id}/edit','AdminController@edit_student');
+Route::put('/students/{id}/edit','AdminController@update_student')->name('add-student.update');
+Route::get('/parents/{id}/edit','AdminController@edit_parent');
+Route::put('/parents/{id}/edit','AdminController@update_parent')->name('add-parent.update');
 });
 
 Route::prefix('teacher')->group(function()

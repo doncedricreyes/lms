@@ -15,7 +15,7 @@
 
             <div class="col-lg-12 p-t-20">
                     <legend> Create announcement </legend>
-                    <form action = "{{route('announcement.store',$classes->first()->id)}}" method="post" enctype="multipart/form-data">
+                    <form action = "{{route('announcement.store',$classes->get(0)['id'])}}" method="post" enctype="multipart/form-data">
                                 {{csrf_field() }}
                             <div class="box-body">
                                 <div class="form-group">

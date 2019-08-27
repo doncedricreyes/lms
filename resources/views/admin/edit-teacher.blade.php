@@ -4,7 +4,7 @@
     <style>
         #submit{
             position: relative;
-            left: 80%;
+            float: right;
          
         }
         </style>
@@ -35,10 +35,10 @@
               {{csrf_field() }}
               <input name="_method" type="hidden" value="PUT">
               @endforeach
-                        <label for="teacher_name">Teacher's Name:</label>
-                        <input type="text" name="teacher_name" id="teacher_name" value="{{$teachers->get(0)->name}}" class="form-control"> 
-                        <label for="email"> E-mail Address:</label>
-                        <input type="email" name="email" id="email" value="{{$teachers->get(0)->email}}" class="form-control">
+                        <label for="name">Teacher's Name:</label>
+                        <input type="text" name="name" id="name" value="{{$teachers->get(0)->name}}" class="form-control"> 
+                        <label for="username"> Username:</label>
+                        <input type="text" name="username" id="username" value="{{$teachers->get(0)->username}}" class="form-control">
                         <label for="password"> Create a password:</label>
                         <input type="password" name="password" title="password"  class="form-control">
                         <br>
