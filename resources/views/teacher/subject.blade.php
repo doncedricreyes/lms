@@ -176,7 +176,7 @@ right: 2%;
                     @endif
                         <br><br><br>
                       @foreach($lectures as $lecture)
-                      <a href="/storage/lectures/{{$lecture->file_name}}" download="{{$lecture->file_name}}"><div class="icon material-icons">file_copy</div>{{$lecture->file_title}}</a><br>
+                      <a href="lectures" download="{{$lecture->file_name}}"><div class="icon material-icons">file_copy</div>{{$lecture->file_title}}</a><br>
                         @endforeach
                       <!-- Button trigger modal -->
 
