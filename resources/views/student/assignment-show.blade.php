@@ -71,6 +71,7 @@
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                 <label for="file">Filename:</label>
                 <input class="mdl-textfield__input" type="text" name="file_title" id="file">
+                <br>
                 <input class="mdl-textfield__input" type="file" name="file" id="file" >
             </div>
         </div>
