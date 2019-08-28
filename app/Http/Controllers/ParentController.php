@@ -120,11 +120,9 @@ class ParentController extends Controller
         $class_announcements = Class_Announcement::with('classes')->where('class_id','=',$class_subject_teachers->class_id)->get();
         $students = Class_Student::with('students','class_subject_teachers')->where('class_subject_teacher_id','=',$class_subject_teachers->id)->get();
      
-        $grade_subjects = Grade_Subject::with('students','class_subject_teachers')->where('student_id','=',$id)
-        ->where('quarter','=',$quarter)
-        ->get();
+     
       
-        return view('parent.class_id',['grade_subjects'=>$grade_subjects,'students'=>$students,'class_announcements'=>$class_announcements,'class_subject_teachers'=>$class_subject_teachers,'students'=>$students,'class_students'=>$class_students]);
+        return view('parent.class_id',['students'=>$students,'class_announcements'=>$class_announcements,'class_subject_teachers'=>$class_subject_teachers,'students'=>$students,'class_students'=>$class_students]);
     
 }
 
