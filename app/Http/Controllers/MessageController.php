@@ -354,9 +354,9 @@ class MessageController extends Controller
 
     ]);
    $messages = Message::with('student','teacher','parent','admin')->where('id','=',$inbox)->get();
-        $parents = Parents::where('id','=',$messages->get(0)['recipient_parent_id'])->get();
-      $teachers = Teacher::where('id','=',$messages->get(0)['recipient_teacher_id'])->get();
-      $students = Student::where('id','=',$messages->get(0)['recipient_student_id'])->get();
+        $parents = Parents::where('id','=',$messages->get(0)->recipient_parent_id)->get();
+      $teachers = Teacher::where('id','=',$messages->get(0)->recipient_teacher_id)->get();
+      $students = Student::where('id','=',$messages->get(0)->recipient_student_id)->get();
       $admins = Admin::where('id','=',$messages->get(0)['recipient_admin_id'])->get();
    $sender_id = Auth::user()->id;
    $message = new Message();
