@@ -91,7 +91,7 @@ class QuestionController extends Controller
         ]);
        
         $question = Question::find($id);
-            $question->exam_id = $id;
+           
             $question->question = $request->question;
             $question->score = $request->score;
             $question->option_1 = $request->option_1;
