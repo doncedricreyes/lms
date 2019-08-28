@@ -22,7 +22,7 @@ class NewMessage extends Notification
      */
     public function __construct()
     {
-   
+        $token = null;
         $this->token = $token;
     }
 
