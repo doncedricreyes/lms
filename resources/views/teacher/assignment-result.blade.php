@@ -59,7 +59,7 @@
 }
 </style>
 @section('content')
-@if($assignments->get(0)['class_subject_teachers->teacher_id'] == auth::user()->id)
+
 <div class="container" id="view">
     <div class="flash-message">
         @foreach (['danger', 'warning', 'success', 'info'] as $msg)
@@ -134,7 +134,7 @@
 </div>
 </div>
 
-@endif
+
 
  
 
