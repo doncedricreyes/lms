@@ -367,11 +367,11 @@ class AdminController extends Controller
         
     }
 
-    public function enrollment_store(Request $request){
+    public function enrollment_store(Request $request,$parent_id){
         $input = request()->validate([
             'year' => 'required|string|max:255|exists:classes',
             'section' => 'required|string|max:255|exists:classes',
-            'name' => 'required|string|exists:students|',
+            'name' => 'required|string|exists:students|unique:students|',
 
         ], [
 
@@ -405,7 +405,7 @@ class AdminController extends Controller
                 $class_student = Class_Student::find($id);
                 $class_student->student_id = $class_student->student_id;
                 $class_student->class_subject_teacher_id = $class_student->class_subject_teacher_id;
-                $class_student->parent_id = Auth::user()->id;
+                $class_student->parent_id = $parent_id;
                 $class_student->save();
                 }
             }
