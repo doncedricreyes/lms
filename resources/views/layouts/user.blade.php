@@ -253,7 +253,7 @@ desired effect
     @endif
     @if(Auth::user()->role == "admin" || Auth::user()->role == "parent")
         <div class="pull-left info">
-          <p1>{{Auth::user()->name}}</p1>
+        
 </div>
     @endif
       </div>
@@ -264,7 +264,7 @@ desired effect
       @if(Auth::user()->role=="parent")
       <ul class="sidebar-menu" data-widget="tree">
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="/parent/enrollment"><i class="fa fa-plus-circle"></i> <span>Enrollment</span></a></li>
+  
         <li><a href="/parent/classes"><i class="fa fa-user"></i> <span>Students</span></a></li>
         <li><a href="/parent/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
         <li><a href="/parent/students/grades"><i class="fa fa-graduation-cap"></i> <span>Grades</span></a></li>
