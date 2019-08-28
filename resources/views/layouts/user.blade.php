@@ -106,56 +106,15 @@ desired effect
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">{{count(auth()->user()->unreadNotifications)}}</span>
-            </a>
-            <ul class="dropdown-menu">
-              @if(Auth::user()->role == 'student')
-              <li  class="header"><a onclick="{{auth()->user()->unreadNotifications->markAsRead()}}" href="/student/messages/{{Auth::user()->id}}/inbox">You have {{count(auth()->user()->unreadNotifications)}} new messages</a></li>
-              <li>
-                @endif
-                @if(Auth::user()->role == 'teacher')
-                <li  class="header"><a onclick="{{auth()->user()->unreadNotifications->markAsRead()}}" href="/teacher/messages/{{Auth::user()->id}}/inbox">You have {{count(auth()->user()->unreadNotifications)}} new messages</a></li>
-                <li>
-                  @endif
-                  @if(Auth::user()->role == 'parent')
-                  <li  class="header"><a onclick="{{auth()->user()->unreadNotifications->markAsRead()}}" href="/parent/messages/{{Auth::user()->id}}/inbox">You have {{count(auth()->user()->unreadNotifications)}} new messages</a></li>
-                  <li>
-                    @endif
-                    @if(Auth::user()->role == 'admin')
-                    <li  class="header"><a onclick="{{auth()->user()->unreadNotifications->markAsRead()}}" href="/admin/messages/{{Auth::user()->id}}/inbox">You have {{count(auth()->user()->unreadNotifications)}} new messages</a></li>
-                    <li>
-                      @endif
-                       @if(Auth::user()->role == 'superadmin')
-                    <li  class="header"><a onclick="{{auth()->user()->unreadNotifications->markAsRead()}}" href="/admin/messages/{{Auth::user()->id}}/inbox">You have {{count(auth()->user()->unreadNotifications)}} new messages</a></li>
-                    <li>
-                      @endif
-                <!-- inner menu: contains the messages -->
-                <ul class="menu">
-                  <li><!-- start message -->
- 
-                  </li>
-                  <!-- end message -->
-                </ul>
-                <!-- /.menu -->
-              </li>
-            </ul>
-          </li>
-          <!-- /.messages-menu -->
+        
 
    
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- The user image in the navbar-->
-   
-              <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">{{Auth::user()->name}}</span>
+      
+              <span >{{Auth::user()->name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
