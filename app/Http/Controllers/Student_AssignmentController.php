@@ -73,6 +73,6 @@ class Student_AssignmentController extends Controller
     $assignments = Assignment::with('class_subject_teachers')->where('id','=',$student_assignment->assignments->get(0)['id'])->get();
        }
  
-    return view('teacher.assignment-result',['student_assignments'=>$student_assignments,'assignments'=>$assignments]);
+    return view('teacher.assignment-result',['student_assignments'=>$student_assignments],compact('assignments');
 }
 }
