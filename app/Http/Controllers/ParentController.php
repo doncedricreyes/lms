@@ -153,15 +153,15 @@ class ParentController extends Controller
         }
         
         
-        foreach($exams as $exam){
+       
          
          
-        $exam_grades = Exam_Grade::with('students','exams')->where('student_id','=',$students->get(0)->id)
-        ->where('exam_id','=',$exams->first()->id)
+        $exam_grades = Exam_Grade::with('students','exams')->where('student_id','=',$students->get(0)['id'])
+        ->where('exam_id','=',$exams->get(0)['id'])
         ->get();
     
     
-        }
+        
         return view('parent.subject',['subject_announcements'=>$subject_announcements,'students'=>$students,'exam_grades'=>$exam_grades,'assignments'=>$assignments,'class_subject_teachers'=>$class_subject_teachers,'lectures'=>$lectures,'class_students'=>$class_students,'exams'=>$exams,'student_assignments'=>$student_assignments]);
     }
 
