@@ -330,6 +330,10 @@ class MessageController extends Controller
    
     public function reply_store(Request $request,$inbox)
     {
+          $parents = Parents::where('id','=',$id)->get();
+      $teachers = Teacher::where('id','=',$id)->get();
+      $students = Student::where('id','=',$id)->get();
+      $admins = Admin::where('id','=',$id)->get();
    $messages = Message::with('student','teacher','parent','admin')->where('id','=',$inbox)->get();
    $sender_id = Auth::user()->id;
    $message = new Message();
@@ -363,6 +367,26 @@ class MessageController extends Controller
 $message->message_title = $request->message_title;
 $message->message_body = $request->message_body;
 $message->save();
+        if (\Route::current()->getName() == 'admin.message.reply.store') {
+  foreach($admins as $admin){
+    Notification::route('mail',$admin->email)->notify(new NewMessage($messages));
+    }
+}
+if (\Route::current()->getName() == 'student.message.reply.store') {
+  foreach($students as $student){
+    Notification::route('mail',$student->email)->notify(new NewMessage($messages));
+    }
+}
+if (\Route::current()->getName() == 'parent.message.reply.store') {
+  foreach($parents as $parent){
+    Notification::route('mail',$parent->email)->notify(new NewMessage($messages));
+    }
+}
+if (\Route::current()->getName() == 'teacher.message.reply.store') {
+  foreach($teachers as $teacher){
+    Notification::route('mail',$teacher->email)->notify(new NewMessage($messages));
+    }
+}
 $request->session()->flash('alert-success', 'Message was successful sent!');
 return redirect()->back();
         
@@ -481,6 +505,10 @@ return redirect()->back();
     
     
     public function compose_store(Request $request,$id){
+              $parents = Parents::where('id','=',$id)->get();
+      $teachers = Teacher::where('id','=',$id)->get();
+      $students = Student::where('id','=',$id)->get();
+      $admins = Admin::where('id','=',$id)->get();
       $input = request()->validate([
         'name'=> 'required|string|max:255',
         'role'=> 'required|string|max:255',
@@ -553,6 +581,26 @@ return redirect()->back();
      $messages->message_title = $request->message_title;
 $messages->message_body = $request->message_body;
 $messages->save();
+        if (\Route::current()->getName() == 'admin.message.compose.store') {
+  foreach($admins as $admin){
+    Notification::route('mail',$admin->email)->notify(new NewMessage($messages));
+    }
+}
+if (\Route::current()->getName() == 'student.message.compose.store') {
+  foreach($students as $student){
+    Notification::route('mail',$student->email)->notify(new NewMessage($messages));
+    }
+}
+if (\Route::current()->getName() == 'parent.message.compose.store') {
+  foreach($parents as $parent){
+    Notification::route('mail',$parent->email)->notify(new NewMessage($messages));
+    }
+}
+if (\Route::current()->getName() == 'teacher.message.compose.store') {
+  foreach($teachers as $teacher){
+    Notification::route('mail',$teacher->email)->notify(new NewMessage($messages));
+    }
+}
 $request->session()->flash('alert-success', 'Message was successful sent!');
 return redirect()->back();
     }
