@@ -160,12 +160,9 @@ class ParentController extends Controller
         ->where('exam_id','=',$exams->first()->id)
         ->get();
     
-        $grade_subjects = Grade_Subject::with('students','class_subject_teachers')->where('student_id','=',$students->get(0)->id)
-        ->where('class_subject_teacher_id','=',$id)
-        ->where('quarter','=',$quarter)
-        ->get();
+    
         }
-        return view('parent.subject',['subject_announcements'=>$subject_announcements,'students'=>$students,'grade_subjects'=>$grade_subjects,'exam_grades'=>$exam_grades,'assignments'=>$assignments,'class_subject_teachers'=>$class_subject_teachers,'lectures'=>$lectures,'class_students'=>$class_students,'exams'=>$exams,'student_assignments'=>$student_assignments]);
+        return view('parent.subject',['subject_announcements'=>$subject_announcements,'students'=>$students,'exam_grades'=>$exam_grades,'assignments'=>$assignments,'class_subject_teachers'=>$class_subject_teachers,'lectures'=>$lectures,'class_students'=>$class_students,'exams'=>$exams,'student_assignments'=>$student_assignments]);
     }
 
     public function assignment($id)
