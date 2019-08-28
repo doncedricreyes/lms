@@ -19,7 +19,7 @@
       {
         position: relative;
         width:65%;
-        left: 5%;
+        float:right;
       }
       #edit{
         position: relative;
