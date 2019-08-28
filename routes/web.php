@@ -177,7 +177,7 @@ Route::post('/parent/{id}/message','MessageController@store')->name('teacher.par
 Route::get('/messages/{id}/inbox','MessageController@teacher_inbox')->name('teacher.inbox.show');
 Route::get('/messages/{id}/inbox/{inbox}','MessageController@teacher_show')->name('teacher.message.show');
 Route::get('/messages/{id}/inbox/{inbox}/reply','MessageController@teacher_reply')->name('teacher.message.reply');
-Route::post('/messages/{id}/inbox/{inbox}/reply','MessageController@reply_store')->name('teacher.message.reply.store');
+Route::post('/messages/inbox/{inbox}/reply','MessageController@reply_store')->name('teacher.message.reply.store');
 Route::get('/messages/{id}','MessageController@teacher_sent_index')->name('teacher.message.sent.index');
 Route::get('/messages/outbox/{id}','MessageController@teacher_sent_show')->name('teacher.message.sent.show');
 Route::get('/messages/{id}/compose','MessageController@teacher_compose_index')->name('teacher.message.compose.index');
