@@ -24,7 +24,14 @@
 
 
 <div class="container" id="view">
-
+    <div class="flash-message">
+                                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                                  @if(Session::has('alert-' . $msg))
+                            
+                                  <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                                  @endif
+                                @endforeach
+                              </div> <!-- end .flash-message -->
                 <section class="content">
                                 <div class="row">
                                   <div class="col-md-3">
@@ -70,7 +77,7 @@
                                                                   <div class="box-body">
                                                                     <div class="form-group">
                                                                                 @foreach($messages as $message)
-                                                                      <input readonly class="form-control" id="name" name="name" value="{{$message->students->name}}{{$message->parents->name}}{{$message->teachers->name}}{{$message->admins->name}} ">
+                                                                      <input readonly class="form-control" id="name" name="name" value="{{$message->students['name']}}{{$message->parents['name']}}{{$message->teachers['name']}}{{$message->admins['name']}} ">
                                                         
                                                                       
                                                                  
@@ -90,14 +97,7 @@
                                                                     </div>
                                                 </div>
                                                                   </form>
-                    <div class="flash-message">
-                                @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-                                  @if(Session::has('alert-' . $msg))
-                            
-                                  <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
-                                  @endif
-                                @endforeach
-                              </div> <!-- end .flash-message -->
+                
             </div>
             
 
