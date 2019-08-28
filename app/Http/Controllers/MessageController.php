@@ -390,7 +390,7 @@ $message->save();
       $parents = Parents::where('id','=',$message->recipient_parent_id)->get();
       $teachers = Teacher::where('id','=',$message->recipient_teacher_id)->get();
       $students = Student::where('id','=',$message->recipient_student_id)->get();
-      $admins = Admin::where('id','=',$messages-recipient_admin_id)->get();
+      $admins = Admin::where('id','=',$message-recipient_admin_id)->get();
         if (\Route::current()->getName() == 'admin.message.reply.store') {
   foreach($admins as $admin){
     Notification::route('mail',$admin->email)->notify(new NewMessage($messages));
