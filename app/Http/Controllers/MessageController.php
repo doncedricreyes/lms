@@ -328,7 +328,7 @@ class MessageController extends Controller
 
    
    
-    public function reply_store(Request $request,$inbox)
+    public function reply_store(Request $request,$id,$inbox)
     {
           $parents = Parents::where('id','=',$id)->get();
       $teachers = Teacher::where('id','=',$id)->get();
