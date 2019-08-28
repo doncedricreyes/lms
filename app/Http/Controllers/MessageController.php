@@ -579,10 +579,10 @@ return redirect()->back();
      $messages->message_title = $request->message_title;
 $messages->message_body = $request->message_body;
 $messages->save();
-          $parents = Parents::where('id','=',$messages->recipient_parent_id)->get();
-      $teachers = Teacher::where('id','=',$messages->recipient_teacher_id)->get();
-      $students = Student::where('id','=',$messages->recipient_student_id)->get();
-      $admins = Admin::where('id','=',$messages->recipient_admin_id)->get();
+          $parents = Parents::where('id','=',$parent->get(0)['id'])->get();
+      $teachers = Teacher::where('id','=',$teacher->get(0)['id'])->get();
+      $students = Student::where('id','=',$student->get(0)['id'])->get();
+      $admins = Admin::where('id','=',$admin->get(0)['id'])->get();
         if (\Route::current()->getName() == 'admin.message.compose.store') {
   foreach($admins as $admin){
     Notification::route('mail',$admin->email)->notify(new NewMessage($messages));
