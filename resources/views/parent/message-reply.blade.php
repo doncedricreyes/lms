@@ -70,7 +70,7 @@
                                                                   <div class="box-body">
                                                                     <div class="form-group">
                                                                                 @foreach($messages as $message)
-                                                                      <input readonly class="form-control" id="name" name="name" value="{{$message->students->name}}{{$message->parents->name}}{{$message->teachers->name}}{{$message->admins->name}} ">
+                                                                      <input readonly class="form-control" id="name" name="name" value="{{$message->students['name']}}{{$message->parents['name']}}{{$message->teachers['name']}}{{$message->admins['name']}} ">
                                                         
                                                                       
                                                                  
