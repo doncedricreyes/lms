@@ -84,8 +84,9 @@
                        
          
                       @foreach($questions as $question)
+                      <?php $i++ ?>
             <tr>
-                <td>{{$i=$i+1}}</td>
+                <td>{{$i}}</td>
                 <td>{{$question->question}}</td>
                 <td>{{$question->score}}</td>
                 <td>{{$question->option_1}}</td>
