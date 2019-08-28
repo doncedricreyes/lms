@@ -182,7 +182,7 @@ class Class_StudentController extends Controller
     public function exam($id)
     {
         $exams = Exam::with('class_subject_teachers')->where('id',$id)->get();
-        $exam_grades = Exam_Grade::with('students','exams')->where('student_id',Auth::user()->id)->where( 'exam_id',$id)->first();
+        $exam_grades = Exam_Grade::with('students','exams')->where('student_id',Auth::user()->id)->where( 'exam_id',$id)->get();
         return view('student.exam', ['exams' => $exams,'exam_grades'=>$exam_grades]);
     }
 
