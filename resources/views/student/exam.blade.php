@@ -19,7 +19,7 @@
 <h3>This exam will closed on {{$exam->date_end}}
 <h3>Total Score: {{$exam->total_score}}</h3>
 <h3>Passing Score: {{$exam->passing_score}}</h3>
-<h3>Attempts: {{$exam->attempts}}</h3>
+
 
 
 
