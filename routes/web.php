@@ -102,7 +102,7 @@ Route::get('/create/students','AdminController@add_student_view');
 Route::post('/create/students','AdminController@add_student_store')->name('add-student.store');
 Route::get('/create/parents','AdminController@add_parent_view');
 Route::post('/create/parents','AdminController@add_parent_store')->name('add-parent.store');
-Route::post('/enrollment','AdminController@enrollment_store')->name('parent.enrollment.store');
+Route::put('/enrollment/{id}/store','AdminController@enrollment_store')->name('parent.enrollment.store');
 Route::put('/enrollment/{id}','AdminController@enrollment_destroy')->name('enrollment.destroy');
 Route::get('/students/{id}/edit','AdminController@edit_student');
 Route::put('/students/{id}/edit','AdminController@update_student')->name('add-student.update');
