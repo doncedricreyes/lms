@@ -122,7 +122,7 @@ foreach($assignments as $class_subject_teacher_id){
         $students = Student::where('id',$student_id)->get();
         
         foreach($students as $student){
-            Notification::route('mail',$student->email)->notify(new AssignmentGraded($assignment));
+            Notification::route('mail',$student->email)->notify(new AssignmentGraded($assignment_grade));
             }
         $request->session()->flash('alert-success', 'Grade Successfully Edited!');
         
