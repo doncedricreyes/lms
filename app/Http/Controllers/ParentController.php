@@ -146,11 +146,11 @@ class ParentController extends Controller
         ->get();
         }
         
-        foreach($assignments as $assignment){
-            $student_assignments = Student_Assignment::with('students','assignments')->where('student_id',$students->get(0)->id)
-            ->where('assignment_id','=',$assignment->id)
+   
+            $student_assignments = Student_Assignment::with('students','assignments')->where('student_id',$students->get(0)['id'])
+            ->where('assignment_id','=',$assignments->get(0)['id'])
             ->get();
-        }
+        
         
         
        
@@ -162,7 +162,7 @@ class ParentController extends Controller
     
     
         
-        return view('parent.subject',['subject_announcements'=>$subject_announcements,'students'=>$students,'exam_grades'=>$exam_grades,'assignments'=>$assignments,'class_subject_teachers'=>$class_subject_teachers,'class_students'=>$class_students,'exams'=>$exams]);
+        return view('parent.subject',['subject_announcements'=>$subject_announcements,'students'=>$students,'exam_grades'=>$exam_grades,'assignments'=>$assignments,'class_subject_teachers'=>$class_subject_teachers,'class_students'=>$class_students,'exams'=>$exams,'student_assignments'=>$student_assignments]);
     }
 
     public function assignment($id)
