@@ -162,7 +162,7 @@ class ParentController extends Controller
     
     
         
-        return view('parent.subject',['subject_announcements'=>$subject_announcements,'students'=>$students,'exam_grades'=>$exam_grades,'assignments'=>$assignments,'class_subject_teachers'=>$class_subject_teachers,'lectures'=>$lectures,'class_students'=>$class_students,'exams'=>$exams,'student_assignments'=>$student_assignments]);
+        return view('parent.subject',['subject_announcements'=>$subject_announcements,'students'=>$students,'exam_grades'=>$exam_grades,'assignments'=>$assignments,'class_subject_teachers'=>$class_subject_teachers,'class_students'=>$class_students,'exams'=>$exams,'student_assignments'=>$student_assignments]);
     }
 
     public function assignment($id)
