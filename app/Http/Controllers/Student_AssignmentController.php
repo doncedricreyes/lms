@@ -70,7 +70,7 @@ class Student_AssignmentController extends Controller
         
     });
        foreach($student_assignments as $student_assignment){
-    $assignments = Assignment::with('class_subject_teachers')->where('id','=',$student_assignment->assignments->get(0)['id'])->get();
+    $assignments = Assignment::with('class_subject_teachers')->where('id','=',$student_assignment->assignments->get(0)->id)->get();
        }
  
     return view('teacher.assignment-result')->with(compact('assignments','student_assignments'));
