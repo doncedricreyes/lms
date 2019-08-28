@@ -48,7 +48,7 @@ class NewMessage extends Notification
          if(Auth::user()->role == 'student'){
         return (new MailMessage)
      
-                    ->line(Auth::user()->name)
+                  
                     ->line('You have a new message.')         
                     ->line('Please login to LMS to view your grade.')  
                     ->action('Login to LMS', route('student.login'));
@@ -56,7 +56,7 @@ class NewMessage extends Notification
     if(Auth::user()->role == 'admin'){
         return (new MailMessage)
      
-                    ->line(Auth::user()->name)
+                   
                     ->line('You have a new message.')         
                     ->line('Please login to LMS to view your grade.')  
                     ->action('Login to LMS', route('admin.login'));
@@ -64,7 +64,7 @@ class NewMessage extends Notification
     if(Auth::user()->role == 'teacher'){
         return (new MailMessage)
      
-                    ->line(Auth::user()->name)
+                  
                     ->line('You have a new message.')         
                     ->line('Please login to LMS to view your grade.')  
                     ->action('Login to LMS', route('teacher.login'));
@@ -72,7 +72,7 @@ class NewMessage extends Notification
     if(Auth::user()->role == 'parent'){
         return (new MailMessage)
      
-                    ->line(Auth::user()->name)
+                 
                     ->line('You have a new message.')         
                     ->line('Please login to LMS to view your grade.')  
                     ->action('Login to LMS', route('parent.login'));
