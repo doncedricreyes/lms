@@ -354,10 +354,7 @@ class MessageController extends Controller
 
     ]);
    $messages = Message::with('student','teacher','parent','admin')->where('id','=',$inbox)->get();
-        $parents = Parents::where('id','=',$messages->get(0)->recipient_parent_id)->get();
-      $teachers = Teacher::where('id','=',$messages->get(0)->recipient_teacher_id)->get();
-      $students = Student::where('id','=',$messages->get(0)->recipient_student_id)->get();
-      $admins = Admin::where('id','=',$messages->get(0)->recipient_admin_id)->get();
+      
    $sender_id = Auth::user()->id;
    $message = new Message();
    if(Auth::user()->role == "student"){
@@ -390,6 +387,10 @@ class MessageController extends Controller
 $message->message_title = $request->message_title;
 $message->message_body = $request->message_body;
 $message->save();
+      $parents = Parents::where('id','=',$message->recipient_parent_id)->get();
+      $teachers = Teacher::where('id','=',$message->recipient_teacher_id)->get();
+      $students = Student::where('id','=',$message->recipient_student_id)->get();
+      $admins = Admin::where('id','=',$messages-recipient_admin_id)->get();
         if (\Route::current()->getName() == 'admin.message.reply.store') {
   foreach($admins as $admin){
     Notification::route('mail',$admin->email)->notify(new NewMessage($messages));
