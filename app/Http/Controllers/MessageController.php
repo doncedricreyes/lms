@@ -55,6 +55,17 @@ class MessageController extends Controller
     }
 
     public function store(Request $request,$id){
+           $input = request()->validate([
+        'message_title' => 'required|string|max:255',
+        'message_body' => 'required|string|max:255',
+
+    ], [
+
+  
+        
+        
+
+    ]);
       $parents = Parents::where('id','=',$id)->get();
       $teachers = Teacher::where('id','=',$id)->get();
       $students = Student::where('id','=',$id)->get();
@@ -330,7 +341,18 @@ class MessageController extends Controller
    
     public function reply_store(Request $request,$inbox)
     {
-          
+     
+           $input = request()->validate([
+        'message_title' => 'required|string|max:255',
+        'message_body' => 'required|string|max:255',
+
+    ], [
+
+  
+        
+        
+
+    ]);
    $messages = Message::with('student','teacher','parent','admin')->where('id','=',$inbox)->get();
         $parents = Parents::where('id','=',$messages->get(0)['recipient_parent_id'])->get();
       $teachers = Teacher::where('id','=',$messages->get(0)['recipient_teacher_id'])->get();
@@ -508,8 +530,9 @@ return redirect()->back();
     public function compose_store(Request $request,$id){
       
       $input = request()->validate([
-        'name'=> 'required|string|max:255',
-        'role'=> 'required|string|max:255',
+        'message_title' => 'required|string|max:255',
+        'message_body' => 'required|string|max:255',
+
     ], [
 
   
