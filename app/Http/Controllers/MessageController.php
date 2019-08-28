@@ -506,10 +506,7 @@ return redirect()->back();
     
     
     public function compose_store(Request $request,$id){
-              $parents = Parents::where('id','=',$id)->get();
-      $teachers = Teacher::where('id','=',$id)->get();
-      $students = Student::where('id','=',$id)->get();
-      $admins = Admin::where('id','=',$id)->get();
+      
       $input = request()->validate([
         'name'=> 'required|string|max:255',
         'role'=> 'required|string|max:255',
@@ -582,6 +579,10 @@ return redirect()->back();
      $messages->message_title = $request->message_title;
 $messages->message_body = $request->message_body;
 $messages->save();
+          $parents = Parents::where('id','=',$messages->recipient_parent_id)->get();
+      $teachers = Teacher::where('id','=',$messages->recipient_teacher_id)->get();
+      $students = Student::where('id','=',$messages->recipient_student_id)->get();
+      $admins = Admin::where('id','=',$messages->recipient_admin_id)->get();
         if (\Route::current()->getName() == 'admin.message.compose.store') {
   foreach($admins as $admin){
     Notification::route('mail',$admin->email)->notify(new NewMessage($messages));
