@@ -55,6 +55,10 @@ class MessageController extends Controller
     }
 
     public function store(Request $request,$id){
+      $parents = Parents::where('id','=',$id)->get();
+      $teachers = Teacher::where('id','=',$id)->get();
+      $students = Student::where('id','=',$id)->get();
+      $admins = Admin::where('id','=',$id)->get();
         $sender_name = Auth::user()->name;
         $sender_id = Auth::user()->id;
         $messages = new Message();
@@ -127,41 +131,62 @@ class MessageController extends Controller
   
 
     if (\Route::current()->getName() == 'message.store') {
-      $students=Student::find($id)->notify(new NotifyMessage);
+      foreach($students as $student){
+        Notification::route('mail',$student->email)->notify(new NewMessage($messages));
+        }
     }
     if (\Route::current()->getName() == 'teacher.student.message.store') {
-      $students=Student::find($id)->notify(new NotifyMessage);
+      foreach($students as $student){
+        Notification::route('mail',$student->email)->notify(new NewMessage($messages));
+        }
     }
     if (\Route::current()->getName() == 'teacher.parent.message.store') {
-      $parents=Parents::find($id)->notify(new NotifyMessage);
+      foreach($parents as $parent){
+        Notification::route('mail',$parent->email)->notify(new NewMessage($messages));
+        }
       
     }
     if (\Route::current()->getName() == 'message.teacher.store') {
-      $teachers=Teacher::find($id)->notify(new NotifyMessage);
+      foreach($teachers as $teacher){
+        Notification::route('mail',$teacher->email)->notify(new NewMessage($messages));
+        }
     
     }
     if (\Route::current()->getName() == 'teacher.message.store') {
-      $teachers=Teacher::find($id)->notify(new NotifyMessage);
+      foreach($teachers as $teacher){
+        Notification::route('mail',$teacher->email)->notify(new NewMessage($messages));
+        }
     }
     if (\Route::current()->getName() == 'parent.message.teacher.store') {
-      $teachers=Teacher::find($id)->notify(new NotifyMessage);
+      foreach($teachers as $teacher){
+        Notification::route('mail',$teacher->email)->notify(new NewMessage($messages));
+        }
     }
     if (\Route::current()->getName() == 'admin.student.message.store') {
-      $students=Student::find($id)->notify(new NotifyMessage);
+      foreach($students as $student){
+        Notification::route('mail',$student->email)->notify(new NewMessage($messages));
+        }
     }
     if (\Route::current()->getName() == 'admin.teacher.message.store') {
-      $teachers=Teacher::find($id)->notify(new NotifyMessage);
+      foreach($teachers as $teacher){
+        Notification::route('mail',$teacher->email)->notify(new NewMessage($messages));
+        }
     }
     if (\Route::current()->getName() == 'admin.parent.message.store') {
-      $parents=Parents::find($id)->notify(new NotifyMessage);
+      foreach($parents as $parent){
+        Notification::route('mail',$parent->email)->notify(new NewMessage($messages));
+        }
     }
     if (\Route::current()->getName() == 'parent.message.student.store') {
-      $students=Student::find($id)->notify(new NotifyMessage);
+      foreach($students as $student){
+        Notification::route('mail',$student->email)->notify(new NewMessage($messages));
+        }
     }
     if (\Route::current()->getName() == 'admin.message.store') {
-      $admins=Admin::find($id)->notify(new NotifyMessage);
+      foreach($admins as $admin){
+        Notification::route('mail',$admin->email)->notify(new NewMessage($messages));
+        }
     }
-    
    
 
     $request->session()->flash('alert-success', 'Message was successful sent!');
