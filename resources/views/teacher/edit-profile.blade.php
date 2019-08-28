@@ -45,8 +45,10 @@
                                                             
                                                                 <div class="col-lg-6 p-t-20">
                                                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                                                      <label class="mdl-textfield__label">Birthday</label>
+                                                                      <br>
                                                                             <input class="mdl-textfield__input" type="date" value="{{ $teacher_profiles->get(0)->bday }}"  id="bday" name="bday">
-                                                                            <label class="mdl-textfield__label">Birthday</label>
+                                                                          
                                                                         </div>
                                                             </div>
 
