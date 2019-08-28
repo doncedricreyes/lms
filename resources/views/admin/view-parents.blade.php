@@ -93,10 +93,10 @@
     
                     </div>
                     
-                    <form action = "{{route('parent.enrollment.store')}}" method="post" enctype="multipart/form-data">
+                    <form action = "{{route('parent.enrollment.store',$parents->get(0)['id'])}}" method="post" enctype="multipart/form-data">
                                           
                         {{csrf_field() }}
-              
+                <input name="_method" type="hidden" value="PUT">
                 
                 <div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="createLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
