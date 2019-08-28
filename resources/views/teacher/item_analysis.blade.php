@@ -84,7 +84,7 @@
                        
          
                       @foreach($questions as $question)
-                      <?php $i++ ?>
+                     
             <tr>
               
                 <td>{{$question->question}}</td>
