@@ -6,15 +6,15 @@ use App\Parents;
 use App\Teacher;
 use App\Student;
 use App\Message;
-use Illuminate\Notifications\Notifiable;
-use App\Notifications\NotifyMessage;
+use Notification;
+use App\Notifications\NewMessage;
 
 use Auth;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-  use Notifiable;
+
 
     /**
      * Create a new controller instance.
