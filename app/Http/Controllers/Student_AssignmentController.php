@@ -69,10 +69,7 @@ class Student_AssignmentController extends Controller
         return $student_assignments->students->get(0)->name;
         
     });
-       foreach($student_assignments as $student_assignment){
-        $student_id = $student_assignment->assignments->get(0)->id;
-       }
-   $assignments = Assignment::with('class_subject_teachers')->where('id','=',$student_id)->get();
+   $assignments = Assignment::with('class_subject_teachers')->where('id','=',$student_assignments->assignments->get(0)->id)->get();
     return view('teacher.assignment-result',['assignments'=>$assignments,'student_assignments'=>$student_assignments]);
 }
 }
