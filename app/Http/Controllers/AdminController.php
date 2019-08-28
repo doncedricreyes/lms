@@ -371,7 +371,7 @@ class AdminController extends Controller
         $input = request()->validate([
             'year' => 'required|string|max:255|exists:classes',
             'section' => 'required|string|max:255|exists:classes',
-            'name' => 'required|string|exists:students|unique:students|',
+            'name' => 'required|string|exists:students',
 
         ], [
 
