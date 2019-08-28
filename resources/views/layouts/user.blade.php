@@ -91,10 +91,10 @@ desired effect
     <!-- Logo -->
     <a class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><img src="/storage/images/sccv.jpg" class="img-circle" id="logo" height="45" width="45"></span>
+      <span class="logo-mini"><img src="/storage/images/sccv.jpg" class="img-circle" id="logo" height="45" width="55"></span>
       <!-- logo for regular state and mobile devices -->
 
-      <span class="logo-lg">    <img src="/storage/images/sccv.jpg" class="img-circle" id="logo" height="45" width="45"></span>
+      <span class="logo-lg">    <img src="/storage/images/sccv.jpg" class="img-circle" id="logo" height="45" width="55"></span>
     </a>
 
     <!-- Header Navbar -->
