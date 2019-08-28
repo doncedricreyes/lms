@@ -64,17 +64,21 @@
             <div class="col-lg-6 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         @foreach($exams as $exam)
+                                         <label class="mdl-textfield__label">Date Start</label>
+                                         <br>
                                 <input class="mdl-textfield__input" type="datetime-local"   id="date_start" name="date_start" value="{{$exam->date_start}}">
                                 @endforeach
-                                <label class="mdl-textfield__label">Date Start</label>
+                               
                             </div>
                 </div>
             <div class="col-lg-6 p-t-20">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                         @foreach($exams as $exam)
+                                          <label class="mdl-textfield__label">Date End:</label>
+                                          <br>
                                 <input class="mdl-textfield__input" type="datetime-local"  id="date_end" name="date_end" value="{{$exam->date_end}}">
                                 @endforeach
-                                <label class="mdl-textfield__label">Date End:</label>
+                              
                             </div>
                 </div>
               
