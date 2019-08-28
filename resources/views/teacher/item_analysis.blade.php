@@ -83,10 +83,10 @@
                     <tbody>
                        
          
-                      @foreach($questions as $question)
+                      @foreach($questions as $key=>$question)
                      
             <tr>
-              
+                 <td>{{++$key}}</td>
                 <td>{{$question->question}}</td>
                 <td>{{$question->score}}</td>
                 <td>{{$question->option_1}}</td>
