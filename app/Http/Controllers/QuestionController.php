@@ -63,7 +63,7 @@ class QuestionController extends Controller
 
     public function show($id){
         $questions = Question::with('exams')->where('exam_id',$id)->get();
-        $exams = Exam::with('class_subject_teachers')->where('id',$questions->get(0)['exam_id'])->get();
+        $exams = Exam::with('class_subject_teachers')->where('id',$id)->get();
         return view('teacher.question-show',['questions'=>$questions,'exams'=>$exams]);
     }
 
