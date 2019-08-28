@@ -137,11 +137,11 @@
                     <tbody>
                        
          
-                      @foreach($questions as $question)
+                      @foreach($questions as $key=>$question)
             <tr>
-                    <td>{{$a=$a+1}}</td>
+                    
                 
-                   
+                    <td>{{++$key}}</td>
                     <td>{{$avg1[$counter]}}%</td>
                     <td>{{$avg2[$counter]}}%</td>
                     <td>{{$avg3[$counter]}}%</td>
