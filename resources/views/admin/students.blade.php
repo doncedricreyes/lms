@@ -28,7 +28,9 @@
                         
                         <div class="col-md-12">
                         <legend>Students</legend>
-            
+                 <form action = "{{route('search_student')}}" role="search" method="get"enctype="multipart/form-data">
+                            <input type="text" class="form-control" name="search" id="search" placeholder="Search">
+                                </form>
                         <div class="table-responsive">
                 
                                 
