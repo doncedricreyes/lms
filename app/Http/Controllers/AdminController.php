@@ -10,6 +10,7 @@ use App\Profile;
 use App\Evaluation_Question;
 use App\AddClass;
 use App\Class_Subject_Teacher;
+use App\Teacher;
 use Auth;
 use Excel;
 use Illuminate\Support\Facades\Input;
@@ -480,4 +481,32 @@ class AdminController extends Controller
        })->download('xlsx');
        
     }
+    
+     public function search_student(Request $request)
+   {
+      $search = $request->search;
+      $students = Student::where('name','=',$search)->orderBy('name')->paginate(10);
+      return view('admin.students',['students'=>$students]);  
+    }
+
+    public function search_admin(Request $request)
+    {
+       $search = $request->search;
+       $admins = Admin::where('name','=',$search)->orderBy('name')->paginate(10);
+       return view('admin.admin',['admins'=>$admins]);  
+     }
+
+     public function search_parent(Request $request)
+    {
+       $search = $request->search;
+       $parents = Parents::where('name','=',$search)->orderBy('name')->paginate(10);
+       return view('admin.parent',['parents'=>$parents]);  
+     }
+
+     public function search_teacher(Request $request)
+     {
+        $search = $request->search;
+        $teachers = Teacher::where('name','=',$search)->orderBy('name')->paginate(10);
+        return view('view-teachers',['teachers'=>$teachers]);  
+      }
 }
