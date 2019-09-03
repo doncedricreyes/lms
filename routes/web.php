@@ -108,6 +108,10 @@ Route::get('/students/{id}/edit','AdminController@edit_student');
 Route::put('/students/{id}/edit','AdminController@update_student')->name('add-student.update');
 Route::get('/parents/{id}/edit','AdminController@edit_parent');
 Route::put('/parents/{id}/edit','AdminController@update_parent')->name('add-parent.update');
+Route::get('/search/students/','AdminController@search_student')->name('search_student');
+Route::get('/search/admins/','AdminController@search_admin')->name('search_admin');
+Route::get('/search/parents/','AdminController@search_parent')->name('search_parent');
+Route::get('/search/teachers/','AdminController@search_teacher')->name('search_teacher');
 });
 
 Route::prefix('teacher')->group(function()
