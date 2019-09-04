@@ -47,11 +47,11 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         
-        $this->validate($request,[
-            
+     $input = request()->validate([
+         'profile_pic' => 'required|mimes:jpeg,jpg,png,bmp,gif,tif,tiff|max:50000',
+         ],[
          
-           
-        ]);
+         ]);
         
         
         if ($request->hasFile('profile_pic')) {
