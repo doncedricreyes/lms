@@ -137,11 +137,40 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'username' => 'required|max:255|max:255',
             'password' => 'required|string|min:6',
+             'year' => 'required|string|max:255|exists:classes',
+            'section' => 'required|string|max:255|exists:classes',
         ], [
       
             
             
         ]);
+        
+        $year = $request->year;
+        $section = $request->section;
+        $name = $request->name;
+        
+          $classes = AddClass::with('teachers')->where('year','=',$year)
+        ->where('section','=',$section)
+        ->first();
+         if(count($classes)>0)
+        {
+                $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('class_id','=',$classes->id)->get();
+                foreach($class_subject_teachers as $class){
+                $class_students = Class_Student::with('class_subject_teachers','students')->where('class_subject_teacher_id','=',$class->id)
+                ->where('student_id','=',$students->id)->get();
+               
+              
+                foreach($class_students as $class_student){
+                    $id = $class_student->id;
+                $class_student = Class_Student::find($id);
+                $class_student->student_id = $class_student->student_id;
+                $class_student->class_subject_teacher_id = $class_student->class_subject_teacher_id;
+                $class_student->parent_id = $parent_id;
+                $class_student->save();
+                }
+            }
+        }
+
         $students = Student::find($id);
         $students->name = $request->name;
         $students->username = $request->username;
