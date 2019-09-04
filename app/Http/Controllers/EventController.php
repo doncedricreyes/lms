@@ -23,7 +23,7 @@ class EventController extends Controller
         if(Auth::user()->role =='teacher'){
             $events = Event::where('teacher_id','=',$i)->get();
             }
-            if(Auth::user()->role =='admin'){
+            if(Auth::user()->role =='admin' || Auth::user()->role == 'superadmin'){
                 $events = Event::where('admin_id','=',$i)->get();
                 }
         $event_list = [];
