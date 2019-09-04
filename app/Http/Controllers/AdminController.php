@@ -128,7 +128,8 @@ class AdminController extends Controller
      public function edit_student($id)
     {
         $students = Student::where('id','=',$id)->get();
-        return view('admin.edit-student',['students'=>$students]);
+        $class_students = Class_Student::where('student_id','=',$id)->get();
+        return view('admin.edit-student',['students'=>$students,'class_students'=>$class_students]);
     }
     public function update_student(Request $request, $id)
     {
