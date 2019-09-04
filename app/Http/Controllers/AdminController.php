@@ -171,7 +171,7 @@ class AdminController extends Controller
                $class_students=DB::table('class_students')->where([
                 [ 'class_subject_teacher_id','=',$class_id->id],
              ])->get();
-                   $class_student_id = $class_students->get(0)['id'];
+                   $class_student_id = $class_students->get(0)->id;
              $class_student = Class_Student::find($class_student_id);
              $class_student->class_subject_teacher_id = $class_id->id;
              $class_student->student_id = $student->id;
