@@ -37,11 +37,7 @@
               @endforeach
              
                         <label for="name">Student's Name:</label>
-                        <input type="text" name="name" id="name" value="{{$students->get(0)->name}}" class="form-control"> 
-                        <label for="year">Year:</label>
-                        <input type="text" name="year" id="year"  value="{{$class_students->get(0)->class_subject_teachers->get(0)->classes->get(0)->year}}" class="form-control"> 
-                        <label for="section">Section:</label>
-                        <input type="text" name="section" id="section" value="{{$class_students->get(0)->class_subject_teachers->get(0)->classes->get(0)->section}}"  class="form-control">
+                        <input type="text" name="name" id="name" value="{{$students->get(0)->name}}" class="form-control">  
                         <label for="username"> Username:</label>
                         <input type="text" name="username" id="username" value="{{$students->get(0)->username}}" class="form-control">
                         <label for="password"> Create a password:</label>
