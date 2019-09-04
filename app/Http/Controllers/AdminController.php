@@ -174,7 +174,7 @@ class AdminController extends Controller
                    $class_student_id = $class_students->get(0)->id;
              $class_student = Class_Student::find($class_student_id);
              $class_student->class_subject_teacher_id = $class_id->id;
-             $class_student->student_id = $student->id;
+             $class_student->student_id = $students->id;
              $class_student->save();
              }
         $request->session()->flash('alert-success', 'Student was successful updated!');
