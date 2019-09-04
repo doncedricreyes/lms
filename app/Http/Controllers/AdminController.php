@@ -137,22 +137,15 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'username' => 'required|max:255|max:255',
             'password' => 'required|string|min:6',
-             'year' => 'required|string|max:255|exists:classes',
-            'section' => 'required|string|max:255|exists:classes',
+
         ], [
       
             
             
         ]);
+   
         
-         $year=Input::get('year');
-        $section=Input::get('section');
-        $classes =DB::table('classes')->where([
-            ['year', '=', $year],
-            ['section', '=', $section],
-        ])->first()->id;
-        
-  if(count($classes)>0){
+
       
         $students = Student::find($id);
         $students->name = $request->name;
@@ -160,23 +153,9 @@ class AdminController extends Controller
         $students->password = Hash::make($request->password);
         $students->role = 'student';
         $students->save();
-      
-      if ($students->save()){
-           $class_subject=DB::table('class_subject_teacher')->where([
-                [ 'class_id','=',$classes],
-             ])->get();
-             
-             foreach($class_subject as $class_id){
-             $class_student = new Class_Student();
-             $class_student->class_subject_teacher_id = $class_id->id;
-             $class_student->student_id = $student->id;
-             $class_student->save();
-             }
         $request->session()->flash('alert-success', 'Student was successful updated!');
         return redirect()->route('admin.student.show');
-            }
-        }
-        return redirect()->back()->with('message', 'Class not found!');
+     
     }
 
     public function show_parent()
