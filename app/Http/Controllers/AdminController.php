@@ -145,40 +145,38 @@ class AdminController extends Controller
             
         ]);
         
-        $year = $request->year;
-        $section = $request->section;
-        $name = $request->name;
+         $year=Input::get('year');
+        $section=Input::get('section');
+        $classes =DB::table('classes')->where([
+            ['year', '=', $year],
+            ['section', '=', $section],
+        ])->first()->id;
         
-          $classes = AddClass::with('teachers')->where('year','=',$year)
-        ->where('section','=',$section)
-        ->first();
-         if(count($classes)>0)
-        {
-                $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('class_id','=',$classes->id)->get();
-                foreach($class_subject_teachers as $class){
-                $class_students = Class_Student::with('class_subject_teachers','students')->where('class_subject_teacher_id','=',$class->id)
-                ->where('student_id','=',$students->id)->get();
-               
-              
-                foreach($class_students as $class_student){
-                    $id = $class_student->id;
-                $class_student = Class_Student::find($id);
-                $class_student->student_id = $class_student->student_id;
-                $class_student->class_subject_teacher_id = $class_student->class_subject_teacher_id;
-                $class_student->parent_id = $parent_id;
-                $class_student->save();
-                }
-            }
-        }
-
+  if(count($classes)>0){
+      
         $students = Student::find($id);
         $students->name = $request->name;
         $students->username = $request->username;
         $students->password = Hash::make($request->password);
         $students->role = 'student';
         $students->save();
+      
+      if ($student->save()){
+           $class_subject=DB::table('class_subject_teacher')->where([
+                [ 'class_id','=',$classes],
+             ])->get();
+             
+             foreach($class_subject as $class_id){
+             $class_student = new Class_Student();
+             $class_student->class_subject_teacher_id = $class_id->id;
+             $class_student->student_id = $student->id;
+             $class_student->save();
+             }
         $request->session()->flash('alert-success', 'Student was successful updated!');
         return redirect()->route('admin.student.show');
+            }
+        }
+        return redirect()->back()->with('message', 'Class not found!');
     }
 
     public function show_parent()
