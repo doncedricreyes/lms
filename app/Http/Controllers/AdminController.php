@@ -161,7 +161,7 @@ class AdminController extends Controller
         $students->role = 'student';
         $students->save();
       
-      if ($student->save()){
+      if ($students->save()){
            $class_subject=DB::table('class_subject_teacher')->where([
                 [ 'class_id','=',$classes],
              ])->get();
