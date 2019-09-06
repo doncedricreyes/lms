@@ -24,6 +24,15 @@ class Exam_GradeController extends Controller
         $answers = Answer::with('questions','students')->where('student_id',Auth::user()->id)->where('exam_id',$id)->get();
         $exams = Exam::with('class_subject_teachers')->where('id','=',$id)
         ->get();
+        $exam_grades = Exam_Grade::with('exams','students')->where('student_id','=',Auth::user()->id)->where('exam_id',$id)->get();
+
+$attempt=1;
+if(count($exam_grades)>0){
+    foreach($exam_grades as $exam_attempt){
+$attempt=$exam_attempt->attempt+1;
+    }
+}
+$answers = Answer::with('questions','students')->where('student_id',Auth::user()->id)->where('exam_id',$id)->where('attempt','=',$attempt)->get();
 $i=1;
 $grade=0;
 $final=0;
@@ -60,10 +69,16 @@ $passing = $exam->passing_score;
         $exam_grade->exam_id = $id;
         $exam_grade->grade = $final;  
         $exam_grade->Status = $status;
-        $exam_grade->attempt = $i+$exam_grade->attempt;
-       $exam_grade->save();
+        $exam_grade->attempt = $attempt;
+        
+        if($exams->get(0)->attempts >= $attempt){
+        $exam_grade->save();
        
        return redirect()->route('student.show.result',['id'=>$id]);
+        }
+        else{
+            return redirect()->route('student.show.result',['id'=>$id])->withErrors('You have already attempted this exam/quiz!');
+        } 
 
    }
     
