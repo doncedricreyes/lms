@@ -28,6 +28,7 @@
             <h4>Total Score:{{$exam->total_score}}</h4>
 <h4>Passing Score:{{$exam->passing_score}}</h4>
 <h4>Time: {{$exam->time/60}} minutes</h4>
+<h4>Attempt: {{$exam->attempts}}</h4>
 <h4>This exam/quiz will open on {{$exam->date_start}} at {{$exam->time_start}}</h4>
 <h4>This exam/quiz will closed on {{$exam->date_end}} at {{$exam->time_end}}</h4>
 
