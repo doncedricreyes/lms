@@ -152,8 +152,7 @@
 
 
 
-              
-                      <div class="mdl-tabs__panel" id="grades-panel">
+                          <div class="mdl-tabs__panel" id="grades-panel">
                           
                           <div class="row">
                               <div class="col-lg-12 col-md-offset-0">
@@ -165,9 +164,10 @@
                                           <thead>
                                               <tr>
 
-                                                @foreach($subject_grade as $subject)
-                                                  <th>{{$subject->exams->get(0)->title}}</th>
-                                                  @endforeach
+                                                
+                                                  <th>Quiz title</th>
+                                                  <th>Attempt</th>
+                                                  <th>Score</th>
                                               </tr >
                                               
                                           </thead>
@@ -178,10 +178,12 @@
                                   <tr>
 
                                         @foreach($subject_grade as $grade)
+                                        <td>{{$grade->exams->get(0)->title}}</td>
+                                        <td>{{$grade->attempt}}</td>
                                       <td>{{$grade->grade}}/{{$grade->exams->get(0)->total_score}}</td>
-                                      @endforeach
+                                      
                                   </tr>
-                                                 
+                                  @endforeach           
                                           </tbody>
                                       </table>
                                     
@@ -189,7 +191,6 @@
                               </div>
                           </div>
                       </div>
-
                       <div class="row">
                         <div class="col-lg-12 col-md-offset-0">
                         <div class="panel panel-default">
