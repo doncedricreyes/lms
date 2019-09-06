@@ -90,8 +90,8 @@
                                 <label class="mdl-textfield__label">Passing Score:</label>
                             </div>
                 </div>
-                <div class="hidden">
-                        <div class="hidden">
+              <div class="col-lg-6 p-t-20">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                 <input class="mdl-textfield__input" type="number"  id="attempts" name="attempts" value="1">
                                 <label class="mdl-textfield__label">Attempts:</label>
                             </div>
