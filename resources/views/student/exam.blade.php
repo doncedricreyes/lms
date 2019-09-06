@@ -19,22 +19,21 @@
 <h3>This exam will closed on {{$exam->date_end}}
 <h3>Total Score: {{$exam->total_score}}</h3>
 <h3>Passing Score: {{$exam->passing_score}}</h3>
-
-
+<h3>Attempts: {{$exam->attempts}}</h3>
+<h3>Time: {{$exam->time/60}} minutes</h3>
 
 
           @endforeach
         @foreach($exams as $id)
         @if ($id->date_start <= Carbon\Carbon::now('Asia/Manila')) 
         @if ($id->date_end > Carbon\Carbon::now('Asia/Manila')) 
-       @if($exam_grades->get(0)['attempt'] == [])
-        
+        @if($id->attempts > $exam_grades->attempt )
      
         
           <a href="{{route('student.show.question',$id->id)}}" class="btn btn-primary">Attempt Quiz/Exam</a>       
         @else <h3> Exam is  closed </h3> 
     
-@endif      
+        @endif
 @endif
 @endif
 
