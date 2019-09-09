@@ -54,13 +54,9 @@ class Student extends Authenticatable
         return $this->belongsTo(Class_Student::class);
     }
 
-    public function answers(){
-        return $this->belongsTo(Answer::class);
-    }
 
-    public function exam_grades(){
-        return $this->belongsTo(Exam_Grade::class);
-    }
+
+   
 
     public function student_assignment(){
         return $this->belongsTo(Student_Assignment::class);
@@ -72,5 +68,10 @@ class Student extends Authenticatable
 
     public function messages(){
         return $this->hasMany(Message::class);
+    }
+
+    public function quiz_attempt()
+    {
+        return $this->belongsTo(Quiz_Attempt::class);
     }
 }
