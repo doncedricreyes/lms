@@ -43,7 +43,6 @@
                
         
 @section('content')    
-
 <div class="container" id="view">
 @if($exams->get(0)->class_subject_teachers->teacher_id == auth::user()->id)
     <div class="flash-message">
