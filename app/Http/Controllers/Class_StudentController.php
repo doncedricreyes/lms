@@ -17,6 +17,8 @@ use App\Lecture;
 use App\Exam;
 use App\Student;
 use App\Exam_Grade;
+use App\Quiz_Attempt;
+use App\Answer;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
@@ -129,6 +131,7 @@ class Class_StudentController extends Controller
         $exam_grade_all=[];
         $assignment_grade_all=[];
       
+        $quiz_attempts = Quiz_Attempt::with('exams','students')->where('student_id','=',auth::user()->id)->get();
         $students = Student::where('id',Auth::user()->id)->get();
         $subject_announcements = Subject_Announcement::with('class_subject_teachers')->where('class_subject_teacher_id','=',$id)->get();
         $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('id',$id)->get();
@@ -150,10 +153,9 @@ class Class_StudentController extends Controller
         
       
         
-        foreach($exams as $exam){
+            foreach($quiz_attempts as $quiz_attempt){
 
-        $exam_grades = Exam_Grade::with('students','exams')->where('student_id','=',Auth::user()->id)
-        ->where('exam_id','=',$exam->id)
+        $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$quiz_attempt->id)
         ->get();
     
         $exam_grade_all[] = $exam_grades;
@@ -181,17 +183,49 @@ class Class_StudentController extends Controller
     
     public function exam($id)
     {
-        $exams = Exam::with('class_subject_teachers')->where('id',$id)->get();
-        $exam_grades = Exam_Grade::with('students','exams')->where('student_id',Auth::user()->id)->where( 'exam_id',$id)->get();
-        return view('student.exam', ['exams' => $exams,'exam_grades'=>$exam_grades]);
+       $exams = Exam::with('class_subject_teachers')->where('id',$id)->get();
+        $quiz_attempt = Quiz_Attempt::with('exams','students')->where('student_id','=',auth::user()->id)->where('exam_id','=',$id)->get();
+        $quiz_latest = Quiz_Attempt::with('exams','students')->where('student_id','=',auth::user()->id)->where('exam_id','=',$id)->latest('id')->first();
+        $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id',$quiz_latest->id)->latest('id')->first();
+
+        return view('student.exam', compact('exams','exam_grades','quiz_attempt','quiz_latest'));
+    }
+    
+       public function quiz_start($id, Request $request)
+    {         
+       $quiz_attempts = Quiz_Attempt::where('student_id',auth::user()->id)->where('exam_id',$id)->latest('id')->first();
+       $attempt=1;
+       if(count($quiz_attempts)> 0){
+           $attempt = $quiz_attempts->attempt+1;
+       }
+        $quiz_attempt = new Quiz_Attempt;
+        $quiz_attempt->student_id = auth::user()->id;
+        $quiz_attempt->exam_id = $id;
+        $quiz_attempt->attempt = $attempt;
+        $quiz_attempt->time_start = Carbon::now('Asia/Manila');
+        $quiz_attempt->save();
+        return redirect()->route('student.show.question',['id'=>$id]);
     }
 
         
     public function question($id)
     {
-        $questions = Question::with('exams')->where('exam_id',$id)->paginate(10);
+        $questions = Question::with('exams')->where('exam_id',$id)->get();
+       
         $exams = Exam::with('class_subject_teachers')->where('id',$id)->get();
-        return view('student.exam-show',['questions'=>$questions,'exams'=>$exams]);
+        $quiz_start = Quiz_Attempt::with('exams','students')->where('exam_id','=',$id)->where('student_id','=',auth::user()->id)->latest('id')->first();
+      
+        $answers = Answer::with('questions','quiz_attempt')->where('quiz_attempt_id',$quiz_start->id)->pluck('answer','question_id');
+      
+        $start = $quiz_start->time_start;
+        
+        
+        $time_start = Carbon::createFromFormat('Y-m-d H:i:s', $start);
+        $now = Carbon::now('Asia/Manila');
+        $time_now = Carbon::createFromFormat('Y-m-d H:i:s', $now);
+        $limit = $exams->get(0)->time;
+        $time_remaining = $limit-$time_start->diffInSeconds($time_now);
+        return view('student.exam-show',['answers'=>$answers,'questions'=>$questions,'exams'=>$exams,'quiz_attempt'=>$quiz_start,'time_remaining'=>$time_remaining,'time_start'=>$time_start,'time_now'=>$time_now,'limit'=>$limit]);
     }
 
     public function showassignment($id){
