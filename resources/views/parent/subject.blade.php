@@ -143,7 +143,7 @@
 
 
               
-                      <div class="mdl-tabs__panel" id="grades-panel">
+                                             <div class="mdl-tabs__panel" id="grades-panel">
                           
                           <div class="row">
                               <div class="col-lg-12 col-md-offset-0">
@@ -154,24 +154,28 @@
                                           <table class="mdl-data-table mdl-js-data-table col-lg-12" >
                                           <thead>
                                               <tr>
-                                                @foreach($exam_grades as $exam_grade)
-                                                  <th>{{$exam_grade->exams->get(0)->title}}</th>
-                                                  @endforeach
 
+                                                
+                                                  <th>Quiz title</th>
+                                                  <th>Attempt</th>
+                                                  <th>Score</th>
+                                                  <th>Status</th>
                                               </tr >
                                               
                                           </thead>
                                           <tbody>
                                              
                                
-                                              @foreach($exam_grades as $exam_grade)
+                                        
                                   <tr>
-                                     
-                                      <td>{{$exam_grade->grade}}/{{$exam_grade->exams->get(0)->total_score}}</td>
-                                      @endforeach
 
+                                        @foreach($subject_grade as $grade)
+                                        <td>{{$grade->quiz_attempt->get(0)->exams->get(0)->title}}</td>
+                                        <td>{{$grade->quiz_attempt->get(0)->attempt}}</td>
+                                      <td>{{$grade->grade}}/{{$grade->quiz_attempt->get(0)->exams->get(0)->total_score}}</td>
+                                      <td>{{$grade->Status}}</td>
                                   </tr>
-                                                 
+                                  @endforeach           
                                           </tbody>
                                       </table>
                                     
@@ -189,31 +193,32 @@
                                     <table class="mdl-data-table mdl-js-data-table col-lg-12" >
                                     <thead>
                                         <tr>
-                                          @foreach($student_assignments as $student_assignment)
-                                            <th>{{$student_assignment->assignments->title}}</th>
-                                            @endforeach
 
+                                    
+                                            <th>Assignment Title</th>
+                                            <th>Grade</th>
                                         </tr >
                                         
                                     </thead>
                                     <tbody>
                                        
                          
-                                        @foreach($student_assignments as $student_assignment)
+                                  
                             <tr>
-                               
-                                <td>{{$student_assignment->grade}}</td>
-                                @endforeach
 
-                            </tr>
-                                           
-                                    </tbody>
-                                </table>
-                              
-                            </div>
+                              @foreach($student_assignment as $assign)
+                              <td>{{$assign->assignments->title}}</td> 
+                              <td>{{$assign->grade}}</td>
+                              </tr>
+                              @endforeach            
+                                      </tbody>
+                                  </table>
+                                
+                              </div>
+                          </div>
+                      </div>
+                  </div>
                         </div>
-                    </div>
-                </div>
                       </div>
                     </div>
                       
