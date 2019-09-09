@@ -194,7 +194,7 @@ class Class_StudentController extends Controller
     
        public function quiz_start($id, Request $request)
     {         
-       $quiz_attempts = Quiz_Attempt::where('student_id',auth::user()->id)->where('exam_id',$id)->latest('id')->first();
+       $quiz_attempts = Quiz_Attempt::with('exams','students')->where('student_id',auth::user()->id)->where('exam_id',$id)->latest('id')->first();
        $attempt=1;
        if(count($quiz_attempts)> 0){
            $attempt = $quiz_attempts->attempt+1;
