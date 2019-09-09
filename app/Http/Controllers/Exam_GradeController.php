@@ -7,6 +7,7 @@ use App\Class_Subject_Teacher;
 use App\Exam;
 use App\Answer;
 use App\Exam_Grade;
+use App\Quiz_Attempt;
 use Auth;
 use Illuminate\Http\Request;
 use Session;
@@ -21,24 +22,27 @@ class Exam_GradeController extends Controller
     
     }
     public function store(Request $request,$id){
-        $answers = Answer::with('questions','students')->where('student_id',Auth::user()->id)->where('exam_id',$id)->get();
+     
+        
         $exams = Exam::with('class_subject_teachers')->where('id','=',$id)
         ->get();
-        $exam_grades = Exam_Grade::with('exams','students')->where('student_id','=',Auth::user()->id)->where('exam_id',$id)->get();
-
+        $quiz_attempt = Quiz_Attempt::with('exams','students')->where('student_id',auth::user()->id)->where('exam_id',$id)->latest('id')->first();
+        $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$quiz_attempt->id)->get();
+        $answers = Answer::where('quiz_attempt_id',$quiz_attempt->id)->get();
 $attempt=1;
 if(count($exam_grades)>0){
     foreach($exam_grades as $exam_attempt){
 $attempt=$exam_attempt->attempt+1;
     }
 }
-$answers = Answer::with('questions','students')->where('student_id',Auth::user()->id)->where('exam_id',$id)->where('attempt','=',$attempt)->get();
+
 $i=1;
 $grade=0;
 $final=0;
 foreach($exams as $exam){
 $passing = $exam->passing_score;
 }
+if(count($answers)>0){
         foreach($answers as $answer){
         
             if($answer->questions->get(0)->answer == $answer->answer){
@@ -64,43 +68,54 @@ $passing = $exam->passing_score;
         
        
         }
+    }
+    else{
+        $status = "Failed";
+        $answer = new Answer();
+        $answer->quiz_attempt_id = $quiz_attempt->id;
+        $answer->save();    
+   
+    }
         $exam_grade=new Exam_Grade();
-        $exam_grade->student_id = Auth::user()->id;
-        $exam_grade->exam_id = $id;
+        $exam_grade->quiz_attempt_id = $quiz_attempt->id;
         $exam_grade->grade = $final;  
         $exam_grade->Status = $status;
-        $exam_grade->attempt = $attempt;
+
         
-        if($exams->get(0)->attempts >= $attempt){
+
         $exam_grade->save();
        
        return redirect()->route('student.show.result',['id'=>$id]);
-        }
-        else{
+
             return redirect()->route('student.show.result',['id'=>$id])->withErrors('You have already attempted this exam/quiz!');
-        } 
+        
 
    }
     
    public function show($id){
-       $exam_grades = Exam_Grade::with('students','exams')->where('student_id','=',Auth::user()->id)
-       ->where('exam_id','=',$id)
-       ->get()
-       ->sortBy(function($exam_grades){
-        return $exam_grades->students->get(0)->name;
-        
-    });
+    $quiz_attempts = Quiz_Attempt::with('exams','students')->where('student_id',auth::user()->id)->where('exam_id',$id)->get();
+    foreach($quiz_attempts as $quiz_attempt){
+    $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$quiz_attempt->id)
+       ->get();
+
+       $grades[] = $exam_grades;
+    }
+     
+
    
-       return view('student.exam-results',['exam_grades'=>$exam_grades]);
+       return view('student.exam-results',['exam_grades'=>$exam_grades],compact('grades'));
    }
 
    public function parent_show($id){
        $class_students = Class_Student::where('parent_id','=',Auth::user()->id)->first();
-    $exam_grades = Exam_Grade::with('students','exams')->where('student_id','=',$class_students->student_id)
-    ->where('exam_id','=',$id)
-    ->get();
+       $quiz_attempts = Quiz_Attempt::with('exams','students')->where('student_id',$class_students->student_id)->where('exam_id',$id)->get();
+       foreach($quiz_attempts as $quiz_attempt){
+       $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$quiz_attempt->id)->get();
+       $grades[] = $exam_grades;
 
-    return view('parent.exam-results',['exam_grades'=>$exam_grades]);
+    }
+    return view('parent.exam-results',['exam_grades'=>$exam_grades],compact('grades'));
 }
-   
+
+
 }
