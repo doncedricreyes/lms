@@ -24,13 +24,10 @@ class Exam extends Model
         return $this->hasMany(Question::class);
     }
 
-    public function exam_grades()
+ 
+
+    public function quiz_attempt()
     {
-        return $this->belongsTo(Exam_Grade::class);
-    }
-    public function answers(){
-     
-        return $this->belongsTo(Answer::class);
-        
+        return $this->belongsTo(Quiz_Attempt::class);
     }
 }
