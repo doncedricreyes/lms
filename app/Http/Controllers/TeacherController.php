@@ -15,6 +15,7 @@ use App\Class_Subject_Teacher;
 use App\Class_Student;
 use App\Exam;
 use App\Lecture;
+use App\Quiz_Attempt;
 use Auth;
 use Hash;
 use Excel;
@@ -90,13 +91,19 @@ class TeacherController extends Controller
     }
 
     public function showresult($id){
-        $exam_grades = Exam_Grade::with('students','exams')->where('exam_id',$id)->get()
-        ->sortBy(function($exam_grades){
-            return $exam_grades->students->get(0)->name;
+          $quiz_attempts = Quiz_Attempt::with('exams','students')->where('exam_id',$id)->get()
+        ->sortBy(function($quiz_attempts){
+            return $quiz_attempts->students->get(0)->name;
         });
+        foreach($quiz_attempts as $quiz_attempt){
+        $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$quiz_attempt->id)
+           ->get();
+    
+           $grades[] = $exam_grades;
+        }
         $exams = Exam::with('class_subject_teachers')->where('id',$id)->get();
      
-        return view('teacher.exam-results',['exam_grades'=>$exam_grades,'exams'=>$exams]);
+        return view('teacher.exam-results',['exams'=>$exams],compact('grades'));
     }
 
     public function grade_subject_store(Request $request,$id){
@@ -164,16 +171,24 @@ class TeacherController extends Controller
     }
 
 
-    public function grade_index(Request $request,$subject,$id){
+      public function grade_index(Request $request,$subject,$id){
         $quarter = $request->quarter;
         $exams = Exam::with('class_subject_teachers')->where('class_subject_teacher_id','=',$subject)
         ->where('quarter','=',$quarter)
         ->get();
         $exam_grade_all=[];
         $assignment_grade_all=[];
+        $quiz_attempt=[];
         foreach($exams as $exam){
-        $exam_grades = Exam_Grade::with('students','exams')->where('student_id','=',$id)
-        ->where('exam_id','=',$exam->id)
+            $quiz_attempts = Quiz_Attempt::with('exams','students')->where('exam_id',$exam->id)->get();
+            $quiz_attempt[]=$quiz_attempts;
+        }
+        $collection = collect([$quiz_attempt]);
+        $attempts = $collection->flatten();
+        $attempts->all();
+        foreach($attempts as $attempt){
+        $exam_grades = Exam_Grade::with('quiz_attempt')
+        ->where('quiz_attempt_id','=',$attempt->id)
         ->get();
         $exam_grade_all[] = $exam_grades;
         }
