@@ -300,6 +300,7 @@ Route::post('/calendar','EventController@addevent')->name('student.add_event');
 
 Route::get('/grades/{id}','Class_StudentController@grade');
 Route::get('/schedule/{id}','Class_StudentController@schedule');
+Route::post('/class/exam/{id}/questions/start','Class_StudentController@quiz_start')->name('student.store.quiz_start');
 
 });
 
