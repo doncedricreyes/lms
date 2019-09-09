@@ -10,13 +10,9 @@ class Exam_Grade extends Model
     
    
 
-    public function students()
-    {
-        return $this->hasMany(Student::class,'id','student_id');
-    }
 
-    public function exams()
+    public function quiz_attempt()
     {
-        return $this->hasMany(Exam::class,'id','exam_id');
+        return $this->hasMany(Quiz_attempt::class,'id','quiz_attempt_id');
     }
 }
