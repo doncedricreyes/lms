@@ -187,7 +187,7 @@ class Class_StudentController extends Controller
         $quiz_attempt = Quiz_Attempt::with('exams','students')->where('student_id','=',auth::user()->id)->where('exam_id','=',$id)->get();
         $quiz_latest = Quiz_Attempt::with('exams','students')->where('student_id','=',auth::user()->id)->where('exam_id','=',$id)->get();
         foreach($quiz_latest as $latest){
-        $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$latest->id)->latest('id')->first();
+        $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$latest->id)->get();
         }
         return view('student.exam', compact('exams','quiz_attempt','quiz_latest'),compact('exam_grades'));
     }
