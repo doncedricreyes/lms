@@ -8,65 +8,62 @@
 
 @section('content')
 
+<style>
+        #submit{
+            position: relative;
+            float: right;
+        }
+    </style>
 <div class="container" id="view">
- 
+        @if(count($exam_grades)>0)
+    <div class="container">
+        <div class="row">
+            
+           
+            <div class="col-md-12">
+                    <legend>{{$exam_grades->get(0)->quiz_attempt->get(0)->exams->get(0)->title}}</legend>
 
-  @foreach($exam_grades as $exam)
-            <legend><h1>{{$exam->exams->get(0)->title}}</h1></legend>
+            <div class="table-responsive">
+    
+                    
+                  <table id="mytable" class="table table-bordred table-striped">
+                       
+                       <thead>
+                       
+                       
+                            <th>Attempt</th>
+                            <th>Grade</th>
+                            <th>Total Score</th>
+                            <th>Passing Score</th>
+                          <th>Status</th>
+                         
+                          
+                       </thead>
+        <tbody>
+        
+                @foreach($grades as $row)
+                <tr>
+                    <td>{{ $loop->iteration }} </td></td>
+                    <td>{{$row->get(0)->grade}}</td>
+                    <td>{{$row->get(0)->quiz_attempt->get(0)->exams->get(0)->total_score}}</td>
+                    <td>{{$row->get(0)->quiz_attempt->get(0)->exams->get(0)->passing_score}}</td>
+                    <td>{{$row->get(0)->Status}}</td>
+                
+                    
+
+    </tr>
+        @endforeach
+    
        
-            <div class="col-lg-12 p-t-20">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-         
-                    <input class="mdl-textfield__input" type="text" value="{{$exam->students->get(0)->name}}" id="title" name="title" readonly>
-           
-                    <label class="mdl-textfield__label">Name:</label>
-                </div>
-                
-            </div>
-            <div class="col-lg-12 p-t-20">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-         
-                    <input class="mdl-textfield__input" type="text" value="{{$exam->exams->get(0)->total_score}}" id="title" name="title" readonly>
-           
-                    <label class="mdl-textfield__label">Total Score:</label>
-                </div>
-                
-            </div>
-            <div class="col-lg-12 p-t-20">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-         
-                    <input class="mdl-textfield__input" type="text" value="{{$exam->exams->get(0)->passing_score}}" id="title" name="title" readonly>
-           
-                    <label class="mdl-textfield__label">Passing Score:</label>
-                </div>
-                
-            </div>
-            <div class="col-lg-12 p-t-20">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-         
-                    <input class="mdl-textfield__input" type="text" value="{{$exam->grade}}" id="title" name="title" readonly>
-           
-                    <label class="mdl-textfield__label">Grade:</label>
-                </div>
-                
-            </div>
-            <div class="col-lg-12 p-t-20">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-         
-                    <input class="mdl-textfield__input" type="text" value="{{$exam->Status}}" id="title" name="title" readonly>
-           
-                    <label class="mdl-textfield__label">Status:</label>
-                </div>
-                
-            </div>
+        
+        </tbody>
+            
+    </table>
+</div>
+        
 
-
-
-
-@endforeach
-@if($exam == "")
-<h2>Exam/Quiz has not yet completed!</h2>
 @endif
+
 </div>
 @endsection
 
