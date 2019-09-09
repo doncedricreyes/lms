@@ -152,7 +152,7 @@
 
 
 
-                          <div class="mdl-tabs__panel" id="grades-panel">
+                     <div class="mdl-tabs__panel" id="grades-panel">
                           
                           <div class="row">
                               <div class="col-lg-12 col-md-offset-0">
@@ -168,6 +168,7 @@
                                                   <th>Quiz title</th>
                                                   <th>Attempt</th>
                                                   <th>Score</th>
+                                                  <th>Status</th>
                                               </tr >
                                               
                                           </thead>
@@ -178,10 +179,10 @@
                                   <tr>
 
                                         @foreach($subject_grade as $grade)
-                                        <td>{{$grade->exams->get(0)->title}}</td>
-                                        <td>{{$grade->attempt}}</td>
-                                      <td>{{$grade->grade}}/{{$grade->exams->get(0)->total_score}}</td>
-                                      
+                                        <td>{{$grade->quiz_attempt->get(0)->exams->get(0)->title}}</td>
+                                        <td>{{$grade->quiz_attempt->get(0)->attempt}}</td>
+                                      <td>{{$grade->grade}}/{{$grade->quiz_attempt->get(0)->exams->get(0)->total_score}}</td>
+                                      <td>{{$grade->Status}}</td>
                                   </tr>
                                   @endforeach           
                                           </tbody>
@@ -191,6 +192,7 @@
                               </div>
                           </div>
                       </div>
+
                       <div class="row">
                         <div class="col-lg-12 col-md-offset-0">
                         <div class="panel panel-default">
@@ -200,9 +202,10 @@
                                     <table class="mdl-data-table mdl-js-data-table col-lg-12" >
                                     <thead>
                                         <tr>
- @foreach($student_assignment as $assign)
-                                            <th>{{$assign->assignments->title}}</th>
-                                            @endforeach
+
+                                    
+                                            <th>Assignment Title</th>
+                                            <th>Grade</th>
                                         </tr >
                                         
                                     </thead>
@@ -212,12 +215,11 @@
                                   
                             <tr>
 
-                                  @foreach($student_assignment as $assign)
-                                <td>{{$assign->grade}}</td>
-                                @endforeach
-                                         
+                              @foreach($student_assignment as $assign)
+                              <td>{{$assign->assignments->title}}</td> 
+                              <td>{{$assign->grade}}</td>
                             </tr>
-                                           
+                            @endforeach            
                                     </tbody>
                                 </table>
                               
