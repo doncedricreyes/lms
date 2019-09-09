@@ -189,7 +189,7 @@ class Class_StudentController extends Controller
         foreach($quiz_latest as $latest){
         $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$latest->id)->latest('id')->first();
         }
-        return view('student.exam', compact('exams','exam_grades','quiz_attempt','quiz_latest'));
+        return view('student.exam', compact('exams','quiz_attempt','quiz_latest'),compact('exam_grades));
     }
     
        public function quiz_start($id, Request $request)
