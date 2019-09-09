@@ -73,18 +73,23 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Passing Score </th>
+                            <th>Attempt</th>
                             <th>Result</th>
+                            <th>Passing Score </th>
+                            
                         </tr>
                     </thead>
                     <tbody>
                        
          
-                      @foreach($exam_grades as $exam_grade)
+                      @foreach($grades as $exam_grade)
             <tr>
-                <td>{{$exam_grade->students->get(0)->name}}</td>
-                <td>{{$exam_grade->exams->get(0)->passing_score}}</td>
-                <td>{{$exam_grade->grade}}</td>
+                
+                <td>{{$exam_grade->get(0)->quiz_attempt->get(0)->students->get(0)->name}}</td>
+                <td>{{$exam_grade->get(0)->quiz_attempt->get(0)->attempt}}</td>  
+                <td>{{$exam_grade->get(0)->grade}}</td>
+                <td>{{$exam_grade->get(0)->quiz_attempt->get(0)->exams->get(0)->passing_score}}</td>
+                
                 
             </tr>
                             @endforeach
