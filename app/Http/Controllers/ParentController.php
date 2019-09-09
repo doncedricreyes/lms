@@ -20,6 +20,7 @@ use App\Student;
 use App\Parents;  
 use Illuminate\Support\Facades\DB;
 use App\Teacher;
+use App\Quiz_Attempt;
 use Illuminate\Http\Request;
 
 class ParentController extends Controller
@@ -126,43 +127,54 @@ class ParentController extends Controller
     
 }
 
-    public function subject(Request $request,$student,$id){
+      public function subject(Request $request,$student,$id){
 
         
         $quarter=$request->quarter;
-        $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('id',$id)->get();
+        $exam_grade_all=[];
+        $assignment_grade_all=[];
+        
+        $quiz_attempts = Quiz_Attempt::with('exams','students')->where('student_id','=',$student)->get();
+        $students = Student::where('id',$student)->get();
         $subject_announcements = Subject_Announcement::with('class_subject_teachers')->where('class_subject_teacher_id','=',$id)->get();
-        $class_students = Class_student::with('class_subject_teachers','students')->where('class_subject_teacher_id',$id)->get();
-        $students = Student::where('id','=',$student)->get();
-       
+        $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('id',$id)->get();
+
         foreach($class_subject_teachers as $class_subject_teacher){
- 
-        $exams = Exam::with('class_subject_teachers')->where('class_subject_teacher_id',$class_subject_teacher->id)
+
+        $assignments = Assignment::with('class_subject_teachers')->where('class_subject_teacher_id','=',$class_subject_teacher->id)
         ->where('quarter','=',$quarter)
         ->get();
-
-        $assignments = Assignment::with('class_subject_teachers')->where('class_subject_teacher_id',$id)
+        $exams = Exam::with('class_subject_teachers')->where('class_subject_teacher_id',$class_subject_teacher->id)
         ->where('quarter','=',$quarter)
         ->get();
         }
         
-   
-            $student_assignments = Student_Assignment::with('students','assignments')->where('student_id',$students->get(0)['id'])
-            ->where('assignment_id','=',$assignments->get(0)['id'])
-            ->get();
-        
-        
-        
-       
-         
-         
-        $exam_grades = Exam_Grade::with('students','exams')->where('student_id','=',$students->get(0)['id'])
-        ->where('exam_id','=',$exams->get(0)['id'])
+ 
+        foreach($quiz_attempts as $quiz_attempt){
+
+        $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$quiz_attempt->id)
         ->get();
     
-    
-        
-        return view('parent.subject',['subject_announcements'=>$subject_announcements,'students'=>$students,'exam_grades'=>$exam_grades,'assignments'=>$assignments,'class_subject_teachers'=>$class_subject_teachers,'class_students'=>$class_students,'exams'=>$exams,'student_assignments'=>$student_assignments]);
+        $exam_grade_all[] = $exam_grades;
+    }
+
+    $collection = collect([$exam_grade_all]);
+    $subject_grade = $collection->flatten();
+    $subject_grade->all();
+
+ 
+    foreach($assignments as $assign){
+        $student_assignments = Student_Assignment::with('assignments','students')->where('student_id','=',$student)
+        ->where('assignment_id','=',$assign->id)
+        ->get();
+        $assignment_grade_all[]=$student_assignments;
+    }
+    $collection = collect([$assignment_grade_all]);
+    $student_assignment = $collection->flatten();
+    $student_assignment->all();   
+
+        return view('parent.subject',['student_assignment'=>$student_assignment,'quiz_attempts'=>$quiz_attempts,'subject_grade'=>$subject_grade,'assignments'=>$assignments,'subject_announcements'=>$subject_announcements,'students'=>$students,'exam_grades'=>$exam_grades,'class_subject_teachers'=>$class_subject_teachers,'lectures'=>$lectures,'class_students'=>$class_students,'exams'=>$exams,'student_assignments'=>$student_assignments]);
+      
     }
 
     public function assignment($id)
