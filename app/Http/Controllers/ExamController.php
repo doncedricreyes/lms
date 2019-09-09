@@ -8,6 +8,7 @@ use App\Class_Student;
 use App\Question;
 use App\Exam_Grade;
 use App\Answer;
+use App\Quiz_Attempt;
 use Illuminate\Http\Request;
 use Notification;
 use App\Notifications\QuizCreated;
@@ -140,12 +141,12 @@ foreach($exams as $class_subject_teacher_id){
   
    }
 
-   public function item_analysis($id){
+   public function item_analysis(Request $request,$id){
     $questions = Question::with('exams')->where('exam_id',$id)->get();
-    $exam_grades = Exam_Grade::with('exams','students')->where('exam_id',$id)->get();
-
-    $answers = Answer::with('students','exams','questions')->where('exam_id',$id)->get();
-    $students = Exam_Grade::with('exams','students')->where('exam_id',$id)->count();
+   
+    $students = Quiz_Attempt::with('exams','students')->where('exam_id',$id)->where('attempt',$request->attempt)->distinct('student_id')->count();
+    $exams = Exam::where('id',$id)->get();
+    $quiz_attempt = Quiz_Attempt::with('exams','students')->where('exam_id',$id)->where('attempt',$request->attempt)->get();
 
     $row=[];
     $row2=[];
@@ -161,7 +162,8 @@ foreach($exams as $class_subject_teacher_id){
     $row12=[];
     
     foreach($questions as $question){
-    $option_1 = Answer::with('students','exams','questions')->where('exam_id',$id)
+    $option_1 = Answer::with('students','exams','questions')
+    ->where('quiz_attempt_id',$quiz_attempt->get(0)->id)
     ->where('question_id',$question->id)
     ->where('answer',$question->option_1)
     ->count();
@@ -169,7 +171,8 @@ foreach($exams as $class_subject_teacher_id){
     $row[] = $option_1;
     $row2[]=$average_1;
     
-    $option_2 = Answer::with('students','exams','questions')->where('exam_id',$id)
+    $option_2 = Answer::with('students','exams','questions')
+    ->where('quiz_attempt_id',$quiz_attempt->get(0)->id)
     ->where('question_id',$question->id)
     ->where('answer',$question->option_2)
     ->count();
@@ -177,7 +180,8 @@ foreach($exams as $class_subject_teacher_id){
     $row3[] = $option_2;
     $row4[]=$average_2;
 
-    $option_3 = Answer::with('students','exams','questions')->where('exam_id',$id)
+    $option_3 = Answer::with('students','exams','questions')
+    ->where('quiz_attempt_id',$quiz_attempt->get(0)->id)
     ->where('question_id',$question->id)
     ->where('answer',$question->option_3)
     ->count();
@@ -185,7 +189,8 @@ foreach($exams as $class_subject_teacher_id){
     $row5[] = $option_3;
     $row6[]=$average_3;
 
-    $option_4 = Answer::with('students','exams','questions')->where('exam_id',$id)
+    $option_4 = Answer::with('students','exams','questions')
+    ->where('quiz_attempt_id',$quiz_attempt->get(0)->id)
     ->where('question_id',$question->id)
     ->where('answer',$question->option_4)
     ->count();
@@ -193,7 +198,8 @@ foreach($exams as $class_subject_teacher_id){
     $row7[] = $option_4;
     $row8[]=$average_4;
 
-    $option_5 = Answer::with('students','exams','questions')->where('exam_id',$id)
+    $option_5 = Answer::with('students','exams','questions')
+    ->where('quiz_attempt_id',$quiz_attempt->get(0)->id)
     ->where('question_id',$question->id)
     ->where('answer',$question->option_5)
     ->count();
@@ -201,7 +207,8 @@ foreach($exams as $class_subject_teacher_id){
     $row9[] = $option_5;
     $row10[]=$average_5;
 
-    $correct = Answer::with('students','exams','questions')->where('exam_id',$id)
+    $correct = Answer::with('students','exams','questions')
+    ->where('quiz_attempt_id',$quiz_attempt->get(0)->id)
     ->where('question_id',$question->id)
     ->where('answer',$question->answer)
     ->count();
@@ -265,6 +272,6 @@ foreach($exams as $class_subject_teacher_id){
 
     
     
-    return view('teacher.item_analysis',['questions'=>$questions,'exam_grades'=>$exam_grades,'answers'=>$answers,],compact('option1','avg1','option2','avg2','option3','avg3','option4','avg4','option5','avg5','counter','students','answ','avg6'));
+    return view('teacher.item_analysis',['exams'=>$exams,'questions'=>$questions,'exam_grades'=>$exam_grades,'answers'=>$answers,],compact('option1','avg1','option2','avg2','option3','avg3','option4','avg4','option5','avg5','counter','students','answ','avg6'));
    }
 }
