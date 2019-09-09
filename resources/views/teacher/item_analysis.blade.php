@@ -83,10 +83,9 @@
                     <tbody>
                        
          
-                      @foreach($questions as $key=>$question)
-                     
+                      @foreach($questions as $question)
             <tr>
-                 <td>{{++$key}}</td>
+                <td>{{$i=$i+1}}</td>
                 <td>{{$question->question}}</td>
                 <td>{{$question->score}}</td>
                 <td>{{$question->option_1}}</td>
@@ -108,7 +107,21 @@
 <div class="row">
         <div class="col-lg-12 col-md-offset-0">
         <div class="panel panel-default">
-            <div class="panel-heading">Item Analysis</div>
+            <div class="panel-heading">Item Analysis
+
+                    <form action="{{route('item.analysis',$exams->get(0)->id)}}" method="GET">
+                            
+                              <div class="form-group">
+                                  
+                                  <select  name="attempt" id="attempt" onchange="this.form.submit()">
+                                      <option disabled selected value> -- select attempt -- </option>
+                                      @for($i=1; $i < $exams->get(0)->attempts;$i++)
+                                    <option value={{$i}}>Attempt {{$i}}</option>
+                                    @endfor
+                                  </select>
+                                </div>  
+                            </form>
+            </div>
 
             <div class="panel-body">    
                     <div class="table-responsive">
@@ -137,11 +150,11 @@
                     <tbody>
                        
          
-                      @foreach($questions as $key=>$question)
+                      @foreach($questions as $question)
             <tr>
-                    
+                    <td>{{$a=$a+1}}</td>
                 
-                    <td>{{++$key}}</td>
+                   
                     <td>{{$avg1[$counter]}}%</td>
                     <td>{{$avg2[$counter]}}%</td>
                     <td>{{$avg3[$counter]}}%</td>
