@@ -1,9 +1,5 @@
 
 
-
-   
-
-
 @extends('layouts.user')
 
 
@@ -34,7 +30,9 @@
                
             
 <div class="container" id="view">
- 
+
+  
+
 
     <h4>Time Left: <div style="font-weight: bold" id="quiz-time-left"></div></h4>
     
@@ -50,7 +48,7 @@
       </nav>
             <div class="mdl-card__title">
               <h2 class="mdl-card__title-text"> 
-                    Question no. {{ $loop->iteration + $questions->firstItem() - 1 }}     {{$question->question}}
+                    Question no. {{ $loop->iteration }}     {{$question->question}}
                                 </h2>
             </div>
         
@@ -62,25 +60,25 @@
                 <input type="hidden" name="id" value={{$question->id}}>
             
                     @if(count($question->option_1)>0)
-                      <input type="radio" id="answer"  name="answer" value="{{$question->option_1}}"> {{$question->option_1}}<br>
+                      <input type="radio" id="answer"  name="answer" value="{{$question->option_1}}" {{$answers[$question->id] !== null? 'disabled' : ''}} {{$answers[$question->id] === $question->answer? 'checked' : ''}}> {{$question->option_1}}<br>
                       @endif
                       @if(count($question->option_2)>0)
-                      <input type="radio" name="answer" value="{{$question->option_2}}"> {{$question->option_2}}<br>
+                      <input type="radio" name="answer" value="{{$question->option_2}}" {{$answers[$question->id] !== null? 'disabled' : ''}} {{$answers[$question->id] === $question->answer? 'checked' : ''}}> {{$question->option_2}}<br>
                       @endif
                       @if(count($question->option_3)>0)
-                      <input type="radio" name="answer" value="{{$question->option_3}}"> {{$question->option_3}}<br>
+                      <input type="radio" name="answer" value="{{$question->option_3}}" {{$answers[$question->id] !== null? 'disabled' : ''}} {{$answers[$question->id] === $question->answer? 'checked' : ''}}> {{$question->option_3}}<br>
                       @endif
                       @if(count($question->option_4)>0)
-                      <input type="radio" name="answer" value="{{$question->option_4}}"> {{$question->option_4}}<br>
+                      <input type="radio" name="answer" value="{{$question->option_4}}" {{$answers[$question->id] !== null? 'disabled' : ''}} {{$answers[$question->id] === $question->answer? 'checked' : ''}}> {{$question->option_4}}<br>
                       @endif
                       @if(count($question->option_5)>0)
-                      <input type="radio" id="answer" name="answer" value="{{$question->option_5}}"> {{$question->option_5}}<br>
+                      <input type="radio" name="answer" value="{{$question->option_5}}" {{$answers[$question->id] !== null? 'disabled' : ''}} {{$answers[$question->id] === $question->answer? 'checked' : ''}}> {{$question->option_5}}<br>
                       @endif
                       @if(count($question->option_1)<=0 & count($question->option_2)<=0 && count($question->option_3)<=0 && count($question->option_4)<=0 && count($question->option_5)<=0)
                       <label for="answer">Answer:</label>
-                      <input type="text" id="answer" name="answer" class="form-control"> <br>
+                      <input type="text" id="answer" name="answer" class="form-control" value="{{$answers[$question->id] !== null? $answers[$question->id] : ''}}" {{$answers[$question->id] !== null? 'disabled' : ''}}> <br>
                       @endif
-                      <input type="submit"  name="submit" value="submit" class="btn btn-primary" id="submitbtn">
+                      <input type="submit"  name="submit" value="{{$answers[$question->id] !== null? 'submitted' : 'submit'}}" class="btn btn-primary" id="submitbtn" {{$answers[$question->id] !== null? 'disabled' : ''}}>
 
 
              
@@ -97,17 +95,12 @@
               <br><br>
           
               @endforeach
-              <div class="text-center">
-                {{ $questions->links() }}
-                Showing {{($questions->currentpage()-1)*$questions->perpage()+1}} to {{$questions->currentpage()*$questions->perpage()}}
-                of  {{$questions->total()}} entries
-                </div>
-                
+         
          @foreach($questions as $question)
          <form action="{{route('store.result',$question->exam_id)}}" method="post">
             {{csrf_field() }}
             @endforeach
-              <input type="submit" id="finish" value="Finish"> 
+              <input type="submit" id="finish" value="Finish" onclick="return confirm('Are you sure?') disabled"> 
          </form>
               </div>
 
@@ -116,11 +109,10 @@
              
               <script type="text/javascript">
                 function countdown(seconds) {
-    seconds = parseInt(localStorage.getItem("seconds"))||seconds;
+    seconds = {{$time_remaining}};
   
     function tick() {
       seconds--; 
-      localStorage.setItem("seconds", seconds)
       var counter = document.getElementById("quiz-time-left");
       var current_minutes = parseInt(seconds/60);
       var current_seconds = seconds % 60;
@@ -128,18 +120,18 @@
       if( seconds > 0 ) {
         setTimeout(tick, 1000);
       } 
-      if(seconds == 0){
+      if(seconds == 0 || seconds<0 ){
       document.getElementById("finish").click();
-      document.getElementById("submitbtn").click();
+     
     }
     }
     tick();
-
+  
   
   }
-  @foreach($exams as $exam)
-  countdown({{$exam->time}});
-  @endforeach           
+  
+  countdown({{$time_remaining}});
+
                   </script>
              
              
@@ -211,3 +203,4 @@
     
                 
   
+
