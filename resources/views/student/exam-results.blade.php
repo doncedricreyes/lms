@@ -19,9 +19,9 @@
     <div class="container">
         <div class="row">
             
-            
+           
             <div class="col-md-12">
-                    <legend>{{$exam_grades->get(0)->exams->get(0)->title}}</legend>
+                    <legend>{{$exam_grades->get(0)->quiz_attempt->get(0)->exams->get(0)->title}}</legend>
 
             <div class="table-responsive">
     
@@ -41,13 +41,13 @@
                        </thead>
         <tbody>
         
-                @foreach($exam_grades as $row)
+                @foreach($grades as $row)
                 <tr>
-                    <td>{{$row->attempt}}</td></td>
-                    <td>{{$row->grade}}</td>
-                    <td>{{$row->exams->get(0)->total_score}}</td>
-                    <td>{{$row->exams->get(0)->passing_score}}</td>
-                    <td>{{$row->Status}}</td>
+                    <td>{{ $loop->iteration }} </td></td>
+                    <td>{{$row->get(0)->grade}}</td>
+                    <td>{{$row->get(0)->quiz_attempt->get(0)->exams->get(0)->total_score}}</td>
+                    <td>{{$row->get(0)->quiz_attempt->get(0)->exams->get(0)->passing_score}}</td>
+                    <td>{{$row->get(0)->Status}}</td>
                 
                     
 
@@ -62,7 +62,7 @@
 </div>
         
 <div  id="submit"> 
-<a href="/student/class/{{$exam_grades->get(0)->exams->get(0)->class_subject_teacher_id}}" class="btn btn-primary">Continue</a>
+<a href="/student/class/{{$exam_grades->get(0)->quiz_attempt->get(0)->exams->get(0)->class_subject_teacher_id}}" class="btn btn-primary">Continue</a>
 </div>
 @endif
 @if($exam_grades == "")
