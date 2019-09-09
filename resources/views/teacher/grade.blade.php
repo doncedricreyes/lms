@@ -33,11 +33,11 @@
                               <table id="mytable" class="table table-bordred table-striped">
                                    
                                    <thead>
-                                        @foreach($subject_grade as $row)
-                                        <th>{{$row->exams->get(0)->title}}</th>    
-                                        @endforeach  
-                                    
-                                      
+                                     
+                                        <th>Quiz Title</th>
+                                        <th>Attempt</th>
+                                        <th>Grade</th>
+                                        <th>Passing Score</th>
                                        
                                    </thead>
                     <tbody>
@@ -46,10 +46,13 @@
                                 
                        <tr>
                             @foreach($subject_grade as $row)
+                                <td>{{$row->quiz_attempt->get(0)->exams->get(0)->title}}</td>
+                                <td>{{$row->quiz_attempt->get(0)->attempt}}</td>
                                 <td>{{$row->grade}}</td>    
-                                @endforeach  
+                                <td>{{$row->quiz_attempt->get(0)->exams->get(0)->passing_score}}</td>
+                                
                        </tr>                    
-                
+                       @endforeach 
                      
                             
                     
@@ -75,12 +78,9 @@
                                     
                                   <table id="mytable" class="table table-bordred table-striped">
                                     
-                                       <thead>
-                                            @foreach($assignment as $row)
-                                            <th>{{$row->assignments->title}}</th>    
-                                            @endforeach  
-                                        
-                                          
+                                       <thead>  
+                                            <th>Assignment Title</th>
+                                            <th>Grade</th>
                                            
                                        </thead>
                         <tbody>
@@ -89,10 +89,11 @@
                                     
                            <tr>
                                 @foreach($assignment as $row)
+                                <td>{{$row->assignments->title}}</td>
                                     <td>{{$row->grade}}</td>    
-                                    @endforeach  
+                                   
                            </tr>                    
-                    
+                           @endforeach  
                          
                                 
                         
