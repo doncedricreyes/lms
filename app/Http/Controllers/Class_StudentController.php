@@ -155,7 +155,7 @@ class Class_StudentController extends Controller
             if(count($qattempts)>0){
            $qattempts_all[] = $qattempts;
             }
-             if(count($qattempts)=0){
+             if(count($qattempts)<0){
            $qattempts_all[] = [];
             }
         }
