@@ -131,7 +131,6 @@ class Class_StudentController extends Controller
         $exam_grade_all=[];
         $assignment_grade_all=[];
       
-        $quiz_attempts = Quiz_Attempt::with('exams','students')->where('student_id','=',auth::user()->id)->get();
         $students = Student::where('id',Auth::user()->id)->get();
         $subject_announcements = Subject_Announcement::with('class_subject_teachers')->where('class_subject_teacher_id','=',$id)->get();
         $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('id',$id)->get();
@@ -151,7 +150,13 @@ class Class_StudentController extends Controller
         ->get();
         }
         
-      
+       foreach($exams as $exam){
+            $qattempts = Quiz_Attempt::with('exams','students')->where('student_id','=',auth::user()->id)->where('exam_id',$exam->id)->get();
+            $qattempts_all[] = $qattempts;
+        }
+        $collection = collect([$qattempts_all]);
+        $quiz_attempts = $collection->flatten();
+        $quiz_attempts->all();
         
             foreach($quiz_attempts as $quiz_attempt){
 
