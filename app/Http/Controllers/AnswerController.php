@@ -40,14 +40,9 @@ class AnswerController extends Controller
         $answer->quiz_attempt_id = $quiz_attempt['id'];
         $answer->answer = $request->answer;
         $answer->question_id = $request->id;
-
-        if($exams->get(0)->attempts >= $attempt){
         $answer->save();
         return redirect()->route('student.show.question',['id'=>$id]);
-        }
-        else{
-            return redirect()->back()->withErrors('You have already attempted this exam/quiz!');
-        }    
+        
 
    
    }
