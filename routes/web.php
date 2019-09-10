@@ -195,7 +195,7 @@ Route::put('/profile/{id}','Teacher_ProfileController@update_pic')->name('teache
 
 Route::get('/calendar','EventController@index');
 Route::post('/calendar','EventController@addevent')->name('teacher.add_event');
-Route::get('/exam/analysis/{id}','ExamController@item_analysis')->name('item.analysis');
+Route::get('/exam/analysis/{id}?attempt=1','ExamController@item_analysis')->name('item.analysis');
 });
 
 Route::prefix('parent')->group(function()
