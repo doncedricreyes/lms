@@ -180,7 +180,9 @@ class TeacherController extends Controller
         $assignment_grade_all=[];
         $quiz_attempt=[];
         foreach($exams as $exam){
-            $quiz_attempts = Quiz_Attempt::with('exams','students')->where('exam_id',$exam->id)->get();
+            $quiz_attempts = Quiz_Attempt::with('exams','students')->where('exam_id',$exam->id)
+                ->where('student_id',$id)
+                ->get();
             $quiz_attempt[]=$quiz_attempts;
         }
         $collection = collect([$quiz_attempt]);
