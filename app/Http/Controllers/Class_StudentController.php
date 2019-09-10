@@ -154,11 +154,10 @@ class Class_StudentController extends Controller
             $qattempts = Quiz_Attempt::with('exams','students')->where('student_id','=',auth::user()->id)->where('exam_id',$exam->id)->get();
             $qattempts_all[] = $qattempts;
         }
-        if(count($qattempts_all)){
         $collection = collect([$qattempts_all]);
         $quiz_attempts = $collection->flatten();
         $quiz_attempts->all();
-        }
+
             foreach($quiz_attempts as $quiz_attempt){
 
         $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$quiz_attempt->id)
