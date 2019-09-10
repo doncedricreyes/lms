@@ -29,7 +29,7 @@ class AnswerController extends Controller
    {
     $questions = Question::with('exams')->where('exam_id',$id)->get();
     $quiz_attempt = Quiz_Attempt::with('exams','students')->where('student_id',auth::user()->id)->where('exam_id',$id)->latest('id')->first();
-    $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$quiz_attempt->id)->get();  
+    $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$quiz_attempt['id'])->get();  
     $exams = Exam::where('id','=',$id)->get();
    
     
@@ -37,7 +37,7 @@ class AnswerController extends Controller
 
         
         $answer = new Answer();
-        $answer->quiz_attempt_id = $quiz_attempt->id;
+        $answer->quiz_attempt_id = $quiz_attempt['id'];
         $answer->answer = $request->answer;
         $answer->question_id = $request->id;
 
