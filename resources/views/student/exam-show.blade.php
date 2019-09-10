@@ -40,7 +40,7 @@
   
 
         @foreach($questions as $question)
-      @try {$answer = $answers[question->id]} catch ($e) {$answer=null}
+      @try {{$answer = $answers[question->id]}} catch ($e) {{$answer=null}}
     <div class="demo-card-wide mdl-card mdl-shadow--2dp">
       <nav class="col-lg-1 pull-right">
      <div id="timer"></div>
