@@ -85,7 +85,7 @@
          
                       @foreach($questions as $question)
             <tr>
-                <td>{{$i=$i+1}}</td>
+                <td>{{ $loop->iteration }} </td>
                 <td>{{$question->question}}</td>
                 <td>{{$question->score}}</td>
                 <td>{{$question->option_1}}</td>
@@ -151,7 +151,7 @@
          
                       @foreach($questions as $question)
             <tr>
-                    <td>{{$a=$a+1}}</td>
+                    <td>{{ $loop->iteration }} </td>
                 
                    
                     <td>{{$avg1[$counter]}}%</td>
