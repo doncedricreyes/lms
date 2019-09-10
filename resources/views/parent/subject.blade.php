@@ -102,14 +102,6 @@
                       </div>
 
 
-                    
-                     </div>
-                 </div>
-                          
-                         </div>
-
-
-
 
               
                                              <div class="mdl-tabs__panel" id="grades-panel">
