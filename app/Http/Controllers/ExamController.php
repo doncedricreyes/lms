@@ -272,6 +272,6 @@ foreach($exams as $class_subject_teacher_id){
 
     
     
-    return view('teacher.item_analysis',['exams'=>$exams,'questions'=>$questions,'answers'=>$answers,],compact('option1','avg1','option2','avg2','option3','avg3','option4','avg4','option5','avg5','counter','students','answ','avg6'));
+    return view('teacher.item_analysis',['exams'=>$exams,'questions'=>$questions],compact('option1','avg1','option2','avg2','option3','avg3','option4','avg4','option5','avg5','counter','students','answ','avg6'));
    }
 }
