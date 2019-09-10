@@ -28,7 +28,7 @@
         @foreach($exams as $id)
         @if ($id->date_start <= Carbon\Carbon::now('Asia/Manila')) 
         @if ($id->date_end > Carbon\Carbon::now('Asia/Manila')) 
-        @if($id->attempts > $exam_grades->attempt )
+        @if($id->attempts > $exam_grades['attempt'] )
         @if($quiz_latest->id == $exam_grades['quiz_attempt_id']) 
         @if($quiz_attempt->count() < $id->attempts)    
         <form action = "{{route('student.store.quiz_start',$id->id)}}" method="post" enctype="multipart/form-data">
