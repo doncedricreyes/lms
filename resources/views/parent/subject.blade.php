@@ -102,38 +102,7 @@
                       </div>
 
 
-                      <div class="mdl-tabs__panel" id="classlist-panel">
-                   
-                        <div class="row">
-                         <div class="col-lg-12 col-md-offset-0">
-                         <div class="panel panel-default">
-                             <div class="panel-heading">Students</div>
-         
-                             <div class="panel-body">    
-                                     <table class="mdl-data-table mdl-js-data-table col-lg-12" >
-                                     <thead>
-                                         <tr>
-                                             <th>Name</th>
-                                         
-                                             
-                            
-                                         </tr>
-                                     </thead>
-                                     <tbody>
-                                        
-                          
-                                       @foreach($class_students as $class_student)
-                             <tr>
-                                 <td>{{$class_student->students->get(0)->name}}</td>
-                            
-                                 
-                             </tr>
-                                             @endforeach
-                                     </tbody>
-                                 </table>
-                               
-                             </div>
-                         </div>
+                    
                      </div>
                  </div>
                           
