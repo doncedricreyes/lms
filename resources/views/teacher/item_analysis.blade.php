@@ -114,8 +114,9 @@
                               <div class="form-group">
                                   
                                   <select  name="attempt" id="attempt" onchange="this.form.submit()">
-                                      @for($i=1; $i < $exams->get(0)->attempts;$i++)
-                                    <option value={{$i}} selected value>Attempt {{$i}}</option>
+                                       <option disabled selected value> -- select attempt -- </option>
+                                      @for($i=1; $i <= $exams->get(0)->attempts;$i++)
+                                    <option value={{$i}}>Attempt {{$i}}</option>
                                     @endfor
                                   </select>
                                 </div>  
