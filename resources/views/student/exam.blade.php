@@ -29,7 +29,7 @@
         @if ($id->date_start <= Carbon\Carbon::now('Asia/Manila')) 
         @if ($id->date_end > Carbon\Carbon::now('Asia/Manila')) 
         @if($id->attempts > $exam_grades['attempt'] )
-        @if($quiz_latest->id == $exam_grades->quiz_attempt_id) 
+        @if($quiz_latest['id'] == $exam_grades['quiz_attempt_id']) 
         @if($quiz_attempt->count() < $id->attempts)    
         <form action = "{{route('student.store.quiz_start',$id->id)}}" method="post" enctype="multipart/form-data">
           {{csrf_field() }}
@@ -42,7 +42,7 @@
 @endif
 @endif
 @endif
-@if($quiz_latest->id != $exam_grades['quiz_attempt_id']) 
+@if($quiz_latest['id'] != $exam_grades['quiz_attempt_id']) 
 
 <a href="{{route('student.show.question',$id->id)}}" class="btn btn-primary">Continue</a>
 @endif
