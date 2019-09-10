@@ -114,9 +114,9 @@
                               <div class="form-group">
                                   
                                   <select  name="attempt" id="attempt" onchange="this.form.submit()">
-                                      @for($i=1; $i < $exams->get(0)->attempts;$i++)
-                                    <option selected value={{$i}}>Attempt {{$i}}</option>
-                                    @endfor
+                                      @foreach($exams as $exam)
+                                    <option selected value={{ $loop->iteration }} >Attempt {{ $loop->iteration }} </option>
+                                    @endforeach
                                   </select>
                                 </div>  
                             </form>
