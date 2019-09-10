@@ -163,7 +163,7 @@ foreach($exams as $class_subject_teacher_id){
     
     foreach($questions as $question){
     $option_1 = Answer::with('students','exams','questions')
-    ->where('quiz_attempt_id',$quiz_attempt->get(0)->id)
+    ->where('quiz_attempt_id',$quiz_attempt->get(0)['id'])
     ->where('question_id',$question->id)
     ->where('answer',$question->option_1)
     ->count();
@@ -172,7 +172,7 @@ foreach($exams as $class_subject_teacher_id){
     $row2[]=$average_1;
     
     $option_2 = Answer::with('students','exams','questions')
-    ->where('quiz_attempt_id',$quiz_attempt->get(0)->id)
+    ->where('quiz_attempt_id',$quiz_attempt->get(0)['id'])
     ->where('question_id',$question->id)
     ->where('answer',$question->option_2)
     ->count();
@@ -181,7 +181,7 @@ foreach($exams as $class_subject_teacher_id){
     $row4[]=$average_2;
 
     $option_3 = Answer::with('students','exams','questions')
-    ->where('quiz_attempt_id',$quiz_attempt->get(0)->id)
+    ->where('quiz_attempt_id',$quiz_attempt->get(0)['id'])
     ->where('question_id',$question->id)
     ->where('answer',$question->option_3)
     ->count();
@@ -190,7 +190,7 @@ foreach($exams as $class_subject_teacher_id){
     $row6[]=$average_3;
 
     $option_4 = Answer::with('students','exams','questions')
-    ->where('quiz_attempt_id',$quiz_attempt->get(0)->id)
+    ->where('quiz_attempt_id',$quiz_attempt->get(0)['id'])
     ->where('question_id',$question->id)
     ->where('answer',$question->option_4)
     ->count();
@@ -199,7 +199,7 @@ foreach($exams as $class_subject_teacher_id){
     $row8[]=$average_4;
 
     $option_5 = Answer::with('students','exams','questions')
-    ->where('quiz_attempt_id',$quiz_attempt->get(0)->id)
+    ->where('quiz_attempt_id',$quiz_attempt->get(0)['id'])
     ->where('question_id',$question->id)
     ->where('answer',$question->option_5)
     ->count();
@@ -208,7 +208,7 @@ foreach($exams as $class_subject_teacher_id){
     $row10[]=$average_5;
 
     $correct = Answer::with('students','exams','questions')
-    ->where('quiz_attempt_id',$quiz_attempt->get(0)->id)
+    ->where('quiz_attempt_id',$quiz_attempt->get(0)['id'])
     ->where('question_id',$question->id)
     ->where('answer',$question->answer)
     ->count();
