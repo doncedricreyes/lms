@@ -180,7 +180,7 @@ class AdminController extends Controller
                foreach($class_students as $class_student){
                    $class_student_id = $class_student->id;
              $class_student = Class_Student::find($class_student_id);
-             $class_student->class_subject_teacher_id = $class_id->id;
+             $class_student->class_subject_teacher_id = $class_student->id;
              $class_student->save();
                }
         $request->session()->flash('alert-success', 'Student was successful updated!');
