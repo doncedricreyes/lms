@@ -170,9 +170,9 @@ class AdminController extends Controller
              
             
                foreach($class_subject_teachers as $class_subject_teacher){
-               $class_students= Class_Student::where('student_id',$id)->get();
+               $class_students= Class_Student::where('student_id',$id)->toArray();
                         
-             $class_student_id = $class_students->get(0)['id'];
+             $class_student_id = $class_students['id'];
              $class_student = Class_Student::find($class_student_id);
              $class_student->class_subject_teacher_id = $class_subject_teacher->id;
              $class_student->save();
