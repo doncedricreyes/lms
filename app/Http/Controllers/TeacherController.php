@@ -8,7 +8,6 @@ use App\Subject_Announcement;
 use App\Student;
 use App\Class_Announcement;
 use App\AddClass;
-use App\Grade_Subject;
 use App\Assignment;
 use App\Exam_Grade;
 use App\Class_Subject_Teacher;
@@ -78,15 +77,8 @@ class TeacherController extends Controller
         ->where('quarter','=',$quarter)
         ->get();
         
-        $quarter = $request->quarter;
-        $grade_subjects = Grade_Subject::with('class_subject_teachers','students')
-        ->where('class_subject_teacher_id','=',$id)
-        ->where('quarter','=',$quarter)
-        ->get()
-        ->sortBy(function($grade_subjects){
-            return $grade_subjects->students->get(0)->name;
-        });
-        return view('teacher.subject',['subject_announcements'=>$subject_announcements,'grade_subjects'=>$grade_subjects,'assignments'=>$assignments,'class_subject_teachers'=>$class_subject_teachers,'lectures'=>$lectures,'class_students'=>$class_students,'exams'=>$exams]);
+
+        return view('teacher.subject',['subject_announcements'=>$subject_announcements,'assignments'=>$assignments,'class_subject_teachers'=>$class_subject_teachers,'lectures'=>$lectures,'class_students'=>$class_students,'exams'=>$exams]);
       
     }
 
@@ -106,33 +98,7 @@ class TeacherController extends Controller
         return view('teacher.exam-results',['exams'=>$exams],compact('grades'));
     }
 
-    public function grade_subject_store(Request $request,$id){
-        $input = request()->validate([
-            'quarter'=>'required',
-            'grade' => 'required',
-           
 
-        ], [
-
-       
-
-           
-            
-            
-
-        ]);
-
-
-        $grade = new Grade_Subject; 
-        $grade->student_id = $request->student_id; 
-        $grade->grade = $request->grade;
-        $grade->class_subject_teacher_id= $request->class_subject_teacher_id;
-        $grade->quarter = $request->quarter;
-        $grade->save(); 
-        
-        $request->session()->flash('alert-success', 'Grade Successfully Added!');
-        return redirect()->route('subject.index',['id'=>$id]);
-    }
     
 
     public function grade_subject_update(Request $request,$id){
