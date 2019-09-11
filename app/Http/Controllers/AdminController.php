@@ -135,8 +135,10 @@ class AdminController extends Controller
     {
         $input = request()->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|max:255|max:255',
-            'password' => 'required|string|min:6',
+            'username' => 'required|string|max:255|unique:students',
+            'password' => 'required|string|min:6|',
+            'year'=> 'required|string|exists:classes',
+            'section'=> 'required|string|exists:classes',
 
         ], [
       
@@ -162,13 +164,13 @@ class AdminController extends Controller
         
            if ($students->save()){
                
-                   $class_subject=DB::table('class_subject_teacher')->where([
+                   $class_subject_teachers=DB::table('class_subject_teacher')->where([
                 [ 'class_id','=',$classes],
              ])->get();
              
                $class_students_all=[];
-               foreach($class_subject as $class_id){
-               $cstudents= Class_Student::where('class_subject_teacher_id',$class_id->id)->where('student_id',$id)->get();
+               foreach($class_subject_teachers as $class_subject_teacher){
+               $cstudents= Class_Student::where('class_subject_teacher_id',$class_subject_teacher->id)->where('student_id',$id)->get();
                 $class_students_all[] = $cstudents;
                }
                $collection = collect([$class_students_all]);
@@ -176,9 +178,9 @@ class AdminController extends Controller
                 $class_students->all();
                 
                foreach($class_students as $class_student){
-             $class_student = Class_Student::find($class_student->id);
+                   $class_student_id = $class_student->id;
+             $class_student = Class_Student::find($class_student_id);
              $class_student->class_subject_teacher_id = $class_id->id;
-             $class_student->student_id = $students->id;
              $class_student->save();
                }
         $request->session()->flash('alert-success', 'Student was successful updated!');
