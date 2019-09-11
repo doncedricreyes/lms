@@ -168,19 +168,13 @@ class AdminController extends Controller
                 [ 'class_id','=',$classes],
              ])->get();
              
-               $class_students_all=[];
+            
                foreach($class_subject_teachers as $class_subject_teacher){
-               $cstudents= Class_Student::where('class_subject_teacher_id',$class_subject_teacher->id)->where('student_id',$id)->get();
-                $class_students_all[] = $cstudents;
-               }
-               $collection = collect([$class_students_all]);
-                $class_students = $collection->flatten();
-                $class_students->all();
-                
-               foreach($class_students as $class_student){
-                   $class_student_id = $class_student->id;
+               $class_students= Class_Student::where('student_id',$id)->get();
+                        
+             $class_student_id = $class_students->id;
              $class_student = Class_Student::find($class_student_id);
-             $class_student->class_subject_teacher_id = $class_student->id;
+             $class_student->class_subject_teacher_id = $class_subject_teacher->id;
              $class_student->save();
                }
         $request->session()->flash('alert-success', 'Student was successful updated!');
