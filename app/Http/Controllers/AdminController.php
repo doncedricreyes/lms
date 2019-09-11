@@ -137,8 +137,7 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255',
             'password' => 'required|string|min:6|',
-            'year'=> 'required|string|exists:classes',
-            'section'=> 'required|string|exists:classes',
+
 
         ], [
       
@@ -146,37 +145,14 @@ class AdminController extends Controller
             
         ]);
    
-        $year=Input::get('year');
-        $section=Input::get('section');
-        $classes =DB::table('classes')->where([
-            ['year', '=', $year],
-            ['section', '=', $section],
-        ])->first()->id;
-        
-
-       if(count($classes)>0){
            
         $students = Student::find($id);
         $students->name = $request->name;
         $students->username = $request->username;
         $students->password = Hash::make($request->password);
         $students->role = 'student';
-        
-           if ($students->save()){
-               
-                   $class_subject_teachers=DB::table('class_subject_teacher')->where([
-                [ 'class_id','=',$classes],
-             ])->get();
-             
-            
-               foreach($class_subject_teachers as $class_subject_teacher){
-               $class_students= Class_Student::where('student_id',$id)->toArray();
-                        
-             $class_student_id = $class_students['id'];
-             $class_student = Class_Student::find($class_student_id);
-             $class_student->class_subject_teacher_id = $class_subject_teacher->id;
-             $class_student->save();
-               }
+        $students->save()                        
+       
         $request->session()->flash('alert-success', 'Student was successful updated!');
         return redirect()->route('admin.student.show');
            }
