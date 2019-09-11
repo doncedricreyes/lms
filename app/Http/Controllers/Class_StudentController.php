@@ -9,7 +9,6 @@ use App\Assignment;
 use App\Class_Subject_Teacher;
 use App\Class_Student;
 use App\AddClass;
-use App\Grade_Subject;
 use App\Teacher;
 use App\AddSubject;
 use App\Question;
@@ -58,15 +57,10 @@ class Class_StudentController extends Controller
         return $students->students->get(0)->name;
     });
     $quarter=$request->quarter;
-    $grade_subjects = Grade_Subject::with('students','class_subject_teachers')->where('student_id','=',Auth::user()->id)
-    ->where('quarter','=',$quarter)
-    ->get();
-        if(count($class_students)== 0){
-                return redirect()->route('enroll');
-            }
+   
             
        
-            return view('student.class', ['grade_subjects'=>$grade_subjects,'students'=>$students,'class_announcements'=>$class_announcements,'class_subject_teachers'=>$class_subject_teachers,'students'=>$students,'class_students'=>$class_students]);
+            return view('student.class', ['students'=>$students,'class_announcements'=>$class_announcements,'class_subject_teachers'=>$class_subject_teachers,'students'=>$students,'class_students'=>$class_students]);
     }
 
     public function enroll()
@@ -130,6 +124,7 @@ class Class_StudentController extends Controller
         $quarter=$request->quarter;
         $exam_grade_all=[];
         $assignment_grade_all=[];
+        $qattempts_all=[];
       
         $students = Student::where('id',Auth::user()->id)->get();
         $subject_announcements = Subject_Announcement::with('class_subject_teachers')->where('class_subject_teacher_id','=',$id)->get();
@@ -152,12 +147,9 @@ class Class_StudentController extends Controller
         
        foreach($exams as $exam){
             $qattempts = Quiz_Attempt::with('exams','students')->where('student_id','=',auth::user()->id)->where('exam_id',$exam->id)->get();
-            if(count($qattempts)>0){
            $qattempts_all[] = $qattempts;
-            }
-             if(count($qattempts)<0){
-           $qattempts_all[] = [];
-            }
+        
+            
         }
       
         $collection = collect([$qattempts_all]);
