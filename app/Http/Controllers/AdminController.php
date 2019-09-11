@@ -131,33 +131,25 @@ class AdminController extends Controller
         $class_students = Class_Student::where('student_id','=',$id)->get();
         return view('admin.edit-student',['students'=>$students,'class_students'=>$class_students]);
     }
-    public function update_student(Request $request, $id)
+      public function update_student(Request $request, $id)
     {
         $input = request()->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
-            'password' => 'required|string|min:6|',
-
-
+            'username' => 'required|max:255|max:255',
+            'password' => 'required|string|min:6',
         ], [
       
             
             
         ]);
-   
-           
         $students = Student::find($id);
         $students->name = $request->name;
         $students->username = $request->username;
         $students->password = Hash::make($request->password);
         $students->role = 'student';
-        $students->save()                        
-       
+        $students->save();
         $request->session()->flash('alert-success', 'Student was successful updated!');
         return redirect()->route('admin.student.show');
-           
-      
-  
     }
 
     public function show_parent()
