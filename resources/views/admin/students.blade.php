@@ -57,7 +57,7 @@
                                 <td>{{$row->username}}</td>
                                 <td>{{$row->email}}</td>
                                 <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="/admin/students/{{$row->id}}"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
-                   <td><p data-placement="top" data-toggle="tooltip" title="Edit"><a href="students/{{$row->id}}/edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
+                   <td><p data-placement="top" data-toggle="tooltip" title="Edit"><a href="/admin/students/{{$row->id}}/edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
                              
                                 
                                 <form action="{{route('admin.student.destroy',[$row->id])}}" method="POST">
