@@ -155,9 +155,9 @@ class AdminController extends Controller
        
         $request->session()->flash('alert-success', 'Student was successful updated!');
         return redirect()->route('admin.student.show');
-           }
-       }
-         return redirect()->back()->with('message', 'Class not found!');
+           
+      
+  
     }
 
     public function show_parent()
