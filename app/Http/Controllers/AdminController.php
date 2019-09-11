@@ -135,7 +135,7 @@ class AdminController extends Controller
     {
         $input = request()->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:students',
+            'username' => 'required|string|max:255',
             'password' => 'required|string|min:6|',
             'year'=> 'required|string|exists:classes',
             'section'=> 'required|string|exists:classes',
