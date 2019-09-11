@@ -7,7 +7,6 @@ use Auth;
 use App\Student_Assignment;
 use App\Profile;
 use App\Exam_Grade;
-use App\Grade_subject;
 use App\Class_Announcement;
 use App\Subject_Announcement;
 use App\Lecture;
@@ -133,8 +132,9 @@ class ParentController extends Controller
         $quarter=$request->quarter;
         $exam_grade_all=[];
         $assignment_grade_all=[];
-        
-        $quiz_attempts = Quiz_Attempt::with('exams','students')->where('student_id','=',$student)->get();
+        $qattempts_all=[];
+            
+      
         $students = Student::where('id',$student)->get();
         $subject_announcements = Subject_Announcement::with('class_subject_teachers')->where('class_subject_teacher_id','=',$id)->get();
         $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('id',$id)->get();
@@ -149,7 +149,14 @@ class ParentController extends Controller
         ->get();
         }
         
- 
+          foreach($exams as $exam){
+            $qattempts = Quiz_Attempt::with('exams','students')->where('student_id','=',$student)->where('exam_id',$exam->id)->get();
+            $qattempts_all[] = $qattempts;
+        }
+        $collection = collect([$qattempts_all]);
+        $quiz_attempts = $collection->flatten();
+        $quiz_attempts->all();
+          
         foreach($quiz_attempts as $quiz_attempt){
 
         $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$quiz_attempt->id)
