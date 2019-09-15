@@ -180,7 +180,7 @@ class ParentController extends Controller
     $student_assignment = $collection->flatten();
     $student_assignment->all();   
 
-        return view('parent.subject',['student_assignment'=>$student_assignment,'quiz_attempts'=>$quiz_attempts,'subject_grade'=>$subject_grade,'assignments'=>$assignments,'subject_announcements'=>$subject_announcements,'students'=>$students,'exam_grades'=>$exam_grades,'class_subject_teachers'=>$class_subject_teachers,'exams'=>$exams]);
+        return view('parent.subject',compact('student_assignment','exam_grades','subject_grade','assignments','subject_announcements','students','class_subject_teachers','lectures','class_students','exams'));
       
     }
 
