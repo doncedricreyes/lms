@@ -92,7 +92,7 @@
                       <div class="mdl-tabs__panel" id="resources-panel">
                       <legend>Lectures</legend>
                       @foreach($lectures as $lecture)
-                      <a href="/public/storage/lectures/{{$lecture->file_name}}" download="{{$lecture->file_name}}"><div class="icon material-icons">file_copy</div>{{$lecture->file_title}}</a>
+                      <a href="/storage/lectures/{{$lecture->file_name}}" download="{{$lecture->file_name}}"><div class="icon material-icons">file_copy</div>{{$lecture->file_title}}</a>
                       <br>
                         @endforeach
                       <br><br>
