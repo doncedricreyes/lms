@@ -82,8 +82,10 @@ class TeacherController extends Controller
       
     }
 
-    public function showresult($id){
-          $quiz_attempts = Quiz_Attempt::with('exams','students')->where('exam_id',$id)->get()
+    public function showresult(Request $request,$id){
+        
+          $attempt = $request->attempt;
+          $quiz_attempts = Quiz_Attempt::with('exams','students')->where('exam_id',$id)->where('attempt',$attempt)->get()
         ->sortBy(function($quiz_attempts){
             return $quiz_attempts->students->get(0)->name;
         });
