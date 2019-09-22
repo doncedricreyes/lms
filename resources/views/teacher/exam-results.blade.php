@@ -65,7 +65,16 @@
     <div class="row">
         <div class="col-lg-12 col-md-offset-0">
         <div class="panel panel-default">
-            <div class="panel-heading">Results</div>
+            <div class="panel-heading">Results
+             <form action="{{route('exam.results',$exams->get(0)->id)}}" method="GET">
+                <select  name="attempt" id="attempt" onchange="this.form.submit()">
+                    <option disabled selected value> -- select attempt -- </option>
+                   @for($i=1; $i <= $exams->get(0)->attempts;$i++)
+                 <option value={{$i}}>Attempt {{$i}}</option>
+                 @endfor
+               </select>
+            </form>
+            </div>
 
             <div class="panel-body">   
                     <div class = "table-responsive"> 
