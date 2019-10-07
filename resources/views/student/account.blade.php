@@ -42,6 +42,9 @@
 <br><br><br>
 <form action="{{route('student.edit.pass')}}" method="post" enctype="multipart/form-data">
     {{csrf_field() }}
+     <div class="form-group has-feedback">
+    <input id="oldpassword" type="password" placeholder="Password" class="form-control" name="oldpassword" required>
+    </div>
     <div class="form-group has-feedback">
             <input id="password" type="password" placeholder="Password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
         
