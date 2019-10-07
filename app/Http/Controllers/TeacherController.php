@@ -344,11 +344,18 @@ class TeacherController extends Controller
         ]);
 
         $i = Auth::user()->id;
+        $teachers = Teacher::where('id',$i)->first();
+        if (Hash::check($request->oldpassword, $teachers->password)) {
         $teacher = Teacher::find($i);
         $teacher->password = Hash::make($request['password']);
         $teacher->save();
         $request->session()->flash('alert-success', 'Password successfully updated!');
         return redirect()->back();
+          }
+        else{
+            $request->session()->flash('alert-danger', 'Wrong Password!');
+        return redirect()->back();
+        }
     }
   
     public function grade_excel($id){
