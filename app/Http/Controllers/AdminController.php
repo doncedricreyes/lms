@@ -494,6 +494,11 @@ class AdminController extends Controller
    {
       $search = $request->search;
       $students = Student::where('name','=',$search)->orderBy('name')->paginate(10);
+          if(count($students)==0){
+        $request->session()->flash('alert-danger', 'Student not found!');
+        return view('admin.students',['students'=>$students]);  
+      }
+         $request->session()->flash('alert-success', 'Student found!');
       return view('admin.students',['students'=>$students]);  
     }
 
@@ -501,20 +506,35 @@ class AdminController extends Controller
     {
        $search = $request->search;
        $admins = Admin::where('name','=',$search)->orderBy('name')->paginate(10);
+         if(count($admins)==0){
+        $request->session()->flash('alert-danger', 'Admin not found!');
        return view('admin.admin',['admins'=>$admins]);  
+         }
+           $request->session()->flash('alert-success', 'Admin found!');
+          return view('admin.admin',['admins'=>$admins]); 
      }
 
      public function search_parent(Request $request)
     {
        $search = $request->search;
        $parents = Parents::where('name','=',$search)->orderBy('name')->paginate(10);
-       return view('admin.parent',['parents'=>$parents]);  
+          if(count($parents)==0){
+        $request->session()->flash('alert-danger', 'Parent not found!');
+       return view('admin.parent',['parents'=>$parents]);
+          }
+          $request->session()->flash('alert-success', 'Parent found!');
+          return view('admin.parent',['parents'=>$parents]);
      }
 
      public function search_teacher(Request $request)
      {
         $search = $request->search;
         $teachers = Teacher::where('name','=',$search)->orderBy('name')->paginate(10);
+          if(count($teachers)==0){
+        $request->session()->flash('alert-danger', 'Teacher not found!');
         return view('view-teachers',['teachers'=>$teachers]);  
+          }
+          $request->session()->flash('alert-success', 'Teacher found!');
+          return view('view-teachers',['teachers'=>$teachers]);  
       }
 }
