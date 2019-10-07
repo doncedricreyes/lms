@@ -68,11 +68,18 @@ class StudentController extends Controller
         ]);
 
         $i = Auth::user()->id;
+        $students = Student::where('id',$i)->first();
+        if (Hash::check($request->oldpassword, $students->password)) {
         $student = Student::find($i);
         $student->password = Hash::make($request['password']);
         $student->save();
         $request->session()->flash('alert-success', 'Password successfully updated!');
         return redirect()->back();
+         }
+        else{
+            $request->session()->flash('alert-danger', 'Wrong Password!');
+        return redirect()->back();
+        }
     }
 
    
