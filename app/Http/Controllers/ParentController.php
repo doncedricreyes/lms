@@ -271,10 +271,17 @@ $i =Auth::user()->id;
         ]);
 
         $i = Auth::user()->id;
+         $parents = Parents::where('id',$i)->first();
+        if (Hash::check($request->oldpassword, $parents->password)) {
         $parent = Parents::find($i);
         $parent->password = Hash::make($request['password']);
         $parent->save();
         $request->session()->flash('alert-success', 'Password successfully updated!');
         return redirect()->back();
+              }
+        else{
+            $request->session()->flash('alert-danger', 'Wrong Password!');
+        return redirect()->back();
+        }
     }
 }
