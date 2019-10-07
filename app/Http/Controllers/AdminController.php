@@ -259,11 +259,18 @@ class AdminController extends Controller
         ]);
 
         $i = Auth::user()->id;
+        $admins = Admin::where('id',$i)->first();
+        if (Hash::check($request->oldpassword, $admins->password)) {
         $admin = Admin::find($i);
         $admin->password = Hash::make($request['password']);
         $admin->save();
         $request->session()->flash('alert-success', 'Password successfully updated!');
         return redirect()->back();
+              }
+        else{
+            $request->session()->flash('alert-danger', 'Wrong Password!');
+        return redirect()->back();
+        }
     }
 
     public function add_student_view(){
