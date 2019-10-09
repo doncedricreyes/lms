@@ -43,7 +43,7 @@
                                         <ul class="nav nav-pills nav-stacked">
                                           <li ><a href="/student/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-inbox"></i> Inbox
                                           <li class="active"><a href="/student/messages/{{Auth::user()->id}}"><i class="fa fa-envelope-o"></i> Sent</a></li>
-                                          <li><a href="/student/messages/{{Auth::user()->id}}/compose"><i class="fa fa-file-text-o"></i> Compose</a></li>
+                                       
                                         
                                           </li>
                                        
@@ -92,6 +92,12 @@
                         {{$message->admin['name']}}</td>
                         <td><a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="outbox/{{$message->id}}">{{$message->message_title}} </a></td> 
                         <td>{{$message->created_at}}</td>
+                            <form action = "{{route('sent.delete', $message->id)}}" method="post" enctype="multipart/form-data">
+            
+                          {{csrf_field() }}
+                          <input name="_method" type="hidden" value="PUT">
+                      <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><i class="fa fa-trash"></i></button></p></td>
+                      </form>
                 </tr>          
                         @endforeach
                 
