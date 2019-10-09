@@ -141,47 +141,61 @@ class MessageController extends Controller
     $messages->save();
   
 
-    if (\Route::current()->getName() == 'message.store') {
+       if (\Route::current()->getName() == 'message.store') {
+      if($students != null){
       foreach($students as $student){
         Notification::route('mail',$student->email)->notify(new NewMessage($messages));
         }
+      }
     }
     if (\Route::current()->getName() == 'teacher.student.message.store') {
+      if($students != null){
       foreach($students as $student){
         Notification::route('mail',$student->email)->notify(new NewMessage($messages));
         }
+      }
     }
     if (\Route::current()->getName() == 'teacher.parent.message.store') {
+      if($parents != null){
       foreach($parents as $parent){
         Notification::route('mail',$parent->email)->notify(new NewMessage($messages));
         }
-      
+      }
     }
     if (\Route::current()->getName() == 'message.teacher.store') {
+      if($teachers != null){
       foreach($teachers as $teacher){
         Notification::route('mail',$teacher->email)->notify(new NewMessage($messages));
         }
-    
+      }
     }
     if (\Route::current()->getName() == 'teacher.message.store') {
+      if($teachers != null){
       foreach($teachers as $teacher){
         Notification::route('mail',$teacher->email)->notify(new NewMessage($messages));
         }
+      }
     }
     if (\Route::current()->getName() == 'parent.message.teacher.store') {
+      if($teachers != null){
       foreach($teachers as $teacher){
         Notification::route('mail',$teacher->email)->notify(new NewMessage($messages));
         }
+      }
     }
     if (\Route::current()->getName() == 'admin.student.message.store') {
+      if($students != null){
       foreach($students as $student){
         Notification::route('mail',$student->email)->notify(new NewMessage($messages));
         }
+      }
     }
     if (\Route::current()->getName() == 'admin.teacher.message.store') {
+      if($teachers != null){
       foreach($teachers as $teacher){
         Notification::route('mail',$teacher->email)->notify(new NewMessage($messages));
         }
+      }
     }
     if (\Route::current()->getName() == 'admin.parent.message.store') {
       foreach($parents as $parent){
@@ -189,14 +203,18 @@ class MessageController extends Controller
         }
     }
     if (\Route::current()->getName() == 'parent.message.student.store') {
+      if($students != null){
       foreach($students as $student){
         Notification::route('mail',$student->email)->notify(new NewMessage($messages));
         }
+      }
     }
     if (\Route::current()->getName() == 'admin.message.store') {
+      if($admins != null){
       foreach($admins as $admin){
         Notification::route('mail',$admin->email)->notify(new NewMessage($messages));
         }
+      }
     }
    
 
