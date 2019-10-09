@@ -73,7 +73,9 @@
                                   </div>
                                   <!-- /.col -->
                                   <div class="col-lg-9">
-
+                                                  @foreach($messages as $message)
+                                                    if($message->admins['name'] == null)
+                                                  @endforeach
                                                 <div class="col-lg-12">
                                                                 <div class="box box-primary">
                                                                   <div class="box-header with-border">
@@ -106,7 +108,7 @@
                                                                   </form>
               
             </div>
-            
+            @endif
 
 </div>
 
