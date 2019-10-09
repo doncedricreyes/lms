@@ -61,6 +61,14 @@ class NewMessage extends Notification
                     ->line('Please login to LMS to view your grade.')  
                     ->action('Login to LMS', route('admin.login'));
     } 
+           if(Auth::user()->role == 'superadmin'){
+        return (new MailMessage)
+     
+                   
+                    ->line('You have a new message.')         
+                    ->line('Please login to LMS to view your grade.')  
+                    ->action('Login to LMS', route('admin.login'));
+    } 
     if(Auth::user()->role == 'teacher'){
         return (new MailMessage)
      
