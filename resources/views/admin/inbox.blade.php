@@ -90,7 +90,12 @@
                         {{$recipient->admins['name']}}</td>
                         <td><a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="inbox/{{$recipient->id}}">{{$recipient->message_title}} </a></td> 
                         <td>{{$recipient->created_at}}</td>
-               
+                      <form action = "{{route('inbox.delete', $recipient->id)}}" method="post" enctype="multipart/form-data">
+            
+                          {{csrf_field() }}
+                          <input name="_method" type="hidden" value="PUT">
+                      <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><i class="fa fa-trash"></i></button></p></td>
+                      </form>
                 </tr>          
                         @endforeach
                 
