@@ -51,9 +51,13 @@
                                 <div class="mdl-card__actions mdl-card--border" >
                                                 <h5>{{$messages->get(0)->message_body}}</h5>
                                              
+                                             @foreach($messages as $message)
+                                                 @if($message->admins['name'] != null)
                                                 <a id="reply" class="mdl-button mdl-js-button mdl-js-ripple-effect" href="{{$messages->get(0)->id}}/reply"><i  class="material-icons">
                                                                 reply
                                                                 </i></a>
+                                                 @endif
+                                                 @endforeach
                                 </div>
                                 <div class="mdl-card__menu">
                                         <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
