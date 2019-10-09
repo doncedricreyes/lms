@@ -50,7 +50,8 @@ Route::get('/messages/{id}','MessageController@admin_sent_index')->name('admin.m
 Route::get('/messages/outbox/{id}','MessageController@admin_sent_show')->name('admin.message.sent.show');
 Route::get('/messages/{id}/compose','MessageController@admin_compose_index')->name('admin.message.compose.index');
 Route::post('/messages/{id}/compose','MessageController@compose_store')->name('admin.message.compose.store');
-
+Route::put('/messages/{id}/inbox','MessageController@message_inbox_delete')->name('inbox.delete');
+Route::put('/messages/{id}','MessageController@message_sent_delete')->name('sent.delete');
 
 
 Route::get('/teachers', 'AddTeacherController@index')->name('admin.teacher.index');
@@ -184,9 +185,8 @@ Route::get('/messages/{id}/inbox/{inbox}/reply','MessageController@teacher_reply
 Route::post('/messages/inbox/{inbox}/reply','MessageController@reply_store')->name('teacher.message.reply.store');
 Route::get('/messages/{id}','MessageController@teacher_sent_index')->name('teacher.message.sent.index');
 Route::get('/messages/outbox/{id}','MessageController@teacher_sent_show')->name('teacher.message.sent.show');
-Route::get('/messages/{id}/compose','MessageController@teacher_compose_index')->name('teacher.message.compose.index');
-Route::post('/messages/{id}/compose','MessageController@compose_store')->name('teacher.message.compose.store');
-
+Route::put('/messages/{id}/inbox','MessageController@message_inbox_delete')->name('inbox.delete');
+Route::put('/messages/{id}','MessageController@message_sent_delete')->name('sent.delete');
 
 Route::get('/profile/{id}','Teacher_ProfileController@index')->name('teacher.profile.index');
 Route::get('/profile/{id}/edit','Teacher_ProfileController@edit')->name('teacher.profile.edit');
@@ -233,9 +233,8 @@ Route::get('/messages/{id}/inbox/{inbox}/reply','MessageController@parent_reply'
 Route::post('/messages/inbox/{inbox}/reply','MessageController@reply_store')->name('parent.message.reply.store');
 Route::get('/messages/{id}','MessageController@parent_sent_index')->name('parent.message.sent.index');
 Route::get('/messages/outbox/{id}','MessageController@parent_sent_show')->name('parent.message.sent.show');
-Route::get('/messages/{id}/compose','MessageController@parent_compose_index')->name('parent.message.compose.index');
-Route::post('/messages/{id}/compose','MessageController@compose_store')->name('parent.message.compose.store');
-
+Route::put('/messages/{id}/inbox','MessageController@message_inbox_delete')->name('inbox.delete');
+Route::put('/messages/{id}','MessageController@message_sent_delete')->name('sent.delete');
 
 Route::get('/students/grades','ParentController@grade_index');
 Route::get('/students/grades/{id}','ParentController@grade_student');
@@ -282,9 +281,8 @@ Route::get('/messages/{id}/inbox/{inbox}/reply','MessageController@student_reply
 Route::post('/messages/inbox/{inbox}/reply','MessageController@reply_store')->name('student.message.reply.store');
 Route::get('/messages/{id}','MessageController@student_sent_index')->name('student.message.sent.index');
 Route::get('/messages/outbox/{id}','MessageController@student_sent_show')->name('student.message.sent.show');
-Route::get('/messages/{id}/compose','MessageController@student_compose_index')->name('student.message.compose.index');
-Route::post('/messages/{id}/compose','MessageController@compose_store')->name('student.message.compose.store');
-
+Route::put('/messages/{id}/inbox','MessageController@message_inbox_delete')->name('inbox.delete');
+Route::put('/messages/{id}','MessageController@message_sent_delete')->name('sent.delete');
 
 Route::get('/class', 'Class_StudentController@showclass')->name('student.grade.show');
 
