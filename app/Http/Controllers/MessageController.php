@@ -224,9 +224,9 @@ class MessageController extends Controller
 
     }
 
-    public function student_inbox($id)
+ public function student_inbox($id)
     {
-   $message_recipient = Message::with('student','teacher','parent','admin')->where('recipient_student_id','=',Auth::user()->id)
+   $message_recipient = Message::with('student','teacher','parent','admin')->where('recipient_student_id','=',Auth::user()->id)->where('remove_recipient','=',NULL)
    ->orderBy('created_at','DESC')
    ->paginate(8);
    $message_sender = Message::with('students','teachers','parents','admins')->where('sender_student_id','=',Auth::user()->id)
@@ -238,9 +238,19 @@ class MessageController extends Controller
         
     }
 
+    public function message_inbox_delete($id, Request $request)
+    {
+      $message = Message::find($id);
+      $message->remove_recipient = 1;
+      $message->save();
+      $request->session()->flash('alert-success', 'Message successfully removed!');
+      return redirect()->back();
+        
+    }
+
     public function teacher_inbox($id)
     {
-   $message_recipient = Message::with('student','teacher','parent','admin')->where('recipient_teacher_id','=',Auth::user()->id)
+   $message_recipient = Message::with('student','teacher','parent','admin')->where('recipient_teacher_id','=',Auth::user()->id)->where('remove_recipient','=',NULL)
    ->orderBy('created_at','DESC')
    ->paginate(10);
    $message_sender = Message::with('students','teachers','parents','admins')->where('sender_teacher_id','=',Auth::user()->id)
@@ -252,9 +262,12 @@ class MessageController extends Controller
         
     }
 
+    
+  
+
     public function parent_inbox($id)
     {
-   $message_recipient = Message::with('student','teacher','parent','admin')->where('recipient_parent_id','=',Auth::user()->id)
+   $message_recipient = Message::with('student','teacher','parent','admin')->where('recipient_parent_id','=',Auth::user()->id)->where('remove_recipient','=',NULL)
    ->orderBy('created_at','DESC')
    ->paginate(10);
    $message_sender = Message::with('students','teachers','parents','admins')->where('sender_parent_id','=',Auth::user()->id)
@@ -265,9 +278,14 @@ class MessageController extends Controller
    return view('parent.inbox',['message_recipient'=>$message_recipient,'message_sender'=>$message_sender]);
         
     }
+
+    
+
+   
+
     public function admin_inbox($id)
     {
-   $message_recipient = Message::with('student','teacher','parent','admin')->where('recipient_admin_id','=',Auth::user()->id)
+   $message_recipient = Message::with('student','teacher','parent','admin')->where('recipient_admin_id','=',Auth::user()->id)->where('remove_recipient','=',NULL)
    ->orderBy('created_at','DESC')
    ->paginate(10);
    $message_sender = Message::with('students','teachers','parents','admins')->where('sender_admin_id','=',Auth::user()->id)
@@ -434,8 +452,9 @@ return redirect()->back();
         
     }
 
-    public function student_sent_index($id){
+public function student_sent_index($id){
       $message_sender = Message::with('students','teachers','parents','admins')->where('sender_student_id','=',Auth::user()->id)
+      ->where('remove_sender','=',null)
       ->orderBy('created_at','DESC')
       ->paginate(10);
 
@@ -443,17 +462,29 @@ return redirect()->back();
       return view('student.message_sent',['message_sender'=>$message_sender]);
     }
 
+    public function message_sent_delete($id, Request $request)
+    {
+      $message = Message::find($id);
+      $message->remove_sender = 1;
+      $message->save();
+      $request->session()->flash('alert-success', 'Message successfully removed!');
+      return redirect()->back();
+        
+    }
     public function teacher_sent_index($id){
       $message_sender = Message::with('students','teachers','parents','admins')->where('sender_teacher_id','=',Auth::user()->id)
+      ->where('remove_sender','=',null)
       ->orderBy('created_at','DESC')
       ->paginate(10);
 
 
       return view('teacher.message_sent',['message_sender'=>$message_sender]);
     }
+    
 
     public function parent_sent_index($id){
       $message_sender = Message::with('students','teachers','parents','admins')->where('sender_parent_id','=',Auth::user()->id)
+      ->where('remove_sender','=',null)
       ->orderBy('created_at','DESC')
       ->paginate(10);
       $message_recipient = Message::with('student','teacher','parent','admin')->where('sender_parent_id','=',Auth::user()->id)
@@ -464,6 +495,7 @@ return redirect()->back();
     }
     public function admin_sent_index($id){
       $message_sender = Message::with('students','teachers','parents','admins')->where('sender_admin_id','=',Auth::user()->id)
+      ->where('remove_sender','=',null)
       ->orderBy('created_at','DESC')
       ->paginate(10);
       $message_recipient = Message::with('student','teacher','parent','admin')->where('sender_admin_id','=',Auth::user()->id)
@@ -472,7 +504,6 @@ return redirect()->back();
 
       return view('admin.message_sent',['message_recipient'=>$message_recipient,'message_sender'=>$message_sender]);
     }
-
 
 
 
