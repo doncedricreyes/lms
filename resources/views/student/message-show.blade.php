@@ -52,7 +52,7 @@
                                                 <h5>{{$messages->get(0)->message_body}}</h5>
                                              
                                              @foreach($messages as $message)
-                                                 @if($message->admins['name'] = null)
+                                                 @if($message->admins['name'] == null)
                                                 <a id="reply" class="mdl-button mdl-js-button mdl-js-ripple-effect" href="{{$messages->get(0)->id}}/reply"><i  class="material-icons">
                                                                 reply
                                                                 </i></a>
