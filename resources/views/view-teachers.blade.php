@@ -66,7 +66,7 @@
                     <td><p data-placement="top"  onclick="return confirm('Are you sure?')" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
                   
                 </form>
-                <td><p data-placement="top"  data-toggle="tooltip" title="Message"><a href="teachers/{{$row->id}}/message"><button class="btn btn-primary btn-xs" data-title="View"><i class="glyphicon glyphicon-comment">
+                <td><p data-placement="top"  data-toggle="tooltip" title="Message"><a href="/admin/teachers/{{$row->id}}/message"><button class="btn btn-primary btn-xs" data-title="View"><i class="glyphicon glyphicon-comment">
                 
                     </i></button></a></p></td>
                 </tr>
