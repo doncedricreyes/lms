@@ -59,7 +59,7 @@
                                         <ul class="nav nav-pills nav-stacked">
                                           <li ><a href="/teacher/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-inbox"></i> Inbox
                                           <li><a href="/teacher/messages/{{Auth::user()->id}}"><i class="fa fa-envelope-o"></i> Sent</a></li>
-                                          <li  class="active"><a href="/teacher/messages/{{Auth::user()->id}}/compose"><i class="fa fa-file-text-o"></i> Compose</a></li>
+                                         
                                         
                                           </li>
                                          
