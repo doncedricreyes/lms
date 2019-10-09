@@ -51,7 +51,7 @@
                             <tr>
                                 <td>{{$row->name}}</td>
                                 <td>{{$row->email}}</td>
-                                <td><p data-placement="top"  data-toggle="tooltip" title="Message"><a href="admins/{{$row->id}}/message"><button class="btn btn-primary btn-xs" data-title="View"><i class="glyphicon glyphicon-comment">
+                                <td><p data-placement="top"  data-toggle="tooltip" title="Message"><a href="/admin/admins/{{$row->id}}/message"><button class="btn btn-primary btn-xs" data-title="View"><i class="glyphicon glyphicon-comment">
                                 <td>{{$row->role}}</td>
                                
                                 @if(Auth::user()->role == 'superadmin')
