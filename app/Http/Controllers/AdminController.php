@@ -46,13 +46,13 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $input = request()->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:parents|unique:students|unique:teachers|unique:admins',
+             'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u',
+            'email' => 'required|string|email|max:255|unique:admins',
             'password' => 'required|string|min:6|',
            
 
         ], [
-
+            'name.regex'=>'Name contains invalid character!',
         ]);
  
     
