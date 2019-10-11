@@ -109,6 +109,54 @@ class AdminController extends Controller
          })->download('xlsx');
     }
     
+    public function student_import(Request $request){
+        $input = request()->validate([
+            'file_name' => 'required|mimes:xlsx,xls,csv|max:50000',
+
+        ], [
+
+       
+            'file_name.mimes' => 'Invalid Format',
+           'file_name.max' => 'File is too big',
+            
+            
+
+        ]);
+
+   
+            if ($request->hasFile('file_name')) {
+               $path = $request->file('file_name')->getRealPath();
+                $data = Excel::load($path ,function($reader){})->get();
+            
+                    if(!empty($data) && $data->count()) {
+                        foreach ($data as $key => $value){
+                            $student = new Student();
+                            $student->role = 'student';
+                            $student->name = $value->name;
+                            $student->username = $value->username;
+                            $student->email = $value->email;
+                            $student->password = Hash::make($value->username);
+                           
+                            if ($student->save()){
+
+                                $students = Student::where('name','=',$value->name)->get();
+                    
+                                $profile = new Profile();
+                                $profile->student_id = $students->get(0)->id;
+                                $profile->profile_pic = 'noimage.jpg';
+                                $profile->bio = 'add a bio';
+                                $profile->save();
+                               
+                                
+                        }
+                        
+                 
+                    }
+                    $request->session()->flash('alert-success', 'Students were successful added!');
+                    return redirect()->back();
+                }
+            }
+    }
     public function destroy_student($id, Request $request)
     {
         $students = Student::find($id);
@@ -179,6 +227,46 @@ class AdminController extends Controller
         })->download('xlsx');
     }
 
+    public function parent_import(Request $request){
+        $input = request()->validate([
+            'file_name' => 'required|mimes:xlsx,xls,csv|max:50000',
+
+        ], [
+
+       
+            'file_name.mimes' => 'Invalid Format',
+           'file_name.max' => 'File is too big',
+            
+            
+
+        ]);
+
+   
+            if ($request->hasFile('file_name')) {
+               $path = $request->file('file_name')->getRealPath();
+                $data = Excel::load($path ,function($reader){})->get();
+            
+                    if(!empty($data) && $data->count()) {
+                        foreach ($data as $key => $value){
+                            $parent = new Parents();
+                            $parent->role = 'parent';
+                            $parent->name = $value->name;
+                            $parent->username = $value->username;
+                            $parent->email = $value->email;
+                            $parent->password = Hash::make($value->username);
+                           
+                            $parent->save();
+
+                   
+                        
+                 
+                    }
+                    $request->session()->flash('alert-success', 'Parents were successful added!');
+                    return redirect()->back();
+                }
+            }
+    }
+    
     public function view_parent($id){
         $parents = Parents::where('id','=',$id)->get();
         $class_students = Class_Student::with('class_subject_teachers','students')->where('parent_id','=',$id)->get()->unique('student_id');
