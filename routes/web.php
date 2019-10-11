@@ -84,10 +84,12 @@ Route::get('/students', 'AdminController@show_student')->name('admin.student.sho
 Route::get('/students/{id}', 'AdminController@view_student')->name('admin.student.view');
 Route::delete('/students/{id}', 'AdminController@destroy_student')->name('admin.student.destroy');
 Route::get('/students/export/excel', 'AdminController@student_excel')->name('student.excel');
+Route::post('/students/import/excel','AdminController@student_import')->name('student.import');
 Route::get('/parents', 'AdminController@show_parent')->name('admin.parent.show');
 Route::get('/parents/{id}', 'AdminController@view_parent')->name('admin.parent.view');
 Route::delete('/parents/{id}', 'AdminController@destroy_parent')->name('admin.parents.destroy');
 Route::get('/parents/export/excel', 'AdminController@parent_excel');
+Route::post('/parents/import/excel','AdminController@parent_import')->name('parent.import');
 Route::get('/admins/{id}/message','MessageController@index')->name('admin.message.index');
 Route::post('/admins/{id}/message','MessageController@store')->name('admin.message.store');
 Route::get('/students/{id}/message','MessageController@index')->name('admin.student.message.index');
