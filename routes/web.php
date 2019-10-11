@@ -66,7 +66,7 @@ Route::put('/teachers/{id}','AddTeacherController@schedule_update')->name('sched
 Route::get('/teachers/{id}/edit','AddTeacherController@edit');
 Route::put('/teachers/{id}/edit','AddTeacherController@update')->name('add-teacher.update');
 Route::get('/teachers/export/excel','AddTeacherController@teacher_excel')->name('teacher.excel');
-
+Route::post('/teachers/import/excel','AddTeacherController@teacher_import')->name('teacher.import');
 Route::get('/add-subject', 'AddSubjectController@create');
 Route::post('/add-subject', 'AddSubjectController@store')->name('subject.store');
 Route::get('/subjects', 'AddSubjectController@index')->name('subject.show');
