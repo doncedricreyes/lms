@@ -91,10 +91,10 @@ class AdminController extends Controller
 
     public function student_excel(){
          $students = Student::orderBy('name')->get();
-         $students_array[] = array('Student Name','Username','Email');
+         $students_array[] = array('Name','Username','Email');
          foreach($students as $student){
              $students_array[] = array(
-                 'Student Name' => $student->name,
+                 'Name' => $student->name,
                  'Username' => $student->username,
                  'Email' => $student->email,
              );
@@ -209,10 +209,10 @@ class AdminController extends Controller
     
     public function parent_excel(){
         $parents = Parents::orderBy('name')->get();
-        $parents_array[] = array('Parent Name','Username','Email');
+        $parents_array[] = array('Name','Username','Email');
         foreach($parents as $parent){
             $parents_array[] = array(
-                'Parent Name' => $parent->name,
+                'Name' => $parent->name,
                 'Username' => $parent->username,
                 'Email' => $parent->email,
             );
