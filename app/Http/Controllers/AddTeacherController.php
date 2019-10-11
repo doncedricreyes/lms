@@ -40,10 +40,10 @@ class AddTeacherController extends Controller
      */
     public function teacher_excel(){
         $teachers = Teacher::orderBy('name')->get();
-        $teachers_array[] = array('Teacher Name','Username','Email');
+        $teachers_array[] = array('Name','Username','Email');
         foreach($teachers as $teacher){
             $teachers_array[] = array(
-                'Teacher Name' => $teacher->name,
+                'Name' => $teacher->name,
                 'Username' => $teacher->username,
                 'Email' => $teacher->email,
             );
@@ -57,6 +57,60 @@ class AddTeacherController extends Controller
          });
         })->download('xlsx');
     }
+    
+    
+        public function teacher_import(Request $request){
+        $input = request()->validate([
+            'file_name' => 'required|mimes:xlsx,xls,csv|max:50000',
+
+        ], [
+
+       
+            'file_name.mimes' => 'Invalid Format',
+           'file_name.max' => 'File is too big',
+            
+            
+
+        ]);
+
+   
+            if ($request->hasFile('file_name')) {
+               $path = $request->file('file_name')->getRealPath();
+                $data = Excel::load($path ,function($reader){})->get();
+            
+                    if(!empty($data) && $data->count()) {
+                        foreach ($data as $key => $value){
+                            $teacher = new Teacher();
+                            $teacher->role = 'teacher';
+                            $teacher->name = $value->name;
+                            $teacher->username = $value->username;
+                            $teacher->email = $value->email;
+                            $teacher->password = Hash::make($value->username);
+                           
+                            if ($teacher->save()){
+
+                                $teachers = Teacher::where('name','=',$value->name)->get();
+                    
+                                $teacher_profile = new Teacher_Profile();
+                                $teacher_profile->teacher_id = $teachers->get(0)['id'];
+                                $teacher_profile->profile_pic = 'noimage.jpg';
+                                $teacher_profile->bio = 'add a bio';
+                                $teacher_profile->save();
+                               
+                        }
+                        
+                 
+                    }
+                    $request->session()->flash('alert-success', 'Teacher was successful added!');
+                    return redirect()->back();
+                }
+            }
+    }
+    
+    
+    
+    
+    
     public function create()
     {
         return view('add-teacher');
