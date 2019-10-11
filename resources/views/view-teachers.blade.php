@@ -30,8 +30,14 @@
                         <div class="col-md-12">
                                 <legend>Teachers</legend>
                                 <form action = "{{route('search_teacher')}}" role="search" method="get"enctype="multipart/form-data">
-                                    <input type="text" class="form-control" name="search" id="search" placeholder="Search">
-                                        </form>
+                                    <div>
+                                  <input type="text" class="form-control" name="search" id="search" placeholder="Search" style="width: 300px;">
+                                  <br>
+                                    <a href="" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-xs">Add Teacher </a>
+                                   <a href="{{url('admin/teachers/export/excel')}}"class="btn btn-primary btn-xs">Export</a>
+                                   <a href="" data-toggle="modal" data-target="#import" class="btn btn-primary btn-xs">Import</a>
+                                    </div>
+                                  </form>
                         <div class="table-responsive">
                 
                                 
@@ -47,8 +53,7 @@
                                       <th>Edit</th>
                                        <th>Delete</th>
                                        <th>Message</th>
-                                       <th> <a href="" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-xs">Add Teacher </a></th>
-                                       <th> <a href="{{url('admin/teachers/export/excel')}}"class="btn btn-primary btn-xs">Export to Excel</a></th>
+                                    
                                    </thead>
                     <tbody>
                     
@@ -77,13 +82,14 @@
                     </tbody>
                         
                 </table>
-                     <div class="text-center">
+                <div class="text-center">
                     {{ $teachers->links() }}
                    
                     </div>
     </div>
 
-
+    
+<div>
     <form action = "{{route('add-teacher.store')}}" method="post"  enctype="multipart/form-data">
         {{csrf_field() }}
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -118,6 +124,37 @@
       </div>
     </div>
     </form>
+                        </div>
+    <form action = "{{route('teacher.import')}}" method="post"  enctype="multipart/form-data">
+      {{csrf_field() }}
+  <div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="importlabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="importlabel">Import File</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+              
+            <div class="form-group">
+               
+              <label for="file_name">Choose file to upload:</label>
+              <input class="form-control" type="file" name="file_name" id="file_name" >
+          </div>
+     
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-primary" value="Upload">
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+
+
+ 
                     </div>
 @endsection
 
