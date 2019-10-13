@@ -76,7 +76,7 @@ class AddClassController extends Controller
         $input = request()->validate([
             'adviser_id' => 'required|unique:classes,adviser_id',
             'year' => 'required|regex:/^[0-9]+$/u|max:2',
-            'section' => 'required|regex:/^[0-9]+$/u|max:2',
+            'section' => 'required|regex:/^[0-9a-zA-Z]+$/u|max:2',
             'section_name' => 'required|regex:/^[a-zA-Z,. ]+$/u|max:255',
             'time' => 'required|regex:/^[a-zA-Z-0-9: ]+$/u',
             'room' => 'required|regex:/^[0-9]+$/u|max:3',
