@@ -572,7 +572,10 @@ class AdminController extends Controller
       
         $class_subject_teachers = Class_Subject_Teacher::where('class_id',$id)->first();
  
-       $class_students = Class_student::with('class_subject_teachers','students')->where('class_subject_teacher_id',$class_subject_teachers->id)->get()
+        $class_students = Class_student::with('class_subject_teachers','students')->where('class_subject_teacher_id',$class_subject_teachers->id)
+       ->whereHas('students', function ($q) use($id){
+        $q->where('status', 'active');
+    })->get()
        ->sortBy(function($class_students){
            return $class_students->students->get(0)->name;
        });
@@ -584,10 +587,8 @@ class AdminController extends Controller
         
         $class_subject_teachers = Class_Subject_Teacher::where('class_id',$id)->first();
  
-       $class_students = Class_student::with('class_subject_teachers','students')->where('class_subject_teacher_id',$class_subject_teachers->id)
-        ->whereHas('students', function ($q) use($id){
-        $q->where('status', 'active');
-    })->get()
+        $class_students = Class_student::with('class_subject_teachers','students')->where('class_subject_teacher_id',$class_subject_teachers->id)->get()
+       ->sortBy(function($class_students){
            return $class_students->students->get(0)->name;
        });
 
