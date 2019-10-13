@@ -116,6 +116,11 @@ Route::get('/search/students/','AdminController@search_student')->name('search_s
 Route::get('/search/admins/','AdminController@search_admin')->name('search_admin');
 Route::get('/search/parents/','AdminController@search_parent')->name('search_parent');
 Route::get('/search/teachers/','AdminController@search_teacher')->name('search_teacher');
+    
+Route::get('/archive/admins/','AdminController@archive_admin');
+Route::get('/archive/teachers/','AdminController@archive_teacher');
+Route::get('/archive/students/','AdminController@archive_student');
+Route::get('/archive/parents/','AdminController@archive_parent');
 });
 
 Route::prefix('teacher')->group(function()
