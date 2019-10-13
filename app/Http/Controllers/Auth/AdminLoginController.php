@@ -33,7 +33,7 @@ class AdminLoginController extends Controller
         ]);
         
         //attempt to login
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password, 'status'=>'active'], $request->remember)) {
             
             return redirect('/admin/class');
         }
