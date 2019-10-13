@@ -175,7 +175,7 @@
                           
                           <div class="form-group">
                              
-                            <label>Name:</label>
+                            <label>Name:(Last Name, First Name Middle Initial)</label>
                             <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" value="{{$row->name}}">
                           </div>
                           <div class="form-group">
