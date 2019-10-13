@@ -65,7 +65,7 @@
                                 <td><p data-placement="top"  data-toggle="tooltip" title="View"><a href="teachers/{{$row->id}}"><button class="btn btn-primary btn-xs" data-title="View"><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
                     <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-id="{!! $row->id !!}" data-target="#edit-{{$row->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
                    
-                    <form action="teachers/{{$row->id}}/delete" method="POST">
+                    <form action="/admin/teachers/{{$row->id}}/delete" method="POST">
                          {{csrf_field() }}
                          <input name="_method" type="hidden" value="PUT">
                     <td><p data-placement="top"  onclick="return confirm('Are you sure?')" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
