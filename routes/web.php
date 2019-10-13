@@ -57,7 +57,7 @@ Route::put('/messages/{id}','MessageController@message_sent_delete')->name('sent
 Route::get('/teachers', 'AddTeacherController@index')->name('admin.teacher.index');
 Route::get('/teachers/create','AddTeacherController@create')->name('admin.teacher.create');
 Route::post('/teachers/create','AddTeacherController@store')->name('add-teacher.store');
-Route::delete('/teachers/{id}','AddTeacherController@destroy')->name('add-teacher.destroy');
+Route::put('/teachers/{id}','AddTeacherController@destroy')->name('add-teacher.destroy');
 Route::delete('/teachers/{id}/subjects','AddTeacherController@schedule_delete')->name('schedule.delete');
 Route::post('/teachers/{id}','AddTeacherController@addsubject')->name('addsubject');
 Route::get('/teachers/{id}','AddTeacherController@view')->name('schedule.index');
