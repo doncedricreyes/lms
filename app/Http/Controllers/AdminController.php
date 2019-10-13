@@ -82,6 +82,32 @@ class AdminController extends Controller
       
     }
 
+    
+    public function edit_admin(Request $request ,$id)
+    {
+        $input = request()->validate([
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u',
+           'email' => 'required|string|email|max:255',
+           'password' => 'required|string|min:6|',
+          
+
+       ], [
+           'name.regex'=>'Name contains invalid character!',
+       ]);
+
+        $admin = Admin::find($id);
+        $admin->role = $request->role;
+        $admin->name = $request->name;
+        $admin->email=$request->email;
+        $admin->password = Hash::make($request->password);
+
+      if($admin->save()){
+        $request->session()->flash('alert-success', 'Account Successfully Updated!');
+        return redirect()->back();
+      }
+
+    }
+    
     public function show_student()
     {
         $students = Student::orderBy('name')->paginate(10);
