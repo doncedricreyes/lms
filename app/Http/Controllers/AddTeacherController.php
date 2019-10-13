@@ -141,6 +141,7 @@ class AddTeacherController extends Controller
         $teacher->name = $request->name;
         $teacher->username = $request->username;
         $teacher->password = Hash::make($request->password);
+        $teacher->status = 'active';
         $teacher->role = 'teacher';
         
      
@@ -227,12 +228,10 @@ class AddTeacherController extends Controller
     public function destroy($id,Request $request)
     {
         $teacher = Teacher::find($id);
-      if($teacher->delete()){
-        $request->session()->flash('alert-success', 'Account was successful deleted!');
-        return redirect()->route('admin.teacher.index');
- 
-      }
-   
+        $teacher->status = "inactive";
+        $teacher->save();
+        $request->session()->flash('alert-success', 'Account Successfully Removed!');
+        return redirect()->back();
         
     }
 
