@@ -29,7 +29,7 @@ class AddTeacherController extends Controller
      */
     public function index()
     {
-    $teachers = Teacher::orderBy('name')->paginate(10);
+    $teachers = Teacher::where('status','=','active')->orderBy('name')->paginate(10);
     return view('view-teachers', compact('teachers'));
     }
 
