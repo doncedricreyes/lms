@@ -47,10 +47,10 @@ class AddSubjectController extends Controller
     public function store(Request $request)
     {
         $input = request()->validate([
-            'title' => 'required|unique:subjects|max:255',
+            'title' => 'required|unique:subjects|max:255|regex:/^[a-zA-Z 0-9]+$/u',
 
         ], [
-
+'title.regex'=>'Subject contains invalid character!',
 
         ]);
         
@@ -97,15 +97,15 @@ class AddSubjectController extends Controller
     public function update(Request $request, $id)
     {
         $input = request()->validate([
-            'title' => 'required|unique:subjects|max:255',
+            'title' => 'required|unique:subjects|max:255|regex:/^[a-zA-Z 0-9]+$/u',
 
         ], [
-
+'title.regex'=>'Subject contains invalid character!',
 
         ]);
         
         $addsubject = AddSubject::find($id);
-        $addsubject->title = $request->subject;
+        $addsubject->title = $request->title;
         $addsubject->save();
         $request->session()->flash('alert-success', 'Successfully updated!');
         return redirect()->route('subject.show');
