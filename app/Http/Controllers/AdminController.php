@@ -209,7 +209,7 @@ class AdminController extends Controller
     {
         $input = request()->validate([
             'name' => 'required|string|regex:/^[a-zA-Z,. ]+$/u|max:255|unique:admins|unique:teachers|unique:parents',
-            'username' => 'required|max:255|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:admins|unique:teachers|unique:parents',
+            'username' => 'required|max:255|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:teachers|unique:parents',
             'password' => 'required|string|min:6',
         ], [
       
@@ -319,7 +319,7 @@ class AdminController extends Controller
     {
         $input = request()->validate([
             'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u|unique:admins|unique:students|unique:teachers',
-            'username' => 'required|max:255|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:admins|unique:students|unique:teachers',
+            'username' => 'required|max:255|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:students|unique:teachers',
             'password' => 'required|string|min:6',
         ], [
             'name.regex'=>'Name contains invalid character!',
@@ -395,7 +395,7 @@ class AdminController extends Controller
     {
         $input = request()->validate([
             'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u|unique:admins|unique:students|unique:teachers|unique:parents',
-            'username' => 'required|string|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:admins|unique:students|unique:teachers|unique:parents',
+            'username' => 'required|string|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:students|unique:teachers|unique:parents',
             'password' => 'required|string|min:6|',
             'year'=> 'required|string|exists:classes',
             'section'=> 'required|string|exists:classes',
@@ -463,7 +463,7 @@ class AdminController extends Controller
     {
         $input = request()->validate([
             'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u|unique:admins|unique:students|unique:teachers|unique:parents',
-            'username' => 'required|string|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:admins|unique:students|unique:teachers|unique:parents',
+            'username' => 'required|string|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:students|unique:teachers|unique:parents',
             'password' => 'required|string|min:6|',
 
         ], [
