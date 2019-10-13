@@ -111,13 +111,13 @@ class AdminController extends Controller
     
     public function show_student()
     {
-        $students = Student::orderBy('name')->paginate(10);
+        $students = Student::where('status','=','active')->orderBy('name')->paginate(10);
         return view('admin.students',['students'=>$students]);
       
     }
 
     public function student_excel(){
-         $students = Student::orderBy('name')->get();
+         $students = Student::where('status','=','active')->orderBy('name')->get();
          $students_array[] = array('Name','Username','Email');
          foreach($students as $student){
              $students_array[] = array(
@@ -203,11 +203,10 @@ class AdminController extends Controller
     public function destroy_student($id, Request $request)
     {
         $students = Student::find($id);
-       if( $students->delete()){
-        $request->session()->flash('alert-success', 'Account successfully deleted!');
-        return redirect()->route('admin.student.show');
-       }
-        
+        $students->status = "inactive";
+        $students->save();
+        $request->session()->flash('alert-success', 'Account Successfully Removed!');
+        return redirect()->back();
     }
 
     public function view_student($id){
@@ -631,7 +630,7 @@ class AdminController extends Controller
         ]);
          
       $search = $request->search;
-      $students = Student::where('name','=',$search)->orderBy('name')->paginate(10);
+      $students = Student::where('name','=',$search)->where('status','=','active')->orderBy('name')->paginate(10);
           if(count($students)==0){
         $request->session()->flash('alert-danger', 'Student not found!');
         return view('admin.students',['students'=>$students]);  
@@ -650,7 +649,7 @@ class AdminController extends Controller
         ]);
         
        $search = $request->search;
-       $admins = Admin::where('name','=',$search)->orderBy('name')->paginate(10);
+       $admins = Admin::where('status','=','active')->where('name','=',$search)->orderBy('name')->paginate(10);
          if(count($admins)==0){
         $request->session()->flash('alert-danger', 'Admin not found!');
        return view('admin.admin',['admins'=>$admins]);  
