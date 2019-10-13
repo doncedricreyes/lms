@@ -129,14 +129,14 @@ class AddClassController extends Controller
   
     public function update(Request $request, $id)
     {
-        $input = request()->validate([
-            'adviser_id' => 'required',
-            'year' => 'required',
-            'section' => 'required',
-            'section_name' => 'required',
-            'time' => 'required',
-            'room' => 'required',
-            'school_year' => 'required',
+         $input = request()->validate([
+            'adviser_id' => 'required|unique:classes,adviser_id',
+            'year' => 'required|regex:/^[0-9]+$/u|max:2',
+            'section' => 'required|regex:/^[0-9]+$/u|max:2',
+            'section_name' => 'required|regex:/^[a-zA-Z,. ]+$/u|max:255',
+            'time' => 'required|regex:/^[a-zA-Z-0-9: ]+$/u',
+            'room' => 'required|regex:/^[0-9]+$/u|max:3',
+            'school_year' => 'required|regex:/^[0-9-a-zA-Z ]+$/u',
         ], [
 
 
