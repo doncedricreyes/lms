@@ -136,7 +136,7 @@ class AdminController extends Controller
          })->download('xlsx');
     }
     
-    public function student_import(Request $request){
+      public function student_import(Request $request){
         $input = request()->validate([
             'file_name' => 'required|mimes:xlsx,xls,csv|max:50000',
 
@@ -157,6 +157,10 @@ class AdminController extends Controller
             
                     if(!empty($data) && $data->count()) {
                         foreach ($data as $key => $value){
+                            $classes =DB::table('classes')->where([
+                                ['year', '=', $value->year],
+                                ['section', '=', $value->section],   ])->first()->id;
+                                if(count($classes)>0){
                             $student = new Student();
                             $student->role = 'student';
                             $student->name = $value->name;
@@ -174,9 +178,21 @@ class AdminController extends Controller
                                 $profile->bio = 'add a bio';
                                 $profile->save();
                                
-                                
-                        }
+                                $class_subject=DB::table('class_subject_teacher')->where([
+                                    [ 'class_id','=',$classes],
+                                 ])->get();
+                                 
+                                 foreach($class_subject as $class_id){
+                                 $class_student = new Class_Student();
+                                 $class_student->class_subject_teacher_id = $class_id->id;
+                                 $class_student->student_id = $students->get(0)->id;
+                                 $class_student->save();
+                                 }
                         
+                        
+                              
+                        }
+                    }
                  
                     }
                     $request->session()->flash('alert-success', 'Students were successful added!');
