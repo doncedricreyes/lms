@@ -30,7 +30,7 @@
                         <legend>Parents</legend>
                         <form action = "{{route('search_parent')}}" role="search" method="get"enctype="multipart/form-data">
                           <div>
-                            <input type="text" class="form-control" name="search" id="search" placeholder="Search">
+                            <input type="text" class="form-control" name="search" id="search" placeholder="Search" style="width: 300px;">
                             <br>
                             <a href="" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-xs">Add Parent </a>
                             <a href="{{url('admin/parents/export/excel')}}"class="btn btn-primary btn-xs">Export to Excel</a>
