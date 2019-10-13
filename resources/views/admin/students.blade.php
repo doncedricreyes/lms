@@ -183,7 +183,7 @@
           
           <div class="form-group">
                  
-            <label for="name">Student's Name:</label>
+            <label for="name">Student's Name:(Last Name, First Name Middle Initial)</label>
             <input type="text" name="name" id="name" class="form-control" value="{{$row->name}}"> 
         </div>
         <div class="form-group">
