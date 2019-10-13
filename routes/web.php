@@ -109,7 +109,7 @@ Route::post('/create/parents','AdminController@add_parent_store')->name('add-par
 Route::put('/enrollment/{id}/store','AdminController@enrollment_store')->name('parent.enrollment.store');
 Route::put('/enrollment/{id}','AdminController@enrollment_destroy')->name('enrollment.destroy');
 Route::get('/students/{id}/edit','AdminController@edit_student');
-Route::put('/students/{id}/edit','AdminController@update_student')->name('add-student.update');
+Route::put('/students/{id}/edit','AdminController@update_student')->name('admin.update_student');
 Route::get('/parents/{id}/edit','AdminController@edit_parent');
 Route::put('/parents/{id}/edit','AdminController@update_parent')->name('add-parent.update');
 Route::get('/search/students/','AdminController@search_student')->name('search_student');
