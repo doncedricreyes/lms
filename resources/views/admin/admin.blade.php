@@ -33,7 +33,11 @@
                         <div class="col-md-12">
                                 <legend>Admins</legend>
                                 <form action = "{{route('search_admin')}}" role="search" method="get"enctype="multipart/form-data">
-                                  <input type="text" class="form-control" name="search" id="search" placeholder="Search">
+                                <div>
+                                  <input type="text" class="form-control" name="search" id="search" placeholder="Search" style="width: 300px;">
+                                  <br>
+                                   <a href="" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-xs">Add Admin </a>
+                                   </div>
                                       </form>
                         <div class="table-responsive">
                 
@@ -49,7 +53,7 @@
                                         <th>Role</th>
                                         @if(Auth::user()->role == 'superadmin')
                                         <th>Delete</th>
-                                        <th>             <th><a href="" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-xs">Add Admin </a></th></th>                              
+                                                                  
                                         @endif
                                      
                                       
