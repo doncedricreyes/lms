@@ -40,7 +40,7 @@ Route::post('/account/pass','AdminController@edit_pass')->name('admin.edit.pass'
 Route::get('/create','AdminController@create');
 Route::post('/create','AdminController@store')->name('admin.create');
 Route::put('/admins/{id}','AdminController@edit_admin')->name('admin.edit_admin');
-Route::delete('/admins/{id}','AdminController@destroy_admin')->name('admin.destroy');
+Route::put('/admins/{id}/delete','AdminController@destroy_admin')->name('admin.destroy');
 
 Route::get('/messages/{id}/inbox','MessageController@admin_inbox')->name('admin.inbox.show');
 Route::get('/messages/{id}/inbox/{inbox}','MessageController@admin_show')->name('admin.message.show');
