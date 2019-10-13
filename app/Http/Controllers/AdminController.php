@@ -46,8 +46,8 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $input = request()->validate([
-             'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u',
-            'email' => 'required|string|email|max:255|unique:admins',
+             'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u|unique:admins|unique:students|unique:teachers|unique:parents',
+            'email' => 'required|string|email|max:255|unique:admins|unique:students|unique:teachers|unique:parents',
             'password' => 'required|string|min:6|',
            
 
@@ -86,8 +86,8 @@ class AdminController extends Controller
     public function edit_admin(Request $request ,$id)
     {
         $input = request()->validate([
-            'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u',
-           'email' => 'required|string|email|max:255',
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u|unique:students|unique:teachers|unique:parents',
+           'email' => 'required|string|email|max:255|unique:students|unique:teachers|unique:parents',
            'password' => 'required|string|min:6|',
           
 
@@ -208,13 +208,13 @@ class AdminController extends Controller
       public function update_student(Request $request, $id)
     {
         $input = request()->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|max:255|max:255',
+            'name' => 'required|string|regex:/^[a-zA-Z,. ]+$/u|max:255|unique:admins|unique:teachers|unique:parents',
+            'username' => 'required|max:255|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:admins|unique:teachers|unique:parents',
             'password' => 'required|string|min:6',
         ], [
       
-            
-            
+            'name.regex'=>'Name contains invalid character!',
+            'username.regex'=>'Username contains invalid character!',
         ]);
         $students = Student::find($id);
         $students->name = $request->name;
@@ -318,12 +318,12 @@ class AdminController extends Controller
     public function update_parent(Request $request, $id)
     {
         $input = request()->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|max:255|max:255',
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u|unique:admins|unique:students|unique:teachers',
+            'username' => 'required|max:255|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:admins|unique:students|unique:teachers',
             'password' => 'required|string|min:6',
         ], [
-      
-            
+            'name.regex'=>'Name contains invalid character!',
+            'username.regex'=>'Username contains invalid character!',
             
         ]);
         $parents = Parents::find($id);
@@ -394,8 +394,8 @@ class AdminController extends Controller
     public function add_student_store(Request $request)
     {
         $input = request()->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:students',
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u|unique:admins|unique:students|unique:teachers|unique:parents',
+            'username' => 'required|string|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:admins|unique:students|unique:teachers|unique:parents',
             'password' => 'required|string|min:6|',
             'year'=> 'required|string|exists:classes',
             'section'=> 'required|string|exists:classes',
@@ -462,14 +462,14 @@ class AdminController extends Controller
     public function add_parent_store(Request $request)
     {
         $input = request()->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:parents',
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u|unique:admins|unique:students|unique:teachers|unique:parents',
+            'username' => 'required|string|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:admins|unique:students|unique:teachers|unique:parents',
             'password' => 'required|string|min:6|',
 
         ], [
 
-      
-            
+      'name.regex'=>'Name contains invalid character!',
+      'username.regex'=>'Username contains invalid character!',
             
 
         ]);
