@@ -167,7 +167,7 @@ class AdminController extends Controller
                             $student->username = $value->username;
                             $student->email = $value->email;
                             $student->password = Hash::make($value->username);
-                           
+                            $student->status = 'active';
                             if ($student->save()){
 
                                 $students = Student::where('name','=',$value->name)->get();
@@ -244,7 +244,7 @@ class AdminController extends Controller
 
     public function show_parent()
     {
-        $parents = Parents::orderBy('name')->paginate(10);
+        $parents = Parents::where('status','=','active')->orderBy('name')->paginate(10);
         return view('admin.parent',['parents'=>$parents]);
       
     }
@@ -296,7 +296,7 @@ class AdminController extends Controller
                             $parent->username = $value->username;
                             $parent->email = $value->email;
                             $parent->password = Hash::make($value->username);
-                           
+                            $parent->status = 'active';
                             $parent->save();
 
                    
@@ -319,12 +319,10 @@ class AdminController extends Controller
     public function destroy_parent($id, Request $request)
     {
         $parents = Parents::find($id);
-        if(  $parents->delete()){
-            $request->session()->flash('alert-success', 'Account successfully deleted!');
-            return redirect()->back();
-        }
-      
-       
+        $parents->status = 'active';
+        $parents->save();
+        $request->session()->flash('alert-success', 'Account Successfully Removed!');
+        return redirect()->back();       
     }
     public function edit_parent($id)
     {
@@ -441,7 +439,7 @@ class AdminController extends Controller
         $student->username = $request->username;
         $student->password = Hash::make($request->password);
         $student->role = 'student';
-        
+        $student->status = 'active';
      
         
         if ($student->save()){
@@ -495,7 +493,7 @@ class AdminController extends Controller
         $parent->username = $request->username;
         $parent->password = Hash::make($request->password);
         $parent->role = 'parent';
-        
+        $parent->status = 'active';
      
         
         if ($parent->save()){
@@ -668,7 +666,7 @@ class AdminController extends Controller
         ]);
      
        $search = $request->search;
-       $parents = Parents::where('name','=',$search)->orderBy('name')->paginate(10);
+       $parents = Parents::where('name','=',$search)->where('status','=','active')->orderBy('name')->paginate(10);
           if(count($parents)==0){
         $request->session()->flash('alert-danger', 'Parent not found!');
        return view('admin.parent',['parents'=>$parents]);
