@@ -126,11 +126,11 @@
         
       
                     <label for="year">Year:</label>
-                    <input class="mdl-textfield__input" type="text" name="year" id="year">
+                    <input class="mdl-textfield__input" type="number" name="year" id="year">
               
                 
                             <label for="section">Section:</label>
-                            <input class="mdl-textfield__input" type="text" name="section" id="section">
+                            <input class="mdl-textfield__input" type="number" name="section" id="section">
                  
                           
                                     <label for="section_name">Section Name:</label>
