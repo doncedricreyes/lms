@@ -34,7 +34,7 @@ class ParentLoginController extends Controller
         ]);
         
         //attempt to login
-        if (Auth::guard('parent')->attempt(['username' => $request->username, 'password' => $request->password], $request->remember)) {
+        if (Auth::guard('parent')->attempt(['username' => $request->username, 'password' => $request->password,'status'=>'active'], $request->remember)) {
             
             return redirect('parent/classes');
         }
