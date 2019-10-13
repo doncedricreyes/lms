@@ -63,7 +63,7 @@
                                 <td>{{$row->username}}</td>
                                 <td>{{$row->email}}</td>
                                 <td><p data-placement="top"  data-toggle="tooltip" title="View"><a href="teachers/{{$row->id}}"><button class="btn btn-primary btn-xs" data-title="View"><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
-                    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><a href="teachers/{{$row->id}}/edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></a></p></td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-id="{!! $row->id !!}" data-target="#edit-{{$row->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
                    
                     <form action="teachers/{{$row->id}}" method="POST">
                         {{ csrf_field() }}
@@ -156,6 +156,49 @@
 
  
                     </div>
+                    
+                       @foreach($teachers as $row)
+                    <form action = "{{route('add-teacher.update', $row->id)}}" method="post" enctype="multipart/form-data">
+                        
+                        {{csrf_field() }}
+                        <input name="_method" type="hidden" value="PUT">
+                        <div class="modal fade" id="edit-{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="editLabel">Edit Teacher</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                          
+                          <div class="form-group">
+                             
+                            <label>Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" value="{{$row->name}}">
+                          </div>
+                          <div class="form-group">
+                                <label>Username:</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" value="{{$row->username}}">
+                              </div>
+                              <div class="form-group">
+                                    <label>Password:</label>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+                                  </div>
+                   
+                      </div>
+                    
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Submit Information">
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                    </form>
+                    @endforeach     
+                </div>
 @endsection
 
 
