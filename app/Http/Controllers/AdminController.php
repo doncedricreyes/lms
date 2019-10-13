@@ -580,6 +580,13 @@ class AdminController extends Controller
     
      public function search_student(Request $request)
    {
+          $input = request()->validate([
+            'search' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u',
+           
+        ], [
+            'search.regex'=>'Name contains invalid character!',
+        ]);
+         
       $search = $request->search;
       $students = Student::where('name','=',$search)->orderBy('name')->paginate(10);
           if(count($students)==0){
@@ -592,6 +599,13 @@ class AdminController extends Controller
 
     public function search_admin(Request $request)
     {
+         $input = request()->validate([
+            'search' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u',
+           
+        ], [
+            'search.regex'=>'Name contains invalid character!',
+        ]);
+        
        $search = $request->search;
        $admins = Admin::where('name','=',$search)->orderBy('name')->paginate(10);
          if(count($admins)==0){
@@ -603,7 +617,14 @@ class AdminController extends Controller
      }
 
      public function search_parent(Request $request)
-    {
+    { 
+         $input = request()->validate([
+            'search' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u',
+           
+        ], [
+            'search.regex'=>'Name contains invalid character!',
+        ]);
+     
        $search = $request->search;
        $parents = Parents::where('name','=',$search)->orderBy('name')->paginate(10);
           if(count($parents)==0){
@@ -616,6 +637,13 @@ class AdminController extends Controller
 
      public function search_teacher(Request $request)
      {
+          $input = request()->validate([
+            'search' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u',
+           
+        ], [
+            'search.regex'=>'Name contains invalid character!',
+        ]);
+         
         $search = $request->search;
         $teachers = Teacher::where('name','=',$search)->orderBy('name')->paginate(10);
           if(count($teachers)==0){
