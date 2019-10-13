@@ -61,24 +61,25 @@ class AdminController extends Controller
         $admin->name = $request->name;
         $admin->email=$request->email;
         $admin->password = Hash::make($request->password);
+        $admin->status = "active";
         $admin->save();
         $request->session()->flash('alert-success', 'Account Successfully Created!');
         return redirect()->back();
 
     }
     public function admin()
-    {
-        $admins = Admin::orderBy('name')->paginate(10);
+    { 
+        $admins = Admin::where('status','=','active')->orderBy('name')->paginate(10);
         return view('admin.admin',['admins'=>$admins]);
       
     }
     public function destroy_admin($id, Request $request)
     {
-        $admins = Admin::find($id);
-        if($admins->delete()){
-            $request->session()->flash('alert-success', 'Account successfully deleted!');
-            return redirect()->back();
-        }
+          $admin = Admin::find($id);
+        $admin->status = "inactive";
+        $admin->save();
+        $request->session()->flash('alert-success', 'Account Successfully Removed!');
+        return redirect()->back();
       
     }
 
