@@ -125,14 +125,14 @@ class AddTeacherController extends Controller
     public function store(Request $request)
     {
         $input = request()->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|max:255|unique:teachers',
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u|unique:admins|unique:students|unique:teachers|unique:parents',
+            'username' => 'required|max:255|regex:/^[a-zA-Z,. ]+$/u|unique:admins|unique:students|unique:teachers|unique:parents',
             'password' => 'required|string|min:6',
 
         ], [
 
-      
-            
+             'name.regex'=>'Name contains invalid character!',
+            'username.regex'=>'Username contains invalid character!',
             
 
         ]);
@@ -196,14 +196,15 @@ class AddTeacherController extends Controller
     public function update(Request $request, $id)
     {
         $input = request()->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|max:255|max:255',
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u|unique:admins|unique:students|unique:parents',
+            'username' => 'required|max:255|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:admins|unique:students|unique:parents',
             'password' => 'required|string|min:6',
 
         ], [
 
       
-            
+             'name.regex'=>'Name contains invalid character!',
+            'username.regex'=>'Username contains invalid character!',
             
 
         ]);
