@@ -130,7 +130,7 @@
               
                 
                             <label for="section">Section:</label>
-                            <input class="mdl-textfield__input" type="number" name="section" id="section">
+                            <input class="mdl-textfield__input" type="text" name="section" id="section">
                  
                           
                                     <label for="section_name">Section Name:</label>
@@ -200,7 +200,7 @@
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                     <label for="year">Year:</label>
-                    <input class="mdl-textfield__input" type="text" value="{{$class->year}}"  name="year" id="year">
+                    <input class="mdl-textfield__input" type="number" value="{{$class->year}}"  name="year" id="year">
                     </div>
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                             <label for="section">Section:</label>
@@ -216,7 +216,7 @@
                                         </div>
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                                 <label for="room">Room:</label>
-                                                <input class="mdl-textfield__input" type="text" value="{{$class->room}}" name="room" id="room">
+                                                <input class="mdl-textfield__input" type="number" value="{{$class->room}}" name="room" id="room">
                                                 </div>
          
         </div>
