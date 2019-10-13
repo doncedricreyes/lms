@@ -197,7 +197,7 @@ class AddTeacherController extends Controller
     {
         $input = request()->validate([
             'name' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u|unique:admins|unique:students|unique:parents',
-            'username' => 'required|max:255|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:admins|unique:students|unique:parents',
+            'username' => 'required|max:255|max:255|regex:/^[a-zA-Z,.0-9]+$/u|unique:students|unique:parents',
             'password' => 'required|string|min:6',
 
         ], [
