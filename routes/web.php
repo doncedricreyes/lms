@@ -87,7 +87,7 @@ Route::get('/students/export/excel', 'AdminController@student_excel')->name('stu
 Route::post('/students/import/excel','AdminController@student_import')->name('student.import');
 Route::get('/parents', 'AdminController@show_parent')->name('admin.parent.show');
 Route::get('/parents/{id}', 'AdminController@view_parent')->name('admin.parent.view');
-Route::delete('/parents/{id}', 'AdminController@destroy_parent')->name('admin.parents.destroy');
+Route::put('/parents/{id}/delete', 'AdminController@destroy_parent')->name('admin.parents.destroy');
 Route::put('/parents/{id}', 'AdminController@update_parent')->name('admin.edit_parent');    
 Route::get('/parents/export/excel', 'AdminController@parent_excel');
 Route::post('/parents/import/excel','AdminController@parent_import')->name('parent.import');
