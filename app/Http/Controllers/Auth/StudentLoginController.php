@@ -34,7 +34,7 @@ class StudentLoginController extends Controller
 
         ]);
         //attempt to login
-        if (Auth::guard('student')->attempt(['username' => $request->username, 'password' => $request->password], $request->remember)) {
+        if (Auth::guard('student')->attempt(['username' => $request->username, 'password' => $request->password, 'status'=>'active'], $request->remember)) {
             
             return redirect('/student/class');
         }
