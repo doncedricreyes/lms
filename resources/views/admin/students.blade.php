@@ -166,7 +166,7 @@
 
 
     @foreach($students as $row)
-    <form action = "{{route('admin.edit_student', $row->id)}}" method="post" enctype="multipart/form-data">
+    <form action = "{{route('admin.update_student', $row->id)}}" method="post" enctype="multipart/form-data">
         
         {{csrf_field() }}
         <input name="_method" type="hidden" value="PUT">
