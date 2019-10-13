@@ -672,7 +672,7 @@ class AdminController extends Controller
         ]);
          
         $search = $request->search;
-        $teachers = Teacher::where('name','=',$search)->orderBy('name')->paginate(10);
+        $teachers = Teacher::where('name','=',$search)->where('status','=','active')->orderBy('name')->paginate(10);
           if(count($teachers)==0){
         $request->session()->flash('alert-danger', 'Teacher not found!');
         return view('view-teachers',['teachers'=>$teachers]);  
