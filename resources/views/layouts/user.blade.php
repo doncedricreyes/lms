@@ -4,13 +4,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<style>
- #pname {
-  font-size:85%;
-}
-</style>
 <html>
-
 
 <head>
   <meta charset="utf-8">
@@ -91,10 +85,10 @@ desired effect
     <!-- Logo -->
     <a class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><img src="/storage/images/sccv_logo.jpg" class="img-circle" id="logo" height="45" width="50"></span>
+      <span class="logo-mini"><img src="/storage/images/sccv.jpg" class="img-circle" id="logo" height="45" width="45"></span>
       <!-- logo for regular state and mobile devices -->
 
-      <span class="logo-lg">    <img src="/storage/images/sccv_logo.jpg" class="img-circle" id="logo" height="45" width="50"></span>
+      <span class="logo-lg">    <img src="/storage/images/sccv.jpg" class="img-circle" id="logo" height="45" width="45"></span>
     </a>
 
     <!-- Header Navbar -->
@@ -106,14 +100,15 @@ desired effect
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-        
-
+    
    
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-      
+              <!-- The user image in the navbar-->
+   
+     
               <span >{{Auth::user()->name}}</span>
             </a>
             <ul class="dropdown-menu">
@@ -125,13 +120,11 @@ desired effect
                   @if(Auth::user()->role == "student")
                   <a href="/student/profile/{{Auth::user()->id}}"><img src="/storage/images/{{$profiles->get(0)->profile_pic}}" class="img-circle" alt="User Image" height="100"></a>
                   @endif
-    
-  
+
                 <p>
                   {{Auth::user()->name}}
                
                 </p>
-
               </li>
               <!-- Menu Body -->
               <li class="user-body">
@@ -245,17 +238,11 @@ desired effect
             <img src="/storage/images/{{$profiles->get(0)->profile_pic}}" class="img-circle" alt="User Image">
             @endif
         </div>
-      
-      @if(Auth::user()->role == "student" || Auth::user()->role == "teacher")
-  <div class="pull-left info" id="pname">
-          <p1>{{Auth::user()->name}}</p1>
-</div>
-    @endif
-    @if(Auth::user()->role == "admin" || Auth::user()->role == "parent")
         <div class="pull-left info">
-        
-</div>
-    @endif
+          <p>{{Auth::user()->name}}</p>
+          <!-- Status -->
+    
+        </div>
       </div>
 
 
@@ -264,36 +251,49 @@ desired effect
       @if(Auth::user()->role=="parent")
       <ul class="sidebar-menu" data-widget="tree">
         <!-- Optionally, you can add icons to the links -->
-  
+        <li><a href="/parent/enrollment"><i class="fa fa-plus-circle"></i> <span>Enrollment</span></a></li>
         <li><a href="/parent/classes"><i class="fa fa-user"></i> <span>Students</span></a></li>
         <li><a href="/parent/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
         <li><a href="/parent/students/grades"><i class="fa fa-graduation-cap"></i> <span>Grades</span></a></li>
-        <li><a href="/parent/account"><i class="fa fa-user"></i> <span>Account</span></a></li>
         <li><a href="/parent/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
       </ul>
       @endif
       @if(Auth::user()->role=="admin" || Auth::user()->role == "superadmin")
       <ul class="sidebar-menu" data-widget="tree">
           <!-- Optionally, you can add icons to the links -->
-          <li class="treeview">
+          <li class="{{Request::is('admin/admins') || Request::is('admin/teachers') || Request::is('admin/students') || Request::is('admin/parents')  ? 'active' : ''}} treeview">
               <a href="#"><i class="fa fa-users"></i> <span>Users</span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
                   </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="{{url('admin/admins')}}"><i class="fa fa-user-o"></i>Admins</a></li>
-                <li><a href="{{url('admin/teachers')}}"><i class="fa fa-user-o"></i>Teachers</a></li>
-                <li><a href="{{url('admin/students')}}"><i class="fa fa-user-o"></i>Students</a></li>
-                <li><a href="{{url('admin/parents')}}"><i class="fa fa-user-o"></i>Parents</a></li>
+                  <li class="{{Request::is('admin/admins') ? 'active' : ''}}"><a href="{{url('admin/admins')}}"><i class="fa fa-user-o"></i>Admins</a></li>
+                <li class="{{Request::is('admin/teachers') ? 'active' : ''}}"><a href="{{url('admin/teachers')}}"><i class="fa fa-user-o"></i>Teachers</a></li>
+                <li class="{{Request::is('admin/students') ? 'active' : ''}}"><a href="{{url('admin/students')}}"><i class="fa fa-user-o"></i>Students</a></li>
+                <li class="{{Request::is('admin/parents') ? 'active' : ''}}"><a href="{{url('admin/parents')}}"><i class="fa fa-user-o"></i>Parents</a></li>
               </ul>
             </li>
-          <li><a href="{{url('admin/subjects')}}"><i class="fa fa-book"></i> <span>Subjects</span></a></li>
-          <li><a href="{{url('admin/class')}}"><i class="fa fa-graduation-cap"></i> <span>Class</span></a></li>
-          <li><a href="/admin/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
-          <li><a href="/admin/calendar"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
-          <li><a href="/admin/account"><i class="fa fa-user"></i> <span>Account</span></a></li>
+          <li class = "{{Request::is('admin/subjects')  ? 'active' : ''}}"><a href="{{url('admin/subjects')}}"><i class="fa fa-book"></i> <span>Subjects</span></a></li>
+          <li class="{{Request::is('admin/class') ? 'active' : ''}}"><a href="{{url('admin/class')}}"><i class="fa fa-graduation-cap"></i> <span>Class</span></a></li>
+          <li class="{{Request::is('/admin/messages/inbox') ? 'active' : ''}}"><a href="/admin/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
+          <li class="{{Request::is('admin/calendar') ? 'active' : ''}}"><a href="/admin/calendar"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
+          <li class="treeview" >
+            <a href="#"><i class="fa fa-archive"></i> <span>Archive</span>
+              <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class="{{Request::is('admin/archive/admins') ? 'active' : ''}}"><a href="/admin/archive/admins"><i class="fa fa-user-o"></i>Admins</a></li>
+              <li class="{{Request::is('admin/archive/teachers') ? 'active' : ''}}"><a href="/admin/archive/teachers"><i class="fa fa-user-o"></i>Teachers</a></li>
+              <li class="{{Request::is('admin/archive/students') ? 'active' : ''}}"><a href="/admin/archive/students"><i class="fa fa-user-o"></i>Students</a></li>
+              <li class="{{Request::is('admin/archive/parents') ? 'active' : ''}}"><a href="/admin/archive/parents"><i class="fa fa-user-o"></i>Parents</a></li>
+              <li class="{{Request::is('admin/archive/class') ? 'active' : ''}}"><a href="/admin/archive/class"><i class="fa fa-graduation-cap"></i>Class</a></li>
+            </ul>
+          </li>
           <li><a href="/admin/logout"><i class="fa fa-sign-out"></i>  <span>Logout</span></a></li>
+       
         </ul>
         @endif
         @if(Auth::user()->role=="student")
@@ -306,7 +306,6 @@ desired effect
             <li><a href="/student/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
             <li><a href="/student/profile/{{Auth::user()->id}}"><i class="fa  fa-user"></i> <span>Profile</span></a></li>
             <li><a href="/student/calendar"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
-             <li><a href="/student/account"><i class="fa fa-user"></i> <span>Account</span></a></li>
             <li><a href="/student/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
           </ul>
           @endif
@@ -318,7 +317,6 @@ desired effect
               <li><a href="/teacher/profile/{{Auth::user()->id}}"><i class="fa  fa-user"></i> <span>Profile</span></a></li>
               <li><a href="/teacher/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
               <li><a href="/teacher/calendar"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
-              <li><a href="/teacher/account"><i class="fa fa-user"></i> <span>Account</span></a></li>
               <li><a href="/teacher/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
             </ul>
             @endif
