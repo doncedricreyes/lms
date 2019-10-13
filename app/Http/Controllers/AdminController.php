@@ -693,4 +693,24 @@ class AdminController extends Controller
           $request->session()->flash('alert-success', 'Teacher found!');
           return view('view-teachers',['teachers'=>$teachers]);  
       }
+    
+         public function archive_admin(){
+        $admins = Admin::orderBy('name')->paginate(10);
+        return view('admin.archive_admin',['admins'=>$admins]);
+      }
+
+      public function archive_teacher(){
+        $teachers = Teacher::orderBy('name')->paginate(10);
+        return view('admin.archive_teacher',['teachers'=>$teachers]);
+      }
+
+      public function archive_student(){
+        $students = Student::orderBy('name')->paginate(10);
+        return view('admin.archive_student',['students'=>$students]);
+      }
+
+      public function archive_parent(){
+        $parents = Parents::orderBy('name')->paginate(10);
+        return view('admin.archive_parent',['parents'=>$parents]);
+      }
 }
