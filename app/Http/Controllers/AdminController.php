@@ -319,7 +319,7 @@ class AdminController extends Controller
     public function destroy_parent($id, Request $request)
     {
         $parents = Parents::find($id);
-        $parents->status = 'active';
+        $parents->status = 'inactive';
         $parents->save();
         $request->session()->flash('alert-success', 'Account Successfully Removed!');
         return redirect()->back();       
