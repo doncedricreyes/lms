@@ -80,7 +80,7 @@ class AddClassController extends Controller
             'section_name' => 'required|regex:/^[a-zA-Z,. ]+$/u|max:255',
             'time' => 'required|regex:/^[a-zA-Z-0-9 ]+$/u',
             'room' => 'required|regex:/^[0-9]+$/u|max:3',
-            'school_year' => 'required|regex:/^[0-9- ]+$/u',
+            'school_year' => 'required|regex:/^[0-9-a-zA-Z ]+$/u',
         ], [
 
 
