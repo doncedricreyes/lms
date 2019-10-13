@@ -56,7 +56,7 @@
                                         <th>Delete</th>
                                                            
                                         @endif
-                                     
+                                        <th>Status</th>
                                       
                                    </thead>
                     <tbody>
@@ -71,13 +71,14 @@
                                
                                 @if(Auth::user()->role == 'superadmin')
                                 <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-id="{!! $row->id !!}" data-target="#edit-{{$row->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-                                <form action="{{route('admin.destroy',[$row->id])}}" method="POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                    <td><p data-placement="top" data-toggle="tooltip" onclick="return confirm('Are you sure?')" title="Delete"><button class="btn btn-danger btn-xs" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                                    </form>
+                                <form action = "{{route('admin.destroy',[$row->id])}}" method="post" enctype="multipart/form-data">
+            
+                                  {{csrf_field() }}
+                                  <input name="_method" type="hidden" value="PUT">
+                                  <td><p data-placement="top" data-toggle="tooltip" onclick="return confirm('Are you sure?')" title="Delete"><button class="btn btn-danger btn-xs" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                              </form>
                                     @endif
-                                </i></button></a></p></td>
+                                <td>{{$row->status}}</td>
                                 
            
                 </tr>
