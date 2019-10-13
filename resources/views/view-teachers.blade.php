@@ -53,7 +53,7 @@
                                       <th>Edit</th>
                                        <th>Delete</th>
                                        <th>Message</th>
-                                    
+                                        <th>Status</th>
                                    </thead>
                     <tbody>
                     
@@ -66,14 +66,15 @@
                     <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-id="{!! $row->id !!}" data-target="#edit-{{$row->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
                    
                     <form action="teachers/{{$row->id}}" method="POST">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
+                         {{csrf_field() }}
+                         <input name="_method" type="hidden" value="PUT">
                     <td><p data-placement="top"  onclick="return confirm('Are you sure?')" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
                   
                 </form>
                 <td><p data-placement="top"  data-toggle="tooltip" title="Message"><a href="teachers/{{$row->id}}/message"><button class="btn btn-primary btn-xs" data-title="View"><i class="glyphicon glyphicon-comment">
                 
                     </i></button></a></p></td>
+                    <td>{{$row->status}}</td>
                 </tr>
                     @endforeach
                
