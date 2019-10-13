@@ -126,7 +126,7 @@
     <div class="modal-body">
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
     <label for="title">Subject Title:</label>
-    <input class="mdl-textfield__input" type="text" name="subject" id="subject" value="{{$row->title}}">
+    <input class="mdl-textfield__input" type="text" name="title" id="title" value="{{$row->title}}">
     
     </div>
     </div>
