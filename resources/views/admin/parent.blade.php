@@ -49,7 +49,7 @@
                                         <th>Edit</th>
                                        <th>Delete</th>
                                        <th>Message</th>
-                                      
+                                        <th>Status</th>
                                    </thead>
                     <tbody>
                     
@@ -63,12 +63,14 @@
                              
                                 
                                 <form action="{{route('admin.parents.destroy',[$row->id])}}" method="POST">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
+                    
+                                  {{csrf_field() }}
+                                  <input name="_method" type="hidden" value="PUT">
                     <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
                     </form>
                     <td><p data-placement="top"  data-toggle="tooltip" title="Message"><a href="parents/{{$row->id}}/message"><button class="btn btn-primary btn-xs" data-title="View"><i class="glyphicon glyphicon-comment">
-                </tr>
+                     <td>{{$row->status}}</td>
+             </tr>
                     @endforeach
                
                    
