@@ -123,6 +123,10 @@ Route::get('/archive/admins/','AdminController@archive_admin');
 Route::get('/archive/teachers/','AdminController@archive_teacher');
 Route::get('/archive/students/','AdminController@archive_student');
 Route::get('/archive/parents/','AdminController@archive_parent');
+Route::get('/archive/search/students/','AdminController@archive_search_student')->name('archive_search_student');
+Route::get('/archive/search/admins/','AdminController@archive_search_admin')->name('archive_search_admin');
+Route::get('/archive/search/parents/','AdminController@archive_search_parent')->name('archive_search_parent');
+Route::get('/archive/search/teachers/','AdminController@archive_search_teacher')->name('archive_search_teacher');
 });
 
 Route::prefix('teacher')->group(function()
