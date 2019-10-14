@@ -47,7 +47,7 @@ class TeacherController extends Controller
         $teacherId = Auth::user()->id;
      
         $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('teacher_id',$teacherId)
-            ->whereHas('classes', function ($q) use($id){
+            ->whereHas('classes', function ($q) {
             $q->where('status', 'active');
         })->get();
         foreach($class_subject_teachers as $class_subject_teacher){
@@ -208,7 +208,7 @@ class TeacherController extends Controller
         
         
         $class_students = Class_Student::with('students','class_subject_teachers')->where('class_subject_teacher_id','=',$class_subject_teachers->get(0)['id'])
-               ->whereHas('students', function ($q) use($id){
+               ->whereHas('students', function ($q) {
             $q->where('status', 'active');
         })->get()
             ->sortBy(function($class_students){
