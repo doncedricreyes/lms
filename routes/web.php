@@ -131,6 +131,7 @@ Route::put('/archive/students/{id}','AdminController@status_archive_student')->n
 Route::put('/archive/admins/{id}','AdminController@status_archive_admin')->name('status_archive_admin');
 Route::put('/archive/teachers/{id}','AdminController@status_archive_teacher')->name('status_archive_teacher');
 Route::put('/archive/parents/{id}','AdminController@status_archive_parent')->name('status_archive_parent');
+Route::get('/archive/class','AdminController@archive_class');
 });
 
 Route::prefix('teacher')->group(function()
