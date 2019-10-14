@@ -69,10 +69,9 @@
 </div>
 
 
-@foreach($class_students as $row)
+
 
 <form action = "{{route('class_list.add', $class_subject_teachers->class_id)}}" method="post"  enctype="multipart/form-data">
-    @endforeach
     {{csrf_field() }}
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
