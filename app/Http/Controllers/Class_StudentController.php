@@ -38,7 +38,7 @@ class Class_StudentController extends Controller
 
         foreach($class_students as $row){
         $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('id',$row->class_subject_teacher_id)
-        ->whereHas('classes', function ($q) use($id){
+        ->whereHas('classes', function ($q){
             $q->where('status', 'active');
         })->get();
         $class_student_all[] = $class_subject_teachers;
@@ -59,7 +59,10 @@ class Class_StudentController extends Controller
         $class_students = Class_Student::with('students','class_subject_teachers')->where('student_id',$students)->get();
 
         foreach($class_students as $class_student){
-        $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('id',$class_student->class_subject_teacher_id)->first();
+        $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('id',$class_student->class_subject_teacher_id)
+             ->whereHas('classes', function ($q){
+            $q->where('status', 'active');
+        })->first();
     }
     $class_announcements = Class_Announcement::with('classes')->where('class_id','=',$class_subject_teachers->class_id)->get();
     $students = Class_Student::with('students','class_subject_teachers')->where('class_subject_teacher_id','=',$class_subject_teachers->id)->get()
@@ -138,8 +141,14 @@ class Class_StudentController extends Controller
       
         $students = Student::where('id',Auth::user()->id)->get();
         $subject_announcements = Subject_Announcement::with('class_subject_teachers')->where('class_subject_teacher_id','=',$id)->get();
-        $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('id',$id)->get();
-        $class_students = Class_student::with('class_subject_teachers','students')->where('class_subject_teacher_id',$id)->get()
+        $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('id',$id)
+             ->whereHas('classes', function ($q){
+            $q->where('status', 'active');
+        })->get();
+        $class_students = Class_student::with('class_subject_teachers','students')->where('class_subject_teacher_id',$id)
+             ->whereHas('students', function ($q){
+            $q->where('status', 'active');
+        })->get()
         ->sortBy(function($class_students){
             return $class_students->students->get(0)->name;
         });
