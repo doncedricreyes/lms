@@ -232,7 +232,7 @@ class Class_StudentController extends Controller
         
     public function question($id)
     {
-        $questions = Question::with('exams')->where('exam_id',$id)->get();
+        $questions = Question::with('exams')->where('exam_id',$id)->inRandomOrder()->get();
        
         $exams = Exam::with('class_subject_teachers')->where('id',$id)->get();
         $quiz_start = Quiz_Attempt::with('exams','students')->where('exam_id','=',$id)->where('student_id','=',auth::user()->id)->latest('id')->first();
