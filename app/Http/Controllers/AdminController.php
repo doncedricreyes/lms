@@ -111,13 +111,13 @@ class AdminController extends Controller
     
     public function show_student()
     {
-        $students = Student::where('status','=','active')->orderBy('name')->paginate(10);
+        $students = Student::where('status','=','active')->orWhere('status','=','no class')->orderBy('name')->paginate(10);
         return view('admin.students',['students'=>$students]);
       
     }
 
     public function student_excel(){
-         $students = Student::where('status','=','active')->orderBy('name')->get();
+         $students = Student::where('status','=','active')->orWhere('status','=','no class')->orderBy('name')->get();
          $students_array[] = array('Name','Username','Email');
          foreach($students as $student){
              $students_array[] = array(
@@ -661,7 +661,7 @@ class AdminController extends Controller
         ]);
          
       $search = $request->search;
-      $students = Student::where('name','=',$search)->where('status','=','active')->orderBy('name')->paginate(10);
+      $students = Student::where('name','=',$search)->where('status','=','active')->orWhere('status','=','no class')->orderBy('name')->paginate(10);
           if(count($students)==0){
         $request->session()->flash('alert-danger', 'Student not found!');
         return view('admin.students',['students'=>$students]);  
