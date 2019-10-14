@@ -127,6 +127,10 @@ Route::get('/archive/search/students/','AdminController@archive_search_student')
 Route::get('/archive/search/admins/','AdminController@archive_search_admin')->name('archive_search_admin');
 Route::get('/archive/search/parents/','AdminController@archive_search_parent')->name('archive_search_parent');
 Route::get('/archive/search/teachers/','AdminController@archive_search_teacher')->name('archive_search_teacher');
+Route::put('/archive/students/{id}','AdminController@status_archive_student')->name('status_archive_student');
+Route::put('/archive/admins/{id}','AdminController@status_archive_admin')->name('status_archive_admin');
+Route::put('/archive/teachers/{id}','AdminController@status_archive_teacher')->name('status_archive_teacher');
+Route::put('/archive/parents/{id}','AdminController@status_archive_parent')->name('status_archive_parent');
 });
 
 Route::prefix('teacher')->group(function()
