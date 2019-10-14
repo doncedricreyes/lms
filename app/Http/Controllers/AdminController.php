@@ -822,4 +822,36 @@ class AdminController extends Controller
           $request->session()->flash('alert-success', 'Parent found!');
           return view('admin.archive_parent',['parents'=>$parents]);
      }
+    
+     public function status_archive_student($id, Request $request){
+        $students = Student::find($id);
+        $students->status = $request->status;
+        $students->save();
+        $request->session()->flash('alert-success', 'Status Changed!');
+        return redirect()->back();
+      }
+
+      public function status_archive_admin($id, Request $request){
+        $admins = Admin::find($id);
+        $admins->status = $request->status;
+        $admins->save();
+        $request->session()->flash('alert-success', 'Status Changed!');
+        return redirect()->back();
+      }
+
+      public function status_archive_teacher($id, Request $request){
+        $teachers = Teacher::find($id);
+        $teachers->status = $request->status;
+        $teachers->save();
+        $request->session()->flash('alert-success', 'Status Changed!');
+        return redirect()->back();
+      }
+
+      public function status_archive_parent($id, Request $request){
+        $parents = Parents::find($id);
+        $parents->status = $request->status;
+        $parents->save();
+        $request->session()->flash('alert-success', 'Status Changed!');
+        return redirect()->back();
+      }
 }
