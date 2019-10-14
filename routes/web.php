@@ -75,7 +75,7 @@ Route::get('/class', 'AddClassController@show')->name('class.show');
 Route::get('/class/export/excel','AddClassController@class_excel');
 Route::get('/class/{id}', 'AddClassController@view')->name('add-class.show');
 Route::put('/class/{id}', 'AddClassController@update')->name('class.update');
-Route::delete('/class/{id}', 'AddClassController@destroy')->name('class.destroy');
+Route::put('/class/{id}', 'AddClassController@destroy')->name('class.destroy');
 Route::delete('/class/{id}/subjects', 'Class_Subject_Teacher_Controller@destroy')->name('class_subject.destroy');
 Route::get('/class/students/{id}','AdminController@class_list');
 Route::post('/class/students/{id}','AdminController@class_list_add')->name('class_list.add');
