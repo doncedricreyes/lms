@@ -43,12 +43,8 @@
                                         <th>Adviser</th>
                                         <th>Time</th>
                                         <th>Room</th>
-                                        <th>Subjects</th>
-                                        <th>Class List</th>
-                                      <th>Edit</th>
-                                       <th>Delete</th>
-                                       <th> <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#create">Add</th>
-                                        <th> <a href="{{url('admin/class/export/excel')}}"class="btn btn-primary btn-xs">Export to Excel</a></th>
+
+                                    
                                    </thead>
                     <tbody>
                     
@@ -60,15 +56,7 @@
                                      <td>{{$class->teachers->get(0)->name}}</td> 
                                      <td>{{$class->time}}</td>
                                      <td>{{$class->room}}</td> 
-                                <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="class/{{$class->id}}"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#view" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
-                                <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="class/students/{{$class->id}}"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#view" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
-                                <td><p data-placement="top" data-toggle="tooltip"  title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-id="{!! $class->id !!}" data-target="#edit-{{$class->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-                                
-                                <form action="{{route('class.destroy',[$class->id])}}" method="POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                    <td><p data-placement="top" data-toggle="tooltip" onclick="return confirm('Are you sure?')" title="Delete"><button class="btn btn-danger btn-xs" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-                    </form>
+                             
                 </tr>
                     @endforeach
              
@@ -82,7 +70,7 @@
         </div>
                      
 
-        
+
             
 @endsection
 
