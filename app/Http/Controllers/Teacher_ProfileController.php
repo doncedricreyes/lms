@@ -103,7 +103,10 @@ class Teacher_ProfileController extends Controller
     public function index($id)
     {
       
-        $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('teacher_id','=',$id)->get();
+        $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('teacher_id','=',$id)
+               ->whereHas('classes', function ($q) use($id){
+            $q->where('status', 'active');
+        })->get();
         $profiles = Teacher_Profile::with('teachers')->where('teacher_id',$id)->get();
         return view('teacher.profile',['profiles'=>$profiles,'class_subject_teachers'=>$class_subject_teachers]);
     }
