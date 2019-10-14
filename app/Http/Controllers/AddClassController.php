@@ -119,7 +119,7 @@ class AddClassController extends Controller
         
         
         $teachers = Teacher::all();
-        $classes = AddClass::with('teachers')->get();
+        $classes = AddClass::with('teachers')->where('status','=','active')->get();
         
         return view('admin.show-class', ['teachers' => $teachers,'classes'=>$classes]);
     }
