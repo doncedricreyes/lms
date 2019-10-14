@@ -32,7 +32,7 @@
                         
                         <div class="col-md-12">
                                 <legend>Admins</legend>
-                                <form action = "{{route('search_admin')}}" role="search" method="get"enctype="multipart/form-data">
+                                <form action = "{{route('archive_search_admin')}}" role="search" method="get"enctype="multipart/form-data">
                                   <div>
                                   <input type="text" class="form-control" name="search" id="search" placeholder="Search" style="width: 300px;">
                                   <br>
