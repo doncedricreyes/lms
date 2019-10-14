@@ -66,7 +66,7 @@
                                 
                                 <form action="{{route('class.destroy',[$class->id])}}" method="POST">
                                         {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
+                                         <input name="_method" type="hidden" value="PUT">
                     <td><p data-placement="top" data-toggle="tooltip" onclick="return confirm('Are you sure?')" title="Delete"><button class="btn btn-danger btn-xs" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
                     </form>
                 </tr>
