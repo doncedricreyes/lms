@@ -732,18 +732,94 @@ class AdminController extends Controller
         return view('admin.archive_admin',['admins'=>$admins]);
       }
 
+       public function archive_search_admin(Request $request)
+    {
+         $input = request()->validate([
+            'search' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u',
+           
+        ], [
+            'search.regex'=>'Name contains invalid character!',
+        ]);
+        
+       $search = $request->search;
+       $admins = Admin::where('name','=',$search)->orderBy('name')->paginate(10);
+         if(count($admins)==0){
+        $request->session()->flash('alert-danger', 'Admin not found!');
+       return view('admin.archive_admin',['admins'=>$admins]);  
+         }
+           $request->session()->flash('alert-success', 'Admin found!');
+          return view('admin.archive_admin',['admins'=>$admins]); 
+     }
+    
       public function archive_teacher(){
         $teachers = Teacher::orderBy('name')->paginate(10);
         return view('admin.archive_teacher',['teachers'=>$teachers]);
       }
 
+      public function archive_search_teacher(Request $request)
+     {
+          $input = request()->validate([
+            'search' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u',
+           
+        ], [
+            'search.regex'=>'Name contains invalid character!',
+        ]);
+         
+        $search = $request->search;
+        $teachers = Teacher::where('name','=',$search)->orderBy('name')->paginate(10);
+          if(count($teachers)==0){
+        $request->session()->flash('alert-danger', 'Teacher not found!');
+        return view('admin.archive_teacher',['teachers'=>$teachers]);  
+          }
+          $request->session()->flash('alert-success', 'Teacher found!');
+          return view('admin.archive_teacher',['teachers'=>$teachers]);  
+      }
+    
       public function archive_student(){
         $students = Student::orderBy('name')->paginate(10);
         return view('admin.archive_student',['students'=>$students]);
       }
 
+    public function archive_search_student(Request $request)
+   {
+          $input = request()->validate([
+            'search' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u',
+           
+        ], [
+            'search.regex'=>'Name contains invalid character!',
+        ]);
+         
+      $search = $request->search;
+      $students = Student::where('name','=',$search)->orderBy('name')->paginate(10);
+          if(count($students)==0){
+        $request->session()->flash('alert-danger', 'Student not found!');
+        return view('admin.archive_student',['students'=>$students]);  
+      }
+         $request->session()->flash('alert-success', 'Student found!');
+      return view('admin.archive_student',['students'=>$students]);  
+    }
+    
       public function archive_parent(){
         $parents = Parents::orderBy('name')->paginate(10);
         return view('admin.archive_parent',['parents'=>$parents]);
       }
+    
+       public function archive_search_parent(Request $request)
+    { 
+         $input = request()->validate([
+            'search' => 'required|string|max:255|regex:/^[a-zA-Z,. ]+$/u',
+           
+        ], [
+            'search.regex'=>'Name contains invalid character!',
+        ]);
+     
+       $search = $request->search;
+       $parents = Parents::where('name','=',$search)->orderBy('name')->paginate(10);
+          if(count($parents)==0){
+        $request->session()->flash('alert-danger', 'Parent not found!');
+       return view('admin.archive_parent',['parents'=>$parents]);
+          }
+          $request->session()->flash('alert-success', 'Parent found!');
+          return view('admin.archive_parent',['parents'=>$parents]);
+     }
 }
