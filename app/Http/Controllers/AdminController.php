@@ -568,19 +568,49 @@ class AdminController extends Controller
     }
 
 
-    public function class_list($id){
+      public function class_list($id){
       
         $class_subject_teachers = Class_Subject_Teacher::where('class_id',$id)->first();
- 
-        $class_students = Class_student::with('class_subject_teachers','students')->where('class_subject_teacher_id',$class_subject_teachers->id)
+        $students = Student::where('status','=','no class')->get();
+       $class_students = Class_student::with('class_subject_teachers','students')->where('class_subject_teacher_id',$class_subject_teachers->id)
        ->whereHas('students', function ($q) use($id){
         $q->where('status', 'active');
     })->get()
        ->sortBy(function($class_students){
            return $class_students->students->get(0)->name;
        });
-        return view('admin.class_list',['class_students'=>$class_students,'class_subject_teachers'=>$class_subject_teachers]);
+        return view('admin.class_list',['class_students'=>$class_students,'class_subject_teachers'=>$class_subject_teachers,'students'=>$students]);
    
+    }
+
+    public function class_list_add(Request $request,$id)
+    {
+        $student_id = $request->student_id;
+        $students = Student::where('id','=',$student_id)->first();
+        $students->status = 'active';
+        $students->save();   
+        $class_subject=DB::table('class_subject_teacher')->where([
+            [ 'class_id','=',$id],
+         ])->get();
+         
+         foreach($class_subject as $class_id){
+         $class_student = new Class_Student();
+         $class_student->class_subject_teacher_id = $class_id->id;
+         $class_student->student_id = $students->id;
+         $class_student->save();
+         }
+        $request->session()->flash('alert-success', 'Student was successful added!');
+    return redirect()->back();
+    }
+
+    public function class_list_delete($id, Request $request)
+    {
+       $class_students = Class_Student::where('student_id','=',$id)->delete();
+       $students = Student::find($id);
+       $students->status = 'no class';
+       $students->save();
+       $request->session()->flash('alert-success', 'Student successfuly removed');
+       return redirect()->back();
     }
 
     public function class_list_excel($id){
