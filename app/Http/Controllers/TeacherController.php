@@ -197,11 +197,11 @@ class TeacherController extends Controller
     }
 
 
-    public function adviser($id){
+    public function adviser(){
         $classes = AddClass::with('teachers')->where('adviser_id','=',Auth::user()->id)->where('status','=','active')->get();
        
             $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('class_id','=',$classes->get(0)['id'])
-                   ->whereHas('classes', function ($q) use($id){
+                   ->whereHas('classes', function ($q){
             $q->where('status', 'active');
         })->get();
             $class_announcements = Class_Announcement::with('classes')->where('class_id','=',$classes->get(0)['id'])->orderBy('updated_at')->get();
