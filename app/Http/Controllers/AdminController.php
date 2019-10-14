@@ -854,4 +854,12 @@ class AdminController extends Controller
         $request->session()->flash('alert-success', 'Status Changed!');
         return redirect()->back();
       }
+    
+      public function archive_class()
+      {
+        $teachers = Teacher::all();
+        $classes = AddClass::with('teachers')->get();
+        
+        return view('admin.archive_class', ['teachers' => $teachers,'classes'=>$classes]);
+      }
 }
