@@ -32,13 +32,23 @@ class Class_StudentController extends Controller
 
     public function subject_list()
     {
+     $class_student_all=[];
         $students = Auth::user()->id;
         $class_students = Class_Student::with('students','class_subject_teachers')->where('student_id',$students)->get();
-        if(count($class_students)== 0){
-            return redirect()->route('enroll');
-        }
+
+        foreach($class_students as $row){
+        $class_subject_teachers = Class_Subject_Teacher::with('classes','subjects','teachers')->where('id',$row->class_subject_teacher_id)
+        ->whereHas('classes', function ($q) use($id){
+            $q->where('status', 'active');
+        })->get();
+        $class_student_all[] = $class_subject_teachers;
+    }
+
+    $collection = collect([$class_student_all]);
+    $class_student = $collection->flatten();
+    $class_student->all();
         
-        return view('student.subject-list',['class_students'=>$class_students]);
+        return view('student.subject-list',['class_students'=>$class_students,'class_student'=>$class_student]);
 
     }
 
