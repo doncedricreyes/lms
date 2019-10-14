@@ -83,7 +83,7 @@
                       <label for="answer">Answer:</label>
                       <input type="text" id="answer" name="answer" class="form-control" value="{{$answer !== null? $answer : ''}}" {{$answer !== null? 'disabled' : ''}}> <br>
                       @endif
-                      <input type="submit"  name="submit" value="{{$answer !== null? 'submitted' : 'submit'}}" class="btn btn-primary" id="submitbtn" {{$answer !== null? 'disabled' : ''}}>
+                      <input type="submit"  name="submit" onclick="return confirm('Are you sure?')" value="{{$answer !== null? 'submitted' : 'submit'}}" class="btn btn-primary" id="submitbtn" {{$answer !== null? 'disabled' : ''}}>
 
 
              
