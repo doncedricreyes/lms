@@ -35,7 +35,7 @@ class AddClassController extends Controller
 
     public function class_excel(){
 
-        $classes = AddClass::with('teachers')->get();
+        $classes = AddClass::with('teachers')->where('status','=','active')->get();
 
         $classes_array[] = array('school year','year','section','section name','adviser','time','room');
         foreach($classes as $class){
@@ -96,6 +96,7 @@ class AddClassController extends Controller
             $addclass->time=$request->time;
             $addclass->room=$request->room;
             $addclass->school_year=$request->school_year;
+            $addclass->status = 'active';
             $addclass->save();
             $request->session()->flash('alert-success', 'Successfully created!');
             return redirect()->route('class.show');
@@ -199,10 +200,12 @@ class AddClassController extends Controller
     public function destroy($id, Request $request)
     {
         $addclass = AddClass::find($id);
-        if($addclass->delete()){
+        $addclass->status = 'inactive';
+        $addclass->save();
+  
             $request->session()->flash('alert-success', 'Class successfully deleted!');
             return redirect()->route('class.show');
-        }
+        
     
     }
 
