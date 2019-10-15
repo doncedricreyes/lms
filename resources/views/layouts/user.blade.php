@@ -22,8 +22,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('bower_components/fullcalendar/dist/fullcalendar.print.min.css')}}" media="print">
   <link rel="stylesheet" href="https://cdnjs.cloudfare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
   <link rel="stylesheet"
-   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
   href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
