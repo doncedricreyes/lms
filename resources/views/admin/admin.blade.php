@@ -1,15 +1,30 @@
-
-
-
 @extends('layouts.user')
 <style>
     #searchbar{
-      position: relative;
-      left: 1%;
+     
+      display: block;
+    text-align: center;
     }
+   #search{
+     position: relative;
+     left: 37%;
+   }
+   ::placeholder{
+     text-align: center;
+   }
+
          .mdl-data-table th, td{
   text-align: left !important;
   font-size: 16px;
+}
+#head {
+  background-color:#488cc7;
+  text-align: center !important;
+  font-size: 28px;
+  color: white;
+}
+#table{
+  background-color:snow;
 }
   </style>
 @section('content')
@@ -38,37 +53,37 @@
      
                         
                         
-                           <div class="col-lg-12 col-md-offset-0">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Admins</div>
+                           <div  class="col-lg-12 col-md-offset-0">
+                        <div id="table" class="panel panel-default">
+                            <div class="panel-heading" id="head">Admins</div>
                             <br>
                                 <form action = "{{route('search_admin')}}" role="search" method="get"enctype="multipart/form-data">
                                   <div id="searchbar">
                                   <input type="text" class="form-control" name="search" id="search" placeholder="Search" style="width: 300px;">
                                   <br>
-                                  <a href="" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-xs">Add Admin </a> 
+                                  <a href="" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-sm">Add Admin </a> 
                                     <br>
                                 </div> 
                                       </form>
-                       <div class="panel-body"> 
-                        <div class="table-responsive">
+                       <div  class="panel-body"> 
+                        <div  class="table-responsive">
                 
                                 
-                          <table class="mdl-data-table mdl-js-data-table col-lg-12" >
+                          <table  class="mdl-data-table mdl-js-data-table col-lg-12" >
                                    
                                    <thead>
                                    
                                    
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Message</th>  
+                                        <th style="font-size:16px;">Name</th>
+                                        <th style="font-size:16px;">Email</th>
+                                        <th style="font-size:16px;">Role</th>
+                                        <th style="font-size:16px;">Message</th>  
                                         @if(Auth::user()->role == 'superadmin')
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th style="font-size:16px;">Edit</th>
+                                        <th style="font-size:16px;">Delete</th>
                                                            
                                         @endif
-                                        <th>Status</th>
+                                        <th style="font-size:16px;">Status</th>
                                       
                                    </thead>
                     <tbody>
@@ -102,6 +117,9 @@
                         
                 </table>
     </div>
+                       </div>
+                        </div>
+                           </div></div>
 
 
 
@@ -198,12 +216,3 @@
         @endforeach     
     </div>
 @endsection
-
-
-
-    
-    
-
-    
-                
-  
