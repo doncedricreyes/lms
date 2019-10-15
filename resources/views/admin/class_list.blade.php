@@ -1,11 +1,27 @@
 @extends('layouts.user')
 <style>
     #searchbar{
-      position: relative;
-      left: 1%;
+     
+      display: block;
+    text-align: center;
     }
-        .mdl-data-table th, td{
+   #search{
+     position: relative;
+     left: 37%;
+   }
+
+         .mdl-data-table th, td{
   text-align: left !important;
+  font-size: 16px;
+}
+#head {
+  background-color:#488cc7;
+  text-align: center !important;
+  font-size: 28px;
+  color: white;
+}
+#table{
+  background-color:snow;
 }
   </style>
 @section('content')
@@ -33,8 +49,8 @@
                 
                 
        <div class="col-lg-12 col-md-offset-0">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Class List</div>
+                    <div id="table" class="panel panel-default">
+                        <div id="head" class="panel-heading">Class List</div>
                         <br>
                         <div id="searchbar">
             <a href="" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-xs">Add Student </a> 
@@ -48,8 +64,8 @@
                            
                            <thead>
                            
-                                <th>Student's Name</th>
-                                <th>Delete</th>
+                                <th style="font-size:16px;">Student's Name</th>
+                                <th style="font-size:16px;">Delete</th>
                            
                                 
                            </thead>
