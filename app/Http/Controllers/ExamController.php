@@ -162,6 +162,7 @@ foreach($exams as $class_subject_teacher_id){
     $row12=[];
     
     foreach($questions as $question){
+        isset($students)
     $option_1 = Answer::with('students','exams','questions')
     ->where('quiz_attempt_id',$quiz_attempt->get(0)['id'])
     ->where('question_id',$question->id)
@@ -215,7 +216,7 @@ foreach($exams as $class_subject_teacher_id){
     $average_6 = ($correct/$students)*100;
     $row11[] = $correct;
     $row12[]=$average_6;
-
+ endisset
     }
 
 
