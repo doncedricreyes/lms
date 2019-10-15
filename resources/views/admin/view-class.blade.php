@@ -1,6 +1,11 @@
 
 @extends('layouts.user')
-
+<style>
+    #searchbar{
+      position: relative;
+      left: 1%;
+    }
+  </style>
 @section('content')
 
 
@@ -29,14 +34,20 @@
         <div class="container">
             <div class="row">
                 
-                
-                <div class="col-md-12">
-                <legend>Schedule</legend>
+               
+                <div class="col-lg-12 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Schedule</div>
+                        <br>
+                        <div id="searchbar">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">Add Subject</button>
+                        </div>
     
-                <div class="table-responsive">
-        
-                        
-                      <table id="mytable" class="table table-bordred table-striped">
+                        <div class="panel-body"> 
+                            <div class="table-responsive">
+                    
+                                    
+                              <table class="mdl-data-table mdl-js-data-table col-lg-12" >
                            
                            <thead>
                            
@@ -47,7 +58,7 @@
                                      
                                         <th>Edit</th>
                                         <th>Delete</th>
-                                        <th> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">Add</th>
+                                      
                                
                            </thead>
             <tbody>
@@ -61,12 +72,12 @@
                            
                        
            
-                        <td><p data-placement="top" data-toggle="tooltip"  title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-id="{!! $class_subject_teacher->id !!}" data-target="#edit-{{$class_subject_teacher->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                        <td><p data-placement="top" data-toggle="tooltip"  title="Edit"><button class="btn btn-primary btn-sm" data-title="Edit" data-toggle="modal" data-id="{!! $class_subject_teacher->id !!}" data-target="#edit-{{$class_subject_teacher->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
                        
                         <form action="{{route('class_subject.destroy',[$class_subject_teacher->id])}}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-            <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+            <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
             </form>
         </tr>
             @endforeach
