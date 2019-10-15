@@ -97,7 +97,7 @@
 @endif
 
 @endisset
-<h1>You haven't completed this exam/quiz yet.</h1>
+
 </div>
 @endsection
 
