@@ -2,7 +2,12 @@
 
 
 @extends('layouts.user')
-
+<style>
+        #searchbar{
+          position: relative;
+          left: 1%;
+        }
+      </style>
 @section('content')
 
     <div class="container" id="view">
@@ -27,13 +32,21 @@
                     <div class="row">
                         
                         
-                        <div class="col-md-12">
-                        <legend>Classes</legend>
-            
-                        <div class="table-responsive">
-                
-                                
-                              <table id="mytable" class="table table-bordred table-striped">
+                       
+                            <div class="col-lg-12 col-md-offset-0">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Classes</div>
+                                        <br>
+                                        <div id="searchbar">
+                                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#create">Create Class</button>
+                                        <a href="{{url('admin/class/export/excel')}}"class="btn btn-primary btn-xs">Export to Excel</a>
+                                        <br>
+                                        </div>
+                                        <div class="panel-body"> 
+                                                <div class="table-responsive">
+                                        
+                                                        
+                                                  <table class="mdl-data-table mdl-js-data-table col-lg-12" >
                                    
                                    <thead>
                                    
@@ -47,8 +60,7 @@
                                         <th>Class List</th>
                                       <th>Edit</th>
                                        <th>Delete</th>
-                                       <th> <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#create">Add</th>
-                                        <th> <a href="{{url('admin/class/export/excel')}}"class="btn btn-primary btn-xs">Export to Excel</a></th>
+                                     
                                    </thead>
                     <tbody>
                     
@@ -60,14 +72,14 @@
                                      <td>{{$class->teachers->get(0)->name}}</td> 
                                      <td>{{$class->time}}</td>
                                      <td>{{$class->room}}</td> 
-                                <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="class/{{$class->id}}"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#view" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
-                                <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="class/students/{{$class->id}}"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#view" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
-                                <td><p data-placement="top" data-toggle="tooltip"  title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-id="{!! $class->id !!}" data-target="#edit-{{$class->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                                <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="class/{{$class->id}}"><button class="btn btn-primary btn-sm" data-title="Edit" data-toggle="modal" data-target="#view" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
+                                <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="class/students/{{$class->id}}"><button class="btn btn-primary btn-sm" data-title="Edit" data-toggle="modal" data-target="#view" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
+                                <td><p data-placement="top" data-toggle="tooltip"  title="Edit"><button class="btn btn-primary btn-sm" data-title="Edit" data-toggle="modal" data-id="{!! $class->id !!}" data-target="#edit-{{$class->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
                                 
                                 <form action="{{route('class.destroy',[$class->id])}}" method="POST">
                                         {{ csrf_field() }}
                                          <input name="_method" type="hidden" value="PUT">
-                    <td><p data-placement="top" data-toggle="tooltip" onclick="return confirm('Are you sure?')" title="Delete"><button class="btn btn-danger btn-xs" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                    <td><p data-placement="top" data-toggle="tooltip" onclick="return confirm('Are you sure?')" title="Delete"><button class="btn btn-danger btn-sm" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
                     </form>
                 </tr>
                     @endforeach
