@@ -52,7 +52,7 @@
                                        
                                       <th>Edit</th>
                                        <th>Delete</th>
-                                       <th> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add</th>
+                                 
                                    </thead>
                     <tbody>
                     
