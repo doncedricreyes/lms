@@ -10,9 +10,7 @@
      position: relative;
      left: 37%;
    }
-   ::placeholder{
-     text-align: center;
-   }
+
 
          .mdl-data-table th, td{
   text-align: left !important;
