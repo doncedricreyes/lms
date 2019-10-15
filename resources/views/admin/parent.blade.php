@@ -68,7 +68,7 @@
                     
                             @foreach($parents as $row)
                             <tr>
-                                <td>{{$row->name}}</td>
+                                <td>{{ ($parents ->currentpage()-1) * $parents ->perpage() + $loop->index + 1 }}. {{$row->name}}</td>
                                 <td>{{$row->username}}</td>
                                 <td>{{$row->email}}</td>
                                 <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="/admin/parents/{{$row->id}}"><button class="btn btn-primary btn-sm" data-title="View" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
