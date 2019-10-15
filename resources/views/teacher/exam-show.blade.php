@@ -5,7 +5,16 @@
 
 
 @extends('layouts.user')
-
+<style>
+    .demo-card-wide.mdl-card {
+      position: relative; 
+      left: 5%;
+      width: 90%;
+    
+     
+    }
+  
+    </style>
 @section('content')
 
 @if($exams->get(0)->class_subject_teachers->teacher_id == Auth::user()->id || $exams->get(0)->class_subject_teachers->classes->get(0)->adviser_id == auth::user()->id)
@@ -22,8 +31,17 @@
      
      
   @foreach($exams as $exam)
-            <legend><h1>{{$exam->title}}</h1></legend>
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title" style=" background-color:#488cc7;">
+        <h2 class="mdl-card__title-text" style="font-size:28px; color: white;"> 
+     
+            {{$exam->title}}
+     
+                          </h2>
+      </div>
             @endforeach
+               <div class="mdl-card__actions mdl-card--border" style=" background-color:snow;">
+            <div class="mdl-card__supporting-text">
             @foreach($exams as $exam)
             <h4>Total Score:{{$exam->total_score}}</h4>
 <h4>Passing Score:{{$exam->passing_score}}</h4>
@@ -44,6 +62,9 @@
         @endif
 
           @endforeach
+             </div>
+      </div>
+    </div>
 </div>
 @endif
 @endsection
