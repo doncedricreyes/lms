@@ -40,7 +40,7 @@
 @if($exams->get(0)->class_subject_teachers->teacher_id == auth::user()->id)
 <div class="container" id="view">
  
-        @isset($grades)
+      
     <div class="row">
              <div class="col-lg-12 col-md-offset-0">
                     <div class="panel panel-default">
@@ -72,7 +72,7 @@
                     </thead>
                     <tbody>
                        
-         
+           @isset($grades)
                       @foreach($grades as $exam_grade)
             <tr>
                 
@@ -84,6 +84,7 @@
                 
             </tr>
                             @endforeach
+                            @endisset
                     </tbody>
                 </table>
                     </div>
@@ -95,7 +96,7 @@
 
 </div>
 @endif
-@endisset
+
 @endsection
 
             
