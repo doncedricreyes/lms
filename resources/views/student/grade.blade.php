@@ -44,13 +44,13 @@
                                    <thead>
                                    
                                    
-                                        <th>Subjects</th>
-                                        <th>Teachers</th>   
-                                        <th>1st Grading</th>
-                                        <th>2nd Grading</th>
-                                       <th>3rd Grading</th>
-                                       <th>4th Grading</th>
-                                       <th>Final</th>
+                                        <th style="font-size:16px;">Subjects</th>
+                                        <th style="font-size:16px;">Teachers</th>   
+                                        <th style="font-size:16px;">1st Grading</th>
+                                        <th style="font-size:16px;">2nd Grading</th>
+                                       <th style="font-size:16px;">3rd Grading</th>
+                                       <th style="font-size:16px;">4th Grading</th>
+                                       <th style="font-size:16px;">Final</th>
                                        
                                    </thead>
                     <tbody>
