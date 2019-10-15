@@ -3,40 +3,64 @@
 @section('content')
 
 <style>
-    .demo-card-wide.mdl-card {
-      width: 100%;
-    }
-    .demo-card-wide {
-     
-      height: 200%;
+      .demo-card-wide.mdl-card {
+      position: relative; 
+      left: 5%;
+      width: 90%;
      
     }
-  
+    #searchbar{
+     
+     display: block;
+   text-align: center;
+   }
+  #search{
+    position: relative;
+    left: 37%;
+  }
+
+        .mdl-data-table th, td{
+ text-align: left !important;
+ font-size: 16px;
+}
+#head {
+ background-color:#488cc7;
+ text-align: center !important;
+ font-size: 24px;
+ color: white;
+}
+#table{
+ background-color:snow;
+ position: relative;
+ width:90%;
+ left: 5%;
+}
+ 
     </style>
 <div class="container" id ="view">
  
          
                   
                   <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
+                    <div class="mdl-card__title" style=" background-color:#488cc7;">
                       <h2 class="mdl-card__title-text"> 
-                       <h3>{{$students->first()->name}}</h3>
+                       <h3 style="font-size:28px; color: white;">{{$students->first()->name}}</h3>
                                        </h2>
                     </div>
                 
-                    <div class="mdl-card__actions mdl-card--border">
+                    <div class="mdl-card__actions mdl-card--border" style=" background-color:snow;">
                       <div class="mdl-card__supporting-text">
                           @foreach($class_subject_teachers as $class_subject_teacher)
                           @if(Auth::user()->role == 'student')
-                          <p>Teacher: <a href="/student/teachers/profile/{{$class_subject_teachers->get(0)->teachers->get(0)->id}}" > {{$class_subject_teacher->teachers->get(0)->name}}</a></p>
+                          <p style="font-size:16px;">Teacher: <a href="/student/teachers/profile/{{$class_subject_teachers->get(0)->teachers->get(0)->id}}" > {{$class_subject_teacher->teachers->get(0)->name}}</a></p>
                           @endif  
                           @if(Auth::user()->role == 'parent')
-                          <p>Teacher: <a href="/parent/teachers/profile/{{$class_subject_teachers->get(0)->teachers->get(0)->id}}" > {{$class_subject_teacher->teachers->get(0)->name}}</a></p>
+                          <p style="font-size:16px;">Teacher: <a href="/parent/teachers/profile/{{$class_subject_teachers->get(0)->teachers->get(0)->id}}" > {{$class_subject_teacher->teachers->get(0)->name}}</a></p>
                           @endif 
-                          <p>Subject:  {{$class_subject_teacher->subjects->get(0)->title}}</p>
-                          <p>Year and Section: {{$class_subject_teacher->classes->get(0)->year}}-{{$class_subject_teacher->classes->get(0)->section}}</p>
-                          <p>Section Name: {{$class_subject_teacher->classes->get(0)->section_name}}</p>
-                          <p>Schedule: {{$class_subject_teacher->schedule  }}</p>
+                          <p style="font-size:16px;">Subject:  {{$class_subject_teacher->subjects->get(0)->title}}</p>
+                          <p style="font-size:16px;">Year and Section: {{$class_subject_teacher->classes->get(0)->year}}-{{$class_subject_teacher->classes->get(0)->section}}</p>
+                          <p style="font-size:16px;">Section Name: {{$class_subject_teacher->classes->get(0)->section_name}}</p>
+                          <p style="font-size:16px;">Schedule: {{$class_subject_teacher->schedule  }}</p>
                          
                           @endforeach
                       </div>
