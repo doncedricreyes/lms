@@ -94,8 +94,9 @@ if(count($answers)>0){
     
    public function show($id){
   $quiz_attempts = Quiz_Attempt::with('exams','students')->where('student_id',auth::user()->id)->where('exam_id',$id)->get();
-    if(count($quiz_attempts>0)){
+    
     foreach($quiz_attempts as $quiz_attempt){
+        if(count($quiz_attempts>0)){
     $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$quiz_attempt->id)
        ->get();
 
