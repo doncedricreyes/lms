@@ -5,7 +5,18 @@
 
 
 @extends('layouts.user')
-
+<style>
+    .demo-card-wide.mdl-card {
+      position: relative; 
+      left: 5%;
+      width: 90%;
+    
+     
+    }
+    #submit{
+      float:right;
+    }
+    </style>
 @section('content')
 <style>
 
@@ -26,8 +37,16 @@
      
      
   @foreach($assignments as $assignment)
-            <legend><h1>{{$assignment->title}}</h1></legend>
+             <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title" style=" background-color:#488cc7;">
+        <h2 class="mdl-card__title-text" style="font-size:28px; color: white;"> 
+            {{$assignment->title}}
+        
+                          </h2>
+      </div>
             @endforeach
+             <div class="mdl-card__actions mdl-card--border" style=" background-color:snow;">
+                <div class="mdl-card__supporting-text">
             @foreach($assignments as $assignment)
             <p class="lead">{{$assignment->description}}</p>
 <p>This assignment will open on {{$assignment->date_start}} </p>
@@ -42,6 +61,9 @@
         @endif
    </div>
           @endforeach
+            </div>
+      </div>
+    </div>
 </div>
 
 @endif
