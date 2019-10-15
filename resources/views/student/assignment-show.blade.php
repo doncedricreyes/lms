@@ -5,7 +5,18 @@
 
 
 @extends('layouts.user')
-
+<style>
+    .demo-card-wide.mdl-card {
+      position: relative; 
+      left: 5%;
+      width: 90%;
+    
+     
+    }
+    #submit{
+      float:right;
+    }
+    </style>
 @section('content')
 
 
@@ -29,30 +40,41 @@
     </div>
 @endif
      
-     
-  @foreach($assignments as $assignment)
-            <h1><legend>{{$assignment->title}}</legend></h1>
-            @endforeach
-            @foreach($assignments as $assignment)
-            <div id="description" class="col-lg-8">
-            <h3>{{$assignment->description}}</h3>
-            <br>
-<h4>Submission starts: {{$assignment->date_start}} </h4>
-<h4>Submission deadline: {{$assignment->date_end}} </h4>
-          <br><br>
-          @endforeach
-                
-          @foreach($assignments as $id)
-          @if ($id->date_start <= Carbon\Carbon::now('Asia/Manila') && $student_assignments->count() == 0) 
-          @if ($id->date_end > Carbon\Carbon::now('Asia/Manila') && $student_assignments->count() == 0) 
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-              Submit Assignment
-            </button>          
-          @else <h3>Assignment is closed</h3>
+@foreach($assignments as $assignment)
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title" style=" background-color:#488cc7;">
+      <h2 class="mdl-card__title-text" style="font-size:28px; color: white;"> 
+          {{$assignment->title}}
+      
+                        </h2>
+    </div>
 
-  @endif
-  @endif
-@endforeach
+    <div class="mdl-card__actions mdl-card--border" style=" background-color:snow;">
+      <div class="mdl-card__supporting-text">
+      <p style="font-size:16px;">{{$assignment->description}}</p>
+      <h4>Submission starts: {{$assignment->date_start}} </h4>
+      <h4>Submission deadline: {{$assignment->date_end}} </h4>
+      @endforeach
+      @foreach($assignments as $id)
+      @if ($id->date_start <= Carbon\Carbon::now('Asia/Manila') && $student_assignments->count() == 0) 
+      @if ($id->date_end > Carbon\Carbon::now('Asia/Manila') && $student_assignments->count() == 0) 
+      <button type="button" class="btn btn-primary" id="submit" data-toggle="modal" data-target="#exampleModal">
+          Submit Assignment
+        </button>          
+      @else <h3>Assignment is closed</h3>
+      @endif
+      @endif
+    @endforeach
+      </div>
+    </div>
+  </div>
+     
+  
+        
+                
+        
+
+
           
           @foreach($assignments as $id)
   <form action = "{{route('student.assignment.store',$id->id)}}" method="post"  enctype="multipart/form-data">
@@ -71,7 +93,6 @@
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                 <label for="file">Filename:</label>
                 <input class="mdl-textfield__input" type="text" name="file_title" id="file">
-                <br>
                 <input class="mdl-textfield__input" type="file" name="file" id="file" >
             </div>
         </div>
