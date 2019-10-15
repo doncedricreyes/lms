@@ -94,6 +94,7 @@ if(count($answers)>0){
     
    public function show($id){
     $quiz_attempts = Quiz_Attempt::with('exams','students')->where('student_id',auth::user()->id)->where('exam_id',$id)->get();
+       if(count($quiz_attempts>0)){
     foreach($quiz_attempts as $quiz_attempt){
     $exam_grades = Exam_Grade::with('quiz_attempt')->where('quiz_attempt_id','=',$quiz_attempt->id)
        ->get();
@@ -102,11 +103,11 @@ if(count($answers)>0){
     }
      
 
-    if(count($exam_grades)>0){
+    
        return view('student.exam-results',['exam_grades'=>$exam_grades],compact('grades'));
-    }
+       }
        else{
-           return view('student.exam-results');
+        return view('student.exam-results);   
        }
    }
 
