@@ -51,8 +51,8 @@
    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
       <div class="mdl-card__title" style=" background-color:#488cc7;">
         <h2 class="mdl-card__title-text" style="font-size:28px; color: white;"> 
-            <h2>Section: {{$class_subject_teachers->classes->first()->year}}-{{$class_subject_teachers->classes->first()->section}}
-        </h2>
+            Section: {{$class_subject_teachers->classes->first()->year}}-{{$class_subject_teachers->classes->first()->section}}
+        
                           </h2>
       </div>
   
@@ -71,8 +71,8 @@
     <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
       <div class="mdl-tabs__tab-bar">
           <a href="#announcements-panel" class="mdl-tabs__tab is-active">Announcements</a>
-        <a href="#subjects-panel" class="mdl-tabs__tab">Subjects</a>
-        <a href="#classlist-panel" class="mdl-tabs__tab">Class List</a>
+        <a href="#subjects-panel" class="mdl-tabs__tab" >Subjects</a>
+        <a href="#classlist-panel" class="mdl-tabs__tab" >Class List</a>
       </div>
       
       <div class="mdl-tabs__panel is-active" id="announcements-panel">
@@ -85,7 +85,7 @@
       <h2 class="mdl-card__title-text" style="font-size:28px; color: white; ">{{$announcement->title}}</h2>
     </div>
 
-    <div class="mdl-card__actions mdl-card--border">
+    <div class="mdl-card__actions mdl-card--border" >
       <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
      <p style="font-size:16px; color: black;"> {{$announcement->body}}</p>
       </a>
@@ -103,14 +103,14 @@
       
    <div class="card-head">
       <br><br><br>   
-      <legend>Subjects</legend>
+ 
 
    </div>
    @foreach($class_students as $subject)
    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
      <div class="mdl-card__title" style=" background-color:#488cc7;">
        <h2 class="mdl-card__title-text"> 
-         <a href="class/{{$subject->class_subject_teacher_id}}" ><h3 style="font-size:28px; color: white;">{{$subject->class_subject_teachers->get(0)->subjects->get(0)->title}}</h3></a>
+         <a href="class/{{$subject->class_subject_teacher_id}}" ><h3  style="font-size:28px; color: white;">{{$subject->class_subject_teachers->get(0)->subjects->get(0)->title}}</h3></a>
                         </h2>
      </div>
  
@@ -128,12 +128,18 @@
    <div class="mdl-tabs__panel" id="classlist-panel">
                    
          <div class="row">
-          <div class="col-lg-12 col-md-offset-0">
-          <div class="panel panel-default">
-              <div class="panel-heading">Students</div>
+         
+            <div  class="col-lg-12 col-md-offset-0">
+                <div id="table" class="panel panel-default">
+                  <br>
+                    <div class="panel-heading" id="head">Students</div>
+                    <br>
 
-              <div class="panel-body">    
-                      <table class="mdl-data-table mdl-js-data-table col-lg-12" >
+                    <div  class="panel-body"> 
+                        <div  class="table-responsive">
+                
+                                
+                          <table  class="mdl-data-table mdl-js-data-table col-lg-12" >
                       <thead>
                           <tr>
                               <th>Name</th>
