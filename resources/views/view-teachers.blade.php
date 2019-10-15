@@ -71,7 +71,7 @@
                     
                             @foreach($teachers as $row)
                             <tr>
-                                <td>{{$row->name}}</td>
+                                <td>{{ ($teachers ->currentpage()-1) * $teachers ->perpage() + $loop->index + 1 }}. {{$row->name}}</td>
                                 <td>{{$row->username}}</td>
                                 <td>{{$row->email}}</td>
                                 <td><p data-placement="top"  data-toggle="tooltip" title="View"><a href="teachers/{{$row->id}}"><button class="btn btn-primary btn-sm" data-title="View"><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
