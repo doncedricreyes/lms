@@ -77,7 +77,7 @@
                       @foreach($class_subject_teachers as $id)
                       <form action="{{route('student.show.subject',$id->id)}}" method="GET">
                 
-                          <div class="form-group">
+                          <div class="form-group" style="position:relative; left:5%;">
                               <label for="quarter">Quarter:</label>
                               <select  name="quarter" id="quarter" onchange="this.form.submit()">
                                   <option disabled selected value> -- select quarter -- </option>
@@ -97,11 +97,11 @@
                     
               @foreach($subject_announcements as $announcement)
               <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                  <div class="mdl-card__title">
-                    <h2 class="mdl-card__title-text">{{$announcement->title}}</h2>
+                  <div class="mdl-card__title" style=" background-color:#488cc7;">
+                    <h2 class="mdl-card__title-text" style="font-size:28px; color: white; ">{{$announcement->title}}</h2>
                   </div>
               
-                  <div class="mdl-card__actions mdl-card--border">
+                  <div class="mdl-card__actions mdl-card--border" style=" background-color:snow; ">
                     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                    <p> {{$announcement->body}}</p>
                     </a>
@@ -114,21 +114,21 @@
                 </div>
 
                       <div class="mdl-tabs__panel" id="resources-panel">
-                      <legend>Lectures</legend>
+                      <legend style="position:relative;left:5%;">Lectures</legend>
                       @foreach($lectures as $lecture)
-                      <a href="/storage/lectures/{{$lecture->file_name}}" download="{{$lecture->file_name}}"><div class="icon material-icons">file_copy</div>{{$lecture->file_title}}</a>
+                      <a href="/storage/lectures/{{$lecture->file_name}}" download="{{$lecture->file_name}}" style="position:relative;left:5%;"><div class="icon material-icons">file_copy</div>{{$lecture->file_title}}</a>
                       <br>
                         @endforeach
                       <br><br>
-                      <legend>Assignments</legend>
+                      <legend style="position:relative;left:5%;">Assignments</legend>
                       @foreach($assignments as $assignment)
-                      <a href="{{route('student.assignment.show', $assignment->id)}}"><div class="icon material-icons">assignment</div>{{$assignment->title}}</a><br>
+                      <a href="{{route('student.assignment.show', $assignment->id)}}" style="position:relative;left:5%;"><div class="icon material-icons">assignment</div>{{$assignment->title}}</a><br>
                           @endforeach
 <br><br>
 
-                      <legend>Quizzes and Exams</legend>
+                      <legend style="position:relative;left:5%;">Quizzes and Exams</legend>
                       @foreach($exams as $exam)
-                    <p> <a href="{{route('student.show.exam', $exam->id)}}" ><div class="icon material-icons">label_important</div>{{$exam->title}} </a></p>
+                    <a href="{{route('student.show.exam', $exam->id)}}" style="position:relative;left:5%;"><div class="icon material-icons">label_important</div>{{$exam->title}} </a><br>
                       @endforeach
               <br><br>
                       </div>
@@ -137,12 +137,17 @@
                       <div class="mdl-tabs__panel" id="classlist-panel">
                    
                         <div class="row">
-                         <div class="col-lg-12 col-md-offset-0">
-                         <div class="panel panel-default">
-                             <div class="panel-heading">Students</div>
+                        <div  class="col-lg-12 col-md-offset-0">
+                                <div id="table" class="panel panel-default">
+                                  <br>
+                                    <div class="panel-heading" id="head">Students</div>
+                                    <br>
          
-                             <div class="panel-body">    
-                                     <table class="mdl-data-table mdl-js-data-table col-lg-12" >
+                                    <div  class="panel-body"> 
+                                        <div  class="table-responsive">
+                                
+                                                
+                                          <table  class="mdl-data-table mdl-js-data-table col-lg-12" >
                                      <thead>
                                          <tr>
                                              <th>Name</th>
