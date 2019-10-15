@@ -228,7 +228,7 @@ right: 2%;
                       @endforeach
                       
                       @foreach($exams as $exam)
-                    <p> <a href="{{route('exam.show', $exam->id)}}" style="position:relative;left:5%;"   ><div class="icon material-icons">label_important</div>{{$exam->title}} </a></p>
+                    <p> <a href="{{route('exam.show', $exam->id)}}" style="position:relative;left:5%;"><div class="icon material-icons">label_important</div>{{$exam->title}} </a></p>
                       @endforeach
                    <br><br><br>
                    
