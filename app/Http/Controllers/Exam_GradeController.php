@@ -107,9 +107,7 @@ if(count($answers)>0){
    
        return view('student.exam-results',['exam_grades'=>$exam_grades],compact('grades'));
 }
-else{
-    return view('student.exam-results');
-} 
+return view('student.exam-results');
        
    }
 
