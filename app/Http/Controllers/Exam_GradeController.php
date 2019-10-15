@@ -102,8 +102,12 @@ if(count($answers)>0){
     }
      
 
-   
+    if(count($exam_grades)>0){
        return view('student.exam-results',['exam_grades'=>$exam_grades],compact('grades'));
+    }
+       else{
+           return view('student.exam-results');
+       }
    }
 
    public function parent_show($id){
