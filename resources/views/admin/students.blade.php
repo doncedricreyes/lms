@@ -57,7 +57,7 @@
                         
                               <div class="col-lg-12 col-md-offset-0">
                         <div id="table" class="panel panel-default">
-                            <div class="panel-heading">Students</div>
+                            <div class="panel-heading" id="head">Students</div>
                             <br>
                         <div class="form-group">
                                 <form action = "{{route('search_student')}}" role="search" method="get"enctype="multipart/form-data">
