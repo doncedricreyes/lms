@@ -5,6 +5,9 @@
       position: relative;
       left: 1%;
     }
+       .mdl-data-table th, td{
+  text-align: left !important;
+}
   </style>
 @section('content')
     <div class="container" id="view">
