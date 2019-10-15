@@ -256,10 +256,11 @@ desired effect
       @if(Auth::user()->role=="parent")
       <ul class="sidebar-menu" data-widget="tree">
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="/parent/enrollment"><i class="fa fa-plus-circle"></i> <span>Enrollment</span></a></li>
+     
         <li><a href="/parent/classes"><i class="fa fa-user"></i> <span>Students</span></a></li>
         <li><a href="/parent/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
         <li><a href="/parent/students/grades"><i class="fa fa-graduation-cap"></i> <span>Grades</span></a></li>
+         <li><a href="/parent/account"><i class="fa fa-user"></i> <span>Account</span></a></li>
         <li><a href="/parent/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
       </ul>
       @endif
@@ -297,6 +298,7 @@ desired effect
               <li class="{{Request::is('admin/archive/class') ? 'active' : ''}}"><a href="/admin/archive/class"><i class="fa fa-graduation-cap"></i>Class</a></li>
             </ul>
           </li>
+             <li><a href="/admin/account"><i class="fa fa-user"></i> <span>Account</span></a></li>
           <li><a href="/admin/logout"><i class="fa fa-sign-out"></i>  <span>Logout</span></a></li>
        
         </ul>
@@ -311,6 +313,7 @@ desired effect
             <li><a href="/student/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
             <li><a href="/student/profile/{{Auth::user()->id}}"><i class="fa  fa-user"></i> <span>Profile</span></a></li>
             <li><a href="/student/calendar"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
+             <li><a href="/student/account"><i class="fa fa-user"></i> <span>Account</span></a></li>
             <li><a href="/student/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
           </ul>
           @endif
@@ -322,6 +325,7 @@ desired effect
               <li><a href="/teacher/profile/{{Auth::user()->id}}"><i class="fa  fa-user"></i> <span>Profile</span></a></li>
               <li><a href="/teacher/messages/{{Auth::user()->id}}/inbox"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
               <li><a href="/teacher/calendar"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
+               <li><a href="/teacher/account"><i class="fa fa-user"></i> <span>Account</span></a></li>
               <li><a href="/teacher/logout"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
             </ul>
             @endif
