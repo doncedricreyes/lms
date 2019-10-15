@@ -3,14 +3,30 @@
 
 @extends('layouts.user')
 <style>
-        #searchbar{
-          position: relative;
-          left: 1%;
-        }
-          .mdl-data-table th, td{
+    #searchbar{
+     
+      display: block;
+    text-align: center;
+    }
+   #search{
+     position: relative;
+     left: 37%;
+   }
+
+         .mdl-data-table th, td{
   text-align: left !important;
+  font-size: 16px;
 }
-      </style>
+#head {
+  background-color:#488cc7;
+  text-align: center !important;
+  font-size: 28px;
+  color: white;
+}
+#table{
+  background-color:snow;
+}
+  </style>
 @section('content')
 
     <div class="container" id="view">
@@ -37,8 +53,8 @@
                         
                        
                             <div class="col-lg-12 col-md-offset-0">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">Classes</div>
+                                    <div id="table" class="panel panel-default">
+                                        <div class="panel-heading" id="head">Classes</div>
                                         <br>
                                         <div id="searchbar">
                                         <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#create">Create Class</button>
@@ -53,16 +69,16 @@
                                    
                                    <thead>
                                    
-                                        <th>School Year</th>
-                                        <th>Year and Section</th>
-                                        <th>Section Name</th>
-                                        <th>Adviser</th>
-                                        <th>Time</th>
-                                        <th>Room</th>
-                                        <th>Subjects</th>
-                                        <th>Class List</th>
-                                      <th>Edit</th>
-                                       <th>Delete</th>
+                                        <th style="font-size:16px;">School Year</th>
+                                        <th style="font-size:16px;">Year and Section</th>
+                                        <th style="font-size:16px;">Section Name</th>
+                                        <th style="font-size:16px;">Adviser</th>
+                                        <th style="font-size:16px;">Time</th>
+                                        <th style="font-size:16px;">Room</th>
+                                        <th style="font-size:16px;">Subjects</th>
+                                        <th style="font-size:16px;">Class List</th>
+                                      <th style="font-size:16px;">Edit</th>
+                                       <th style="font-size:16px;">Delete</th>
                                      
                                    </thead>
                     <tbody>
