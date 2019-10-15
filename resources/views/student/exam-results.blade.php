@@ -15,7 +15,7 @@
         }
     </style>
 <div class="container" id="view">
-        @if(count($exam_grades)>0)
+        @if($exam_grades)
     <div class="container">
         <div class="row">
             
