@@ -34,7 +34,7 @@
                         
                         <div class="col-lg-12 col-md-offset-0">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Students</div>
+                            <div class="panel-heading">Teachers</div>
                             <br>
                                 <form action = "{{route('search_teacher')}}" role="search" method="get"enctype="multipart/form-data">
                                      <div id="searchbar">
