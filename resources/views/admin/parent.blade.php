@@ -1,5 +1,11 @@
 @extends('layouts.user')
 
+<style>
+    #searchbar{
+      position: relative;
+      left: 1%;
+    }
+  </style>
 @section('content')
     <div class="container" id="view">
             <div class="flash-message">
@@ -23,21 +29,25 @@
                     <div class="row">
                         
                         
-                        <div class="col-md-12">
-                        <legend>Parents</legend>
+                        <div class="col-lg-12 col-md-offset-0">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Parents</div>
+                            <br>
                         <form action = "{{route('search_parent')}}" role="search" method="get"enctype="multipart/form-data">
-                          <div>
+                           <div id="searchbar">
                             <input type="text" class="form-control" name="search" id="search" placeholder="Search" style="width: 300px;">
                             <br>
                             <a href="" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-xs">Add Parent </a>
                             <a href="{{url('admin/parents/export/excel')}}"class="btn btn-primary btn-xs">Export to Excel</a>
                             <a href="" data-toggle="modal" data-target="#import" class="btn btn-primary btn-xs">Import</a>
-                          </div>
+                            <br>
+                         </div>
                                 </form>
+                     <div class="panel-body"> 
                         <div class="table-responsive">
                 
                                 
-                              <table id="mytable" class="table table-bordred table-striped">
+                          <table class="mdl-data-table mdl-js-data-table col-lg-12" >
                                    
                                    <thead>
                                    
@@ -58,17 +68,17 @@
                                 <td>{{$row->name}}</td>
                                 <td>{{$row->username}}</td>
                                 <td>{{$row->email}}</td>
-                                <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="/admin/parents/{{$row->id}}"><button class="btn btn-primary btn-xs" data-title="View" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
-                                <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-id="{!! $row->id !!}" data-target="#edit-{{$row->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                                <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="/admin/parents/{{$row->id}}"><button class="btn btn-primary btn-sm" data-title="View" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
+                                <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-sm" data-title="Edit" data-toggle="modal" data-id="{!! $row->id !!}" data-target="#edit-{{$row->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
                              
                                 
                                 <form action="{{route('admin.parents.destroy',[$row->id])}}" method="POST">
                     
                                   {{csrf_field() }}
                                   <input name="_method" type="hidden" value="PUT">
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
                     </form>
-                    <td><p data-placement="top"  data-toggle="tooltip" title="Message"><a href="parents/{{$row->id}}/message"><button class="btn btn-primary btn-xs" data-title="View"><i class="glyphicon glyphicon-comment">
+                    <td><p data-placement="top"  data-toggle="tooltip" title="Message"><a href="/admin/parents/{{$row->id}}/message"><button class="btn btn-primary btn-sm" data-title="View"><i class="glyphicon glyphicon-comment">
                      <td>{{$row->status}}</td>
              </tr>
                     @endforeach
