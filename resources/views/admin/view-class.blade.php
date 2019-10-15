@@ -2,12 +2,27 @@
 @extends('layouts.user')
 <style>
     #searchbar{
-      position: relative;
-      left: 1%;
+     
+      display: block;
+    text-align: center;
     }
-    
-        .mdl-data-table th, td{
+   #search{
+     position: relative;
+     left: 37%;
+   }
+
+         .mdl-data-table th, td{
   text-align: left !important;
+  font-size: 16px;
+}
+#head {
+  background-color:#488cc7;
+  text-align: center !important;
+  font-size: 28px;
+  color: white;
+}
+#table{
+  background-color:snow;
 }
   </style>
 @section('content')
@@ -40,8 +55,8 @@
                 
                
                 <div class="col-lg-12 col-md-offset-0">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Schedule</div>
+                    <div id="table" class="panel panel-default">
+                        <div class="panel-heading" id="head">Schedule</div>
                         <br>
                         <div id="searchbar">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create">Add Subject</button>
@@ -55,13 +70,13 @@
                            
                            <thead>
                            
-                                         <th>Subject</th>
+                                         <th style="font-size:16px;">Subject</th>
                                                 
-                                        <th>Teacher</th>
-                                        <th>Schedule</th>
+                                        <th style="font-size:16px;">Teacher</th>
+                                        <th style="font-size:16px;">Schedule</th>
                                      
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        <th style="font-size:16px;">Edit</th>
+                                        <th style="font-size:16px;">Delete</th>
                                       
                                
                            </thead>
