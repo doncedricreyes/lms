@@ -3,14 +3,39 @@
 @section('content')
 
 <style>
-   .demo-card-wide.mdl-card {
-     width: 100%;
+    .demo-card-wide.mdl-card {
+      position: relative; 
+      left: 5%;
+      width: 90%;
+     
+    }
+
+    #searchbar{
+     
+     display: block;
+   text-align: center;
    }
-   .demo-card-wide {
-    
-     height: 200%;
-    
-   }
+  #search{
+    position: relative;
+    left: 37%;
+  }
+
+        .mdl-data-table th, td{
+ text-align: left !important;
+ font-size: 16px;
+}
+#head {
+ background-color:#488cc7;
+ text-align: center !important;
+ font-size: 24px;
+ color: white;
+}
+#table{
+ background-color:snow;
+ position: relative;
+ width:90%;
+ left: 5%;
+}
  
    </style>
 
@@ -24,20 +49,20 @@
         @endforeach
       </div> <!-- end .flash-message -->
    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-      <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text"> 
+      <div class="mdl-card__title" style=" background-color:#488cc7;">
+        <h2 class="mdl-card__title-text" style="font-size:28px; color: white;"> 
             <h2>Section: {{$class_subject_teachers->classes->first()->year}}-{{$class_subject_teachers->classes->first()->section}}
         </h2>
                           </h2>
       </div>
   
-      <div class="mdl-card__actions mdl-card--border">
+      <div class="mdl-card__actions mdl-card--border" style=" background-color:snow;">
         <div class="mdl-card__supporting-text">
-        <p>Adviser:     <a href="teachers/profile/{{$class_subject_teachers->classes->first()->teachers->first()->id}}" >  {{$class_subject_teachers->classes->first()->teachers->first()->name}}</a></p>
-           <p>Section Name: {{$class_subject_teachers->classes->first()->section_name}}</p>
-        <p>School year: {{$class_subject_teachers->classes->first()->school_year}}</p>
-         <p>Time: {{$class_subject_teachers->classes->first()->time}}</p>
-         <p>Room: {{$class_subject_teachers->classes->first()->room}}</p>
+        <p style="font-size:16px;">Adviser:     <a href="teachers/profile/{{$class_subject_teachers->classes->first()->teachers->first()->id}}" >  {{$class_subject_teachers->classes->first()->teachers->first()->name}}</a></p>
+           <p style="font-size:16px;">Section Name: {{$class_subject_teachers->classes->first()->section_name}}</p>
+        <p style="font-size:16px;">School year: {{$class_subject_teachers->classes->first()->school_year}}</p>
+         <p style="font-size:16px;">Time: {{$class_subject_teachers->classes->first()->time}}</p>
+         <p style="font-size:16px;">Room: {{$class_subject_teachers->classes->first()->room}}</p>
      
         
         </div>
@@ -55,14 +80,14 @@
       
 <br><br>
 @foreach($class_announcements as $announcement)
-<div class="demo-card-wide mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title-text">{{$announcement->title}}</h2>
+<div class="demo-card-wide mdl-card mdl-shadow--2dp" style=" background-color:snow; ">
+    <div class="mdl-card__title" style=" background-color:#488cc7;">
+      <h2 class="mdl-card__title-text" style="font-size:28px; color: white; ">{{$announcement->title}}</h2>
     </div>
 
     <div class="mdl-card__actions mdl-card--border">
       <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-     <p> {{$announcement->body}}</p>
+     <p style="font-size:16px; color: black;"> {{$announcement->body}}</p>
       </a>
     </div>
   
@@ -83,13 +108,13 @@
    </div>
    @foreach($class_students as $subject)
    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-     <div class="mdl-card__title">
+     <div class="mdl-card__title" style=" background-color:#488cc7;">
        <h2 class="mdl-card__title-text"> 
-         <a href="class/{{$subject->class_subject_teacher_id}}" ><h3>{{$subject->class_subject_teachers->get(0)->subjects->get(0)->title}}</h3></a>
+         <a href="class/{{$subject->class_subject_teacher_id}}" ><h3 style="font-size:28px; color: white;">{{$subject->class_subject_teachers->get(0)->subjects->get(0)->title}}</h3></a>
                         </h2>
      </div>
  
-     <div class="mdl-card__actions mdl-card--border">
+     <div class="mdl-card__actions mdl-card--border" style=" background-color:snow; ">
        <div class="mdl-card__supporting-text">
              <a href="teachers/profile/{{$subject->class_subject_teachers->get(0)->teachers->get(0)->id}}" > <h5>Teacher: {{$subject->class_subject_teachers->get(0)->teachers->get(0)->name}}</h5></a>
          <h5>Schedule: {{$subject->class_subject_teachers->get(0)->schedule}}</h5>
