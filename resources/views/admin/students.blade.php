@@ -74,17 +74,17 @@
                                 <td>{{$row->name}}</td>
                                 <td>{{$row->username}}</td>
                                 <td>{{$row->email}}</td>
-                                <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="/admin/students/{{$row->id}}"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
-                             <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-id="{!! $row->id !!}" data-target="#edit-{{$row->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                                <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="/admin/students/{{$row->id}}"><button class="btn btn-primary btn-sm" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
+                             <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-sm" data-title="Edit" data-toggle="modal" data-id="{!! $row->id !!}" data-target="#edit-{{$row->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
                              
                                 
                                 <form action="{{route('admin.student.destroy',[$row->id])}}" method="POST">
                      
                                   {{csrf_field() }}
                                   <input name="_method" type="hidden" value="PUT">
-                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" onclick="return confirm('Are you sure?')" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
                     </form>
-                    <td><p data-placement="top"  data-toggle="tooltip" title="Message"><a href="students/{{$row->id}}/message"><button class="btn btn-primary btn-xs" data-title="View"><i class="glyphicon glyphicon-comment">
+                    <td><p data-placement="top"  data-toggle="tooltip" title="Message"><a href="/admin/students/{{$row->id}}/message"><button class="btn btn-primary btn-sm" data-title="View"><i class="glyphicon glyphicon-comment">
                     <td>{{$row->status}}</td>
                </tr>
                     @endforeach
