@@ -661,7 +661,7 @@ class AdminController extends Controller
         ]);
          
       $search = $request->search;
-      $students = Student::where('name','=',$search)->where('status','=','active')->orWhere('status','=','no class')->orderBy('name')->paginate(10);
+      $students = Student::where('name','=',$search)->orderBy('name')->paginate(10);
           if(count($students)==0){
         $request->session()->flash('alert-danger', 'Student not found!');
         return view('admin.students',['students'=>$students]);  
