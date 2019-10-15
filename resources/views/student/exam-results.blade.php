@@ -15,6 +15,7 @@
         }
     </style>
 <div class="container" id="view">
+@isset($exam_grades)
         @if($exam_grades)
     <div class="container">
         <div class="row">
@@ -68,6 +69,7 @@
 @if($exam_grades == "")
 <h1>You haven't completed this exam/quiz yet.</h1>
 @endif
+@endisset
 </div>
 @endsection
 
