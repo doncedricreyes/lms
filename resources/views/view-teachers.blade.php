@@ -9,6 +9,7 @@
     }
            .mdl-data-table th, td{
   text-align: left !important;
+   font-size: 16px;
 }
   </style>
 @section('content')
