@@ -2,11 +2,30 @@
 
 <style>
     #searchbar{
-      position: relative;
-      left: 1%;
+     
+      display: block;
+    text-align: center;
     }
-       .mdl-data-table th, td{
+   #search{
+     position: relative;
+     left: 37%;
+   }
+   ::placeholder{
+     text-align: center;
+   }
+
+         .mdl-data-table th, td{
   text-align: left !important;
+  font-size: 16px;
+}
+#head {
+  background-color:#488cc7;
+  text-align: center !important;
+  font-size: 28px;
+  color: white;
+}
+#table{
+  background-color:snow;
 }
   </style>
 @section('content')
@@ -33,8 +52,8 @@
                         
                         
                         <div class="col-lg-12 col-md-offset-0">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Parents</div>
+                         <div id="table" class="panel panel-default">
+                            <div class="panel-heading" id="head">Parents</div>
                             <br>
                         <form action = "{{route('search_parent')}}" role="search" method="get"enctype="multipart/form-data">
                            <div id="searchbar">
@@ -55,14 +74,14 @@
                                    <thead>
                                    
                                    
-                                        <th>Name</th>
-                                        <th>Username</th> 
-                                        <th>Email</th>
-                                        <th>View</th>
-                                        <th>Edit</th>
-                                       <th>Delete</th>
-                                       <th>Message</th>
-                                        <th>Status</th>
+                                        <th style="font-size:16px;">Name</th>
+                                        <th style="font-size:16px;">Username</th> 
+                                        <th style="font-size:16px;">Email</th>
+                                        <th style="font-size:16px;">View</th>
+                                        <th style="font-size:16px;">Edit</th>
+                                       <th style="font-size:16px;">Delete</th>
+                                       <th style="font-size:16px;">Message</th>
+                                        <th style="font-size:16px;">Status</th>
                                    </thead>
                     <tbody>
                     
