@@ -3,14 +3,30 @@
 
 @extends('layouts.user')
 <style>
-        #searchbar{
-          position: relative;
-          left: 1%;
-        }
-              .mdl-data-table th, td{
+    #searchbar{
+     
+      display: block;
+    text-align: center;
+    }
+   #search{
+     position: relative;
+     left: 37%;
+   }
+
+         .mdl-data-table th, td{
   text-align: left !important;
+  font-size: 16px;
 }
-      </style>
+#head {
+  background-color:#488cc7;
+  text-align: center !important;
+  font-size: 28px;
+  color: white;
+}
+#table{
+  background-color:snow;
+}
+  </style>
 @section('content')
 
     <div class="container" id="view">
@@ -36,8 +52,8 @@
                     <div class="row">
                         
                          <div class="col-lg-12 col-md-offset-0">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Subjects</div>
+                            <div id="table" class="panel panel-default">
+                                <div class="panel-heading" id="head">Subjects</div>
                                 <br>
                                 <div id="searchbar">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Create Subject</button>
@@ -51,10 +67,10 @@
                                    <thead>
                                    
                                    
-                                        <th>Subject</th>
+                                        <th style="font-size:16px;">Subject</th>
                                        
-                                      <th>Edit</th>
-                                       <th>Delete</th>
+                                      <th style="font-size:16px;">Edit</th>
+                                       <th style="font-size:16px;">Delete</th>
                                  
                                    </thead>
                     <tbody>
