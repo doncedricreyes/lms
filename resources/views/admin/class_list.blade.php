@@ -1,5 +1,10 @@
 @extends('layouts.user')
-
+<style>
+    #searchbar{
+      position: relative;
+      left: 1%;
+    }
+  </style>
 @section('content')
 
     <div class="container" id="view">
@@ -24,16 +29,19 @@
             <div class="row">
                 
                 
-                <div class="col-md-12">
-                <legend>Class List</legend>
-    <div>
+       <div class="col-lg-12 col-md-offset-0">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Class List</div>
+                        <br>
+                        <div id="searchbar">
             <a href="" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-xs">Add Student </a> 
             <a href="{{route('class_list.excel',$class_subject_teachers->class_id)}}"class="btn btn-primary btn-xs">Export to Excel</a>
     </div>
-                <div class="table-responsive">
-        
-                        
-                      <table id="mytable" class="table table-bordred table-striped">
+                <div class="panel-body"> 
+                            <div class="table-responsive">
+                    
+                                    
+                              <table class="mdl-data-table mdl-js-data-table col-lg-12" >
                            
                            <thead>
                            
@@ -53,7 +61,7 @@
             
                                     {{csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <td><p data-placement="top" data-toggle="tooltip" onclick="return confirm('Are you sure?')" title="Delete"><button class="btn btn-danger btn-xs" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                                    <td><p data-placement="top" data-toggle="tooltip" onclick="return confirm('Are you sure?')" title="Delete"><button class="btn btn-danger btn-sm" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
                                 </form>
     
         </tr>
