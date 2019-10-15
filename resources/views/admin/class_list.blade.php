@@ -4,7 +4,9 @@
       position: relative;
       left: 1%;
     }
- 
+        .mdl-data-table th, td{
+  text-align: left !important;
+}
   </style>
 @section('content')
 
@@ -42,7 +44,7 @@
                             <div class="table-responsive">
                     
                                     
-                              <table class="mdl-cell mdl-cell--4-col" >
+                               <table class="mdl-data-table mdl-js-data-table col-lg-12" >
                            
                            <thead>
                            
