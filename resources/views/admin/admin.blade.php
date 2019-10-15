@@ -74,16 +74,16 @@
                                 <td>{{$row->name}}</td>
                                 <td>{{$row->email}}</td>
                                 <td>{{$row->role}}</td>
-                                <td><p data-placement="top"  data-toggle="tooltip" title="Message"><a href="admins/{{$row->id}}/message"><button class="btn btn-primary btn-xs" data-title="View"><i class="glyphicon glyphicon-comment">
+                                <td><p data-placement="top"  data-toggle="tooltip" title="Message"><a href="/admin/admins/{{$row->id}}/message"><button class="btn btn-primary btn-sm" data-title="View"><i class="glyphicon glyphicon-comment">
                                  
                                
                                 @if(Auth::user()->role == 'superadmin')
-                                <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-id="{!! $row->id !!}" data-target="#edit-{{$row->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                                <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-sm" data-title="Edit" data-toggle="modal" data-id="{!! $row->id !!}" data-target="#edit-{{$row->id}}" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
                                 <form action = "{{route('admin.destroy',[$row->id])}}" method="post" enctype="multipart/form-data">
             
                                   {{csrf_field() }}
                                   <input name="_method" type="hidden" value="PUT">
-                                  <td><p data-placement="top" data-toggle="tooltip" onclick="return confirm('Are you sure?')" title="Delete"><button class="btn btn-danger btn-xs" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                                  <td><p data-placement="top" data-toggle="tooltip" onclick="return confirm('Are you sure?')" title="Delete"><button class="btn btn-danger btn-sm" value="submit" type="submit" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
                               </form>
                                     @endif
                                 <td>{{$row->status}}</td>
