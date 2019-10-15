@@ -1,25 +1,52 @@
 @extends('layouts.user')
-
+<style>
+        #searchbar{
+         
+          display: block;
+        text-align: center;
+        }
+       #search{
+         position: relative;
+         left: 37%;
+       }
+    
+             .mdl-data-table th, td{
+      text-align: left !important;
+      font-size: 16px;
+    }
+    #head {
+      background-color:#488cc7;
+      text-align: center !important;
+      font-size: 28px;
+      color: white;
+    }
+    #table{
+      background-color:snow;
+    }
+      </style>
 @section('content')
 
 <div class="container" id="view">
 
     <div class="row">
-    <div class="col-md-12">
-        <legend>Schedule</legend>
+            <div  class="col-lg-12 col-md-offset-0">
+                    <div id="table" class="panel panel-default">
+                        <div class="panel-heading" id="head">Schedule</div>
+                        <br>
 
-<div class="table-responsive">
-
-        
-      <table id="mytable" class="table table-bordred table-striped">
+                        <div  class="panel-body"> 
+                                <div  class="table-responsive">
+                        
+                                        
+                                  <table  class="mdl-data-table mdl-js-data-table col-lg-12" >
            
            <thead>
            
            
-                <th>Subject</th>
-                <th>Teacher</th>
-                <th>Year and Section</th>  
-                <th>Schedule</th>
+                <th style="font-size:16px">Subject</th>
+                <th style="font-size:16px">Teacher</th>
+                <th style="font-size:16px">Year and Section</th>  
+                <th style="font-size:16px">Schedule</th>
            </thead>
 <tbody>
 
