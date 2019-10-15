@@ -171,12 +171,13 @@
                                      </tbody>
                                  </table>
                                
-                             </div>
+                            </div>
                          </div>
                      </div>
                  </div>
                           
                          </div>
+                      </div>
 
 
 
@@ -184,12 +185,17 @@
                      <div class="mdl-tabs__panel" id="grades-panel">
                           
                           <div class="row">
-                              <div class="col-lg-12 col-md-offset-0">
-                              <div class="panel panel-default">
-                                  <div class="panel-heading">Quizzes</div>
-                        
-                                  <div class="panel-body">    
-                                          <table class="mdl-data-table mdl-js-data-table col-lg-12" >
+                            <div  class="col-lg-12 col-md-offset-0">
+                <div id="table" class="panel panel-default">
+                  <br>
+                    <div class="panel-heading" id="head">Quizzes</div>
+                    <br>
+
+                    <div  class="panel-body"> 
+                        <div  class="table-responsive">
+                
+                                
+                          <table  class="mdl-data-table mdl-js-data-table col-lg-12" >
                                           <thead>
                                               <tr>
 
@@ -223,12 +229,17 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-lg-12 col-md-offset-0">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Assignments</div>
-                  
-                            <div class="panel-body">    
-                                    <table class="mdl-data-table mdl-js-data-table col-lg-12" >
+                        <div  class="col-lg-12 col-md-offset-0">
+                <div id="table" class="panel panel-default">
+                  <br>
+                    <div class="panel-heading" id="head">Assignments</div>
+                    <br>
+
+                    <div  class="panel-body"> 
+                        <div  class="table-responsive">
+                
+                                
+                          <table  class="mdl-data-table mdl-js-data-table col-lg-12" >
                                     <thead>
                                         <tr>
 
@@ -252,14 +263,9 @@
                                     </tbody>
                                 </table>
                               
-                            </div>
+                          </div>
                         </div>
                     </div>
                 </div>
                       </div>
-                    </div>
-</div>
-
-                      
-                </div>
 @endsection
