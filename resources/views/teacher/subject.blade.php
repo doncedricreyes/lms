@@ -2,7 +2,7 @@
 
 @section('content')
 <style>
-    .demo-card-wide.mdl-card {
+      .demo-card-wide.mdl-card {
       width: 100%;
     }
     .demo-card-wide {
@@ -19,51 +19,36 @@ right: 2%;
     min-height: .01%;
     overflow-x: auto;
 }
-@media screen and (max-width: 767px) {
-    .table-responsive {
-        width: 100%;
-        margin-bottom: 15px;
-        overflow-y: hidden;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-        border: 1px solid #ddd;
+.demo-card-wide.mdl-card {
+      position: relative; 
+      left: 5%;
+      width: 90%;
+     
     }
-    .table-responsive > .table {
-        margin-bottom: 0;
-    }
-    .table-responsive > .table > thead > tr > th,
-    .table-responsive > .table > tbody > tr > th,
-    .table-responsive > .table > tfoot > tr > th,
-    .table-responsive > .table > thead > tr > td,
-    .table-responsive > .table > tbody > tr > td,
-    .table-responsive > .table > tfoot > tr > td {
-        white-space: nowrap;
-    }
-    .table-responsive > .table-bordered {
-        border: 0;
-    }
-    .table-responsive > .table-bordered > thead > tr > th:first-child,
-    .table-responsive > .table-bordered > tbody > tr > th:first-child,
-    .table-responsive > .table-bordered > tfoot > tr > th:first-child,
-    .table-responsive > .table-bordered > thead > tr > td:first-child,
-    .table-responsive > .table-bordered > tbody > tr > td:first-child,
-    .table-responsive > .table-bordered > tfoot > tr > td:first-child {
-        border-left: 0;
-    }
-    .table-responsive > .table-bordered > thead > tr > th:last-child,
-    .table-responsive > .table-bordered > tbody > tr > th:last-child,
-    .table-responsive > .table-bordered > tfoot > tr > th:last-child,
-    .table-responsive > .table-bordered > thead > tr > td:last-child,
-    .table-responsive > .table-bordered > tbody > tr > td:last-child,
-    .table-responsive > .table-bordered > tfoot > tr > td:last-child {
-        border-right: 0;
-    }
-    .table-responsive > .table-bordered > tbody > tr:last-child > th,
-    .table-responsive > .table-bordered > tfoot > tr:last-child > th,
-    .table-responsive > .table-bordered > tbody > tr:last-child > td,
-    .table-responsive > .table-bordered > tfoot > tr:last-child > td {
-        border-bottom: 0;
-    }
+    #searchbar{
+     
+     display: block;
+   text-align: center;
+   }
+  #search{
+    position: relative;
+    left: 37%;
+  }
+        .mdl-data-table th, td{
+ text-align: left !important;
+ font-size: 16px;
 }
+#head {
+ background-color:#488cc7;
+ text-align: center !important;
+ font-size: 24px;
+ color: white;
+}
+#table{
+ background-color:snow;
+ position: relative;
+ width:90%;
+ left: 5%;
 }
   
     </style>
@@ -91,18 +76,18 @@ right: 2%;
     
                   
                   <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
-                      <h2 class="mdl-card__title-text"> @foreach($class_subject_teachers as $subject)
+                    <div class="mdl-card__title" style=" background-color:#488cc7;">
+                      <h2 class="mdl-card__title-text" style="font-size:28px; color: white;"> @foreach($class_subject_teachers as $subject)
                         {{$subject->subjects->get(0)->title}}
                                         @endforeach</h2>
                     </div>
                 
-                    <div class="mdl-card__actions mdl-card--border">
+                    <div class="mdl-card__actions mdl-card--border" style=" background-color:snow;">
                       <div class="mdl-card__supporting-text">
                           @foreach($class_subject_teachers as $class_subject_teacher)
-                          <p>Year and Section: {{$class_subject_teacher->classes->get(0)->year}}-{{$class_subject_teacher->classes->get(0)->section}}</p>
-                          <p>Section Name: {{$class_subject_teacher->classes->get(0)->section_name}}</p>
-                          <p>Schedule: {{$class_subject_teacher->schedule  }}</p>
+                          <p style="font-size:16px;">Year and Section: {{$class_subject_teacher->classes->get(0)->year}}-{{$class_subject_teacher->classes->get(0)->section}}</p>
+                          <p style="font-size:16px;">Section Name: {{$class_subject_teacher->classes->get(0)->section_name}}</p>
+                          <p style="font-size:16px;">Schedule: {{$class_subject_teacher->schedule  }}</p>
                             @endforeach
                       </div>
                     </div>
@@ -117,7 +102,7 @@ right: 2%;
                       @foreach($class_subject_teachers as $id)
                       <form action="{{route('subject.index',$id->id)}}" method="GET">
                         @endforeach
-                          <div class="form-group">
+                          <div class="form-group" style="position:relative; left:5%;">
                               <label for="quarter">Quarter:</label>
                               <select  name="quarter" id="quarter" onchange="this.form.submit()">
                                   <option disabled selected value> -- select quarter -- </option>
@@ -136,7 +121,7 @@ right: 2%;
                     <div class="mdl-tabs__panel is-active" id="announcements-panel">
                         <br><br>     @if($class_subject_teachers->get(0)->teacher_id == Auth::user()->id)
                 
-                     <legend><a href="{{route('subject.announcement.create',$class_subject_teachers->first()->id)}}" class="btn btn-primary">Create Announcement</a></legend>  
+                     <legend style="position:relative; left:5%;"><a href="{{route('subject.announcement.create',$class_subject_teachers->first()->id)}}" class="btn btn-primary">Create Announcement</a></legend>  
          @endif
                      <br><br>
           @foreach($subject_announcements as $announcement)
@@ -168,15 +153,15 @@ right: 2%;
 
 
                       <div class="mdl-tabs__panel" id="resources-panel">
-                      <legend>Lectures</legend>
+                      <legend style="position:relative;left:5%;">Lectures</legend>
                       @if($class_subject_teachers->get(0)->teacher_id == Auth::user()->id)
-                      <a href="" data-toggle="modal" data-target="#exampleModal">
+                      <a href="" data-toggle="modal" data-target="#exampleModal" style="position:relative;left:5%;">
                           Add Files 
                       </a>
                     @endif
                         <br><br><br>
                       @foreach($lectures as $lecture)
-                      <a href="/storage/lectures/{{$lecture->file_name}}" download="{{$lecture->file_name}}"><div class="icon material-icons">file_copy</div>{{$lecture->file_title}}</a><br>
+                      <a href="/storage/lectures/{{$lecture->file_name}}" download="{{$lecture->file_name}}" style="position:relative;left:5%;"><div class="icon material-icons">file_copy</div>{{$lecture->file_title}}</a><br>
                         @endforeach
                       <!-- Button trigger modal -->
 
@@ -221,29 +206,29 @@ right: 2%;
   </div>
   </form>
   <br><br><br><br>
-  <legend>Assignments</legend>
+  <legend style="position:relative;left:5%;">Assignments</legend>
                       @foreach($class_subject_teachers as $id)
                       @if($class_subject_teachers->get(0)->teacher_id == Auth::user()->id)
-                      <a href="{{route('assignment.index', $id->id)}}"> 
+                      <a style="position:relative;left:5%;" href="{{route('assignment.index', $id->id)}}"> 
                           Create Assignments
                       </a><br><br><br>
                       @endif
                       @endforeach
                       @foreach($assignments as $assignment)
-                    <a href="{{route('assignment.show', $assignment->id)}}"><div class="icon material-icons">assignment</div>{{$assignment->title}}</a><br>
+                    <a href="{{route('assignment.show', $assignment->id)}}" style="position:relative;left:5%;"><div class="icon material-icons">assignment</div>{{$assignment->title}}</a><br>
                         @endforeach
                       
 
                         <br><br><br><br>
-                        <legend>Quizzes and Exams</legend>
+                        <legend style="position:relative;left:5%;">Quizzes and Exams</legend>
                         @foreach($class_subject_teachers as $class_subject_teacher)
                         @if($class_subject_teachers->get(0)->teacher_id == Auth::user()->id)
-                      <a href="{{route('exam.index', $class_subject_teacher->id)}}" >Create Quizzes/Exams </a>
+                      <a href="{{route('exam.index', $class_subject_teacher->id)}}"style="position:relative;left:5%;" >Create Quizzes/Exams </a>
                       @endif
                       @endforeach
                       
                       @foreach($exams as $exam)
-                    <p> <a href="{{route('exam.show', $exam->id)}}" ><div class="icon material-icons">label_important</div>{{$exam->title}} </a></p>
+                    <p> <a href="{{route('exam.show', $exam->id)}}" style="position:relative;left:5%;"   ><div class="icon material-icons">label_important</div>{{$exam->title}} </a></p>
                       @endforeach
                    <br><br><br>
                    
@@ -257,13 +242,17 @@ right: 2%;
                       <div class="mdl-tabs__panel" id="classlist-panel">
                    
                      <div class="row">
-                      <div class="col-lg-12 col-lg-offset-0">
-                      <div class="panel panel-default">
-                          <div class="panel-heading">Students</div>
-      
-                          <div class="panel-body">   
-                              <div class = "table-responsive">
-                                  <table class="mdl-data-table mdl-js-data-table col-lg-12" >
+                    <div  class="col-lg-12 col-md-offset-0">
+                            <div id="table" class="panel panel-default">
+                              <br>
+                                <div class="panel-heading" id="head">Students</div>
+                                <br>
+     
+                                <div  class="panel-body"> 
+                                    <div  class="table-responsive">
+                            
+                                            
+                                      <table  class="mdl-data-table mdl-js-data-table col-lg-12" >
                                   <thead>
                                       <tr>
                                           <th>Name</th>
@@ -279,10 +268,10 @@ right: 2%;
                                   </thead>
                                   <tbody>
                                      
-                       
+                            <?php $i=1  ?>
                                       @foreach($class_students as $class_student)
                                       <tr>
-                                          <td>{{$class_student->students->get(0)->name}}</td>
+                                          <td>{{$i}}. {{$class_student->students->get(0)->name}}</td>
                                           <td>{{$class_student->students->get(0)->email}}</td>
                                           <td> <a href="/teacher/subjects/{{$class_student->class_subject_teacher_id}}/grades/{{$class_student->students->get(0)->id}}"><button type="button" class="btn btn-primary btn-xs"><span class="material-icons">
                                               search</span></button></a></td>
@@ -295,7 +284,7 @@ right: 2%;
                                               <td>Parent/Guardian is not yet registered!</td>
                                               @endempty
                                             </tr>
-                                                 
+                                                  <?php $i++ ?>
                           <form action = "{{route('grade-subject.store',$id->id)}}" method="post" enctype="multipart/form-data">
     
                             {{csrf_field() }}
@@ -353,13 +342,22 @@ right: 2%;
                                
                      
                           <div class="row">
-                              <div class="col-lg-12 col-md-offset-0">
-                              <div class="panel panel-default">
-                                  <div class="panel-heading">Students</div>
-              
-                                  <div class="panel-body">   
-                             <div class = "table-responsive">
-                                          <table class="mdl-data-table mdl-js-data-table col-lg-12" >
+                          <div  class="col-lg-12 col-md-offset-0">
+                                  <div id="table" class="panel panel-default">
+                                    <br>
+                                      <div class="panel-heading" id="head">Grades</div>
+                                      <br>
+                                      <div id="searchbar">
+                                          <a href="{{route('grade.excel',[$class_subject_teachers->get(0)->id])}}"class="btn btn-primary btn-xs">Export to Excel</a>
+                                          <br>
+                                        
+                                        </div> 
+                                        <br>
+                                      <div  class="panel-body"> 
+                                          <div  class="table-responsive">
+                                  
+                                                  
+                                            <table  class="mdl-data-table mdl-js-data-table col-lg-12" >
                                           <thead>
                                               <tr>
                                                   <th>Name</th>
@@ -370,16 +368,16 @@ right: 2%;
                                                   <th>Final Grade</th>
                                                   @if($class_subject_teachers->get(0)->teacher_id == Auth::user()->id)
                                                   <th>Add/Edit Grade</th>
-                                                  <th> <a href="{{route('grade.excel',[$class_subject_teachers->get(0)->id])}}"class="btn btn-primary btn-xs">Export to Excel</a></th>
+                                                
                                                   @endif
                                               </tr>
                                           </thead>
                                           <tbody>
                                              
-                               
+                                <?php $i=1  ?>
                                             @foreach($class_students as $class_student)
                                   <tr>
-                                      <td>{{$class_student->students->get(0)->name}}</td>
+                                      <td>{{$i}}. {{$class_student->students->get(0)->name}}</td>
                                       <td> {{$class_student->first}}</td>
                                       <td> {{$class_student->second}}</td>
                                       <td> {{$class_student->third}}</td>
@@ -387,7 +385,7 @@ right: 2%;
                                       <td> {{$class_student->final}}</td>
                                       @if($class_subject_teachers->get(0)->teacher_id == Auth::user()->id)
                                       <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-id="{!! $class_student->id !!}" data-target="#edit-{{$class_student->id}}"><span class="glyphicon glyphicon-pencil"></span></td>
-                                      
+                                         <?php $i++ ?>
                                   </tr>
                                   <form action = "{{route('grade-subject.update',$class_student->id)}}" method="post" enctype="multipart/form-data">
                                       <input name="_method" type="hidden" value="PUT">
