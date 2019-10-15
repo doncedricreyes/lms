@@ -2,7 +2,12 @@
 
 
 @extends('layouts.user')
-
+<style>
+    #searchbar{
+      position: relative;
+      left: 1%;
+    }
+  </style>
 @section('content')
 
     <div class="container" id="view">
@@ -26,23 +31,26 @@
               @endif
                 <div class="container">
                     <div class="row">
-            <div class="container">
-                    <div class="row">
+     
                         
                         
-                        <div class="col-md-12">
-                                <legend>Admins</legend>
+                           <div class="col-lg-12 col-md-offset-0">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Admins</div>
+                            <br>
                                 <form action = "{{route('search_admin')}}" role="search" method="get"enctype="multipart/form-data">
-                                  <div>
+                                  <div id="searchbar">
                                   <input type="text" class="form-control" name="search" id="search" placeholder="Search" style="width: 300px;">
                                   <br>
                                   <a href="" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-xs">Add Admin </a> 
-                                  </div> 
+                                    <br>
+                                </div> 
                                       </form>
+                       <div class="panel-body"> 
                         <div class="table-responsive">
                 
                                 
-                              <table id="mytable" class="table table-bordred table-striped">
+                          <table class="mdl-data-table mdl-js-data-table col-lg-12" >
                                    
                                    <thead>
                                    
