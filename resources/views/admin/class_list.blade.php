@@ -4,6 +4,9 @@
       position: relative;
       left: 1%;
     }
+      .mdl-data-table.mdl-data-table-default-non-numeric td {
+    text-align: left;
+  }
   </style>
 @section('content')
 
