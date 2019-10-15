@@ -74,7 +74,7 @@
                     
                             @foreach($students as $row)
                             <tr>
-                                <td>{{$row->name}}</td>
+                                <td>{{ ($students ->currentpage()-1) * $students ->perpage() + $loop->index + 1 }}. {{$row->name}}</td>
                                 <td>{{$row->username}}</td>
                                 <td>{{$row->email}}</td>
                                 <td><p data-placement="top" data-toggle="tooltip" title="View"><a href="/admin/students/{{$row->id}}"><button class="btn btn-primary btn-sm" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-zoom-in"></span></button></a></p></td>
