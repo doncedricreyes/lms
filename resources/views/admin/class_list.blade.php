@@ -4,9 +4,7 @@
       position: relative;
       left: 1%;
     }
-      .mdl-data-table.mdl-data-table-default-non-numeric td {
-    text-align: left;
-  }
+ 
   </style>
 @section('content')
 
@@ -44,7 +42,7 @@
                             <div class="table-responsive">
                     
                                     
-                              <table class="mdl-data-table mdl-js-data-table col-lg-12" >
+                              <table class="mdl-cell mdl-cell--4-col" >
                            
                            <thead>
                            
