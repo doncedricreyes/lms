@@ -129,7 +129,7 @@ right: 2%;
               <div class="demo-card-wide mdl-card mdl-shadow--2dp">
                 <div class="mdl-card__title" style=" background-color:#488cc7;">
                   <h2 class="mdl-card__title-text"> 
-                    <a href="subjects/{{$subject->id}}" ><h3 style="font-size:28px; color: white;">{{$subject->subjects->get(0)->title}}</h3></a>
+                    <a href="subjects/{{$subject->id}}" ><h2 class="mdl-card__title-text"style="font-size:28px; color: white;">{{$subject->subjects->get(0)->title}}</h2></a>
                                    </h2>
                 </div>
             
