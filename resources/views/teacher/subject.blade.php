@@ -377,7 +377,7 @@ right: 2%;
                                            <?php $i=1  ?>
                                             @foreach($class_students as $class_student)
                                   <tr>
-                                      <td>{{$i}}. {{$class_student->students->get(0)->name}}</td>
+                                      <td>{{$loop->iteration}}. {{$class_student->students->get(0)->name}}</td>
                                       <td> {{$class_student->first}}</td>
                                       <td> {{$class_student->second}}</td>
                                       <td> {{$class_student->third}}</td>
