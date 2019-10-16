@@ -74,10 +74,10 @@
    
       </div>
       @foreach($class_students as $class_student)
-      <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title" style=" background-color:#488cc7;">
-          <h2 class="mdl-card__title-text"> 
-              <a href="{{$class_student->student_id}}/subjects/{{$class_student->class_subject_teacher_id}}" ><h3 style="font-size:28px; color: white;">{{$class_student->class_subject_teachers->get(0)->subjects->get(0)->title}}</h3></a>
+       <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+          <div class="mdl-card__title" style=" background-color:#488cc7;">
+          <h2 class="mdl-card__title-text" > 
+              <a href="{{$class_student->student_id}}/subjects/{{$class_student->class_subject_teacher_id}}" >  <h2 style="font-size:28px; color: white;" class="mdl-card__title-text" > {{$class_student->class_subject_teachers->get(0)->subjects->get(0)->title}}</h2></a>
                            </h2>
         </div>
     
