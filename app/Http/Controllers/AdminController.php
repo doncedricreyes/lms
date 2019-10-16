@@ -11,6 +11,7 @@ use App\Evaluation_Question;
 use App\AddClass;
 use App\Class_Subject_Teacher;
 use App\Teacher;
+use App\Contact;
 use Auth;
 use Excel;
 use Illuminate\Support\Facades\Input;
@@ -861,5 +862,10 @@ class AdminController extends Controller
         $classes = AddClass::with('teachers')->get();
         
         return view('admin.archive_class', ['teachers' => $teachers,'classes'=>$classes]);
+      }
+     public function inquiry()
+      {
+          $inquiry = Contact::all();
+          return view('admin.inquiry',['inquiry'=>$inquiry]);
       }
 }
