@@ -83,24 +83,23 @@ background-color:snow;
         </div>
     </div>
 </div>
-<div class="row">
-        <div class="col-lg-12 col-md-offset-0">
-        <div class="panel panel-default">
-            <div class="panel-heading" id="head">Item Analysis
+   <div class="row">
+                <div class="col-lg-12 col-md-offset-0">
+                        <div class="panel panel-default">
+                <div class="panel-heading" id="head">Results</div>
                 <br>
-                    <form action="{{route('item.analysis',$exams->get(0)->id)}}" method="GET">
-                            
-                              <div id="searchbar">
-                                  
-                                  <select  name="attempt" id="attempt" onchange="this.form.submit()">
-                                       <option disabled selected value> -- select attempt -- </option>
-                                      @for($i=1; $i <= $exams->get(0)->attempts;$i++)
-                                    <option value={{$i}}>Attempt {{$i}}</option>
-                                    @endfor
-                                  </select>
-                                </div>  
-                            </form>
-        
+                <form action="{{route('item.analysis',$exams->get(0)->id)}}" method="GET">
+                                <div id="searchbar">
+                                       
+                                    <select  name="attempt" id="attempt" onchange="this.form.submit()">
+                                        <option disabled selected value> -- select attempt -- </option>
+                                        @for($i=1; $i < $exams->get(0)->attempts;$i++)
+                                      <option value={{$i}}>Attempt {{$i}}</option>
+                                      @endfor
+                                    </select>
+                                </div>
+                                </form>
+                               
 
             <div class="panel-body">    
                     <div class="table-responsive">
