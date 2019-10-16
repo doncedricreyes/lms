@@ -11,7 +11,43 @@
       height: 200%;
      
     }
-  
+ 
+
+.table-responsive {
+    min-height: .01%;
+    overflow-x: auto;
+}
+.demo-card-wide.mdl-card {
+      position: relative; 
+      left: 5%;
+      width: 90%;
+     
+    }
+    #searchbar{
+     
+     display: block;
+   text-align: center;
+   }
+  #search{
+    position: relative;
+    left: 37%;
+  }
+        .mdl-data-table th, td{
+ text-align: left !important;
+ font-size: 16px;
+}
+#head {
+ background-color:#488cc7;
+ text-align: center !important;
+ font-size: 24px;
+ color: white;
+}
+#table{
+ background-color:snow;
+ position: relative;
+ width:90%;
+ left: 5%;
+}
     </style>
 
 
@@ -20,20 +56,20 @@
          
                   
                   <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
+                    <div class="mdl-card__title"  style=" background-color:#488cc7;">
                       <h2 class="mdl-card__title-text"> 
-                       <h3>Name of Student: {{$students->first()->name}}</h3>
+                       <h3 style="font-size:28px; color: white;">{{$students->first()->name}}</h3>
                                        </h2>
                     </div>
                 
-                    <div class="mdl-card__actions mdl-card--border">
+                    <div class="mdl-card__actions mdl-card--border" style=" background-color:snow;">
                       <div class="mdl-card__supporting-text">
                           @foreach($class_subject_teachers as $class_subject_teacher)
-                          <p>Teacher: <a href="/parent/teachers/profile/{{$class_subject_teachers->get(0)->teachers->get(0)->id}}" > {{$class_subject_teacher->teachers->get(0)->name}}</a></p>
-                          <p>Subject:  {{$class_subject_teacher->subjects->get(0)->title}}</p>
-                          <p>Year and Section: {{$class_subject_teacher->classes->get(0)->year}}-{{$class_subject_teacher->classes->get(0)->section}}</p>
-                          <p>Section Name: {{$class_subject_teacher->classes->get(0)->section_name}}</p>
-                          <p>Schedule: {{$class_subject_teacher->schedule  }}</p>
+                          <p style="font-size:16px;">Teacher: <a href="/parent/teachers/profile/{{$class_subject_teachers->get(0)->teachers->get(0)->id}}" > {{$class_subject_teacher->teachers->get(0)->name}}</a></p>
+                          <p style="font-size:16px;">Subject:  {{$class_subject_teacher->subjects->get(0)->title}}</p>
+                          <p style="font-size:16px;">Year and Section: {{$class_subject_teacher->classes->get(0)->year}}-{{$class_subject_teacher->classes->get(0)->section}}</p>
+                          <p style="font-size:16px;">Section Name: {{$class_subject_teacher->classes->get(0)->section_name}}</p>
+                          <p style="font-size:16px;">Schedule: {{$class_subject_teacher->schedule  }}</p>
                         
                           @endforeach
                       </div>
@@ -49,7 +85,7 @@
                       @foreach($class_subject_teachers as $id)
                       <form action="{{route('parent.subject',[$students->first()->id,$id->id])}}" method="GET">
                         @endforeach
-                          <div class="form-group">
+                          <div class="form-group" style="position:relative; left:5%;">
                               <label for="quarter">Quarter:</label>
                               <select  name="quarter" id="quarter" onchange="this.form.submit()">
                                   <option disabled selected value> -- select quarter -- </option>
@@ -107,12 +143,17 @@
                                              <div class="mdl-tabs__panel" id="grades-panel">
                           
                           <div class="row">
-                              <div class="col-lg-12 col-md-offset-0">
-                              <div class="panel panel-default">
-                                  <div class="panel-heading">Quizzes</div>
-                        
-                                  <div class="panel-body">    
-                                          <table class="mdl-data-table mdl-js-data-table col-lg-12" >
+                                <div  class="col-lg-12 col-md-offset-0">
+                            <div id="table" class="panel panel-default">
+                              <br>
+                                <div class="panel-heading" id="head">Quizzes</div>
+                                <br>
+     
+                                <div  class="panel-body"> 
+                                    <div  class="table-responsive">
+                            
+                                            
+                                      <table  class="mdl-data-table mdl-js-data-table col-lg-12" >
                                           <thead>
                                               <tr>
 
@@ -146,12 +187,17 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-lg-12 col-md-offset-0">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Assignments</div>
-                  
-                            <div class="panel-body">    
-                                    <table class="mdl-data-table mdl-js-data-table col-lg-12" >
+                        <div  class="col-lg-12 col-md-offset-0">
+                            <div id="table" class="panel panel-default">
+                              <br>
+                                <div class="panel-heading" id="head">Assignments</div>
+                                <br>
+     
+                                <div  class="panel-body"> 
+                                    <div  class="table-responsive">
+                            
+                                            
+                                      <table  class="mdl-data-table mdl-js-data-table col-lg-12" >
                                     <thead>
                                         <tr>
 
