@@ -28,9 +28,10 @@
                       @endforeach
                   </ul>
               </div>
+                @endif
 <div class="container" id="view">
  
-          @endif
+        
     <form action="{{route('teacher.edit.email')}}" method="post" enctype="multipart/form-data">
         {{csrf_field() }}
 <div class="form-group">
