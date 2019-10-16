@@ -22,7 +22,7 @@
    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
       <div class="mdl-card__title" style=" background-color:#488cc7;">
         <h2 class="mdl-card__title-text"> 
-         <h3> Name of Student: <a style="font-size:28px; color: white;"  href="/parent/students/profile/{{$class_students->get(0)->student_id}}" > {{$class_students->get(0)->students->get(0)->name}}</h3></a>
+         <h3><a style="font-size:28px; color: white;"  href="/parent/students/profile/{{$class_students->get(0)->student_id}}" > {{$class_students->get(0)->students->get(0)->name}}</h3></a>
                           </h2>
       </div>
   
