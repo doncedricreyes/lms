@@ -10,22 +10,23 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-   <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+      <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
 
     <!-- FontAwesome CSS -->
     <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
 
     <!-- ElegantFonts CSS -->
-    <link rel="stylesheet" href="{{asset('bower_components/elegant-fonts.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/elegant-fonts.css')}}">
 
     <!-- themify-icons CSS -->
-    <link rel="stylesheet" href="{{asset('bower_components/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/themify-icons.css')}}">
 
     <!-- Swiper CSS -->
-    <link rel="stylesheet" href="{{asset('bower_components/swiper.min.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/swiper.min.css')}}">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{asset('bower_components/style.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/style.css')}}">
 
     <style>  
 
