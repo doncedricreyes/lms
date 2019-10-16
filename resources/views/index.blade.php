@@ -21,16 +21,16 @@
     <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
 
     <!-- ElegantFonts CSS -->
-    <link rel="stylesheet" href="{{asset('bower_components/elegant-fonts.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/elegant-fonts.css')}}">
 
     <!-- themify-icons CSS -->
-    <link rel="stylesheet" href="{{asset('bower_components/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/themify-icons.css')}}">
 
     <!-- Swiper CSS -->
-    <link rel="stylesheet" href="{{asset('bower_components/swiper.min.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/swiper.min.css')}}">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{asset('bower_components/style.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/style.css')}}">
     
    
     <style>  
@@ -286,11 +286,11 @@
     </footer><!-- .site-footer -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
-<script src="{{asset('bower_components/jquery.js')}}"></script>
-<script src="{{asset('bower_components/swiper.min.js')}}"></script>
-<script src="{{asset('bower_components/masonry.pkgd.min.js')}}"></script>
-<script src="{{asset('bower_components/jquery.collapsible.min.js')}}"></script>
-<script src="{{asset('bower_components/custom.js')}}"></script>
+<script src="{{asset('dist/js/jquery.js')}}"></script>
+<script src="{{asset('dist/js/swiper.min.js')}}"></script>
+<script src="{{asset('dist/js/masonry.pkgd.min.js')}}"></script>
+<script src="{{asset('dist/js/jquery.collapsible.min.js')}}"></script>
+<script src="{{asset('dist/js/custom.js')}}"></script>
 
 
 </body>
