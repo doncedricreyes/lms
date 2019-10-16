@@ -178,7 +178,7 @@
 
                 <div class="col-12 col-md-6">
                         <div class="team-member">
-                            <img src="/storage/images/userMon.jpg" class="img-rounded" alt="" style="position:relative;left:0%;">
+                            <img src="/storage/images/userMon.JPG" class="img-rounded" alt="" style="position:relative;left:0%;">
         
                             <h3> Monica Gagarra</h3>
                             <h4>Assistant Programmer</h4>
