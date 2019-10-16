@@ -339,7 +339,7 @@ class TeacherController extends Controller
     public function edit_email(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|string|email|max:255|unique:teachers',
+            'email' => 'required|string|email|max:255|unique:teachers|unique:parents|unique:students|unique:admins',
         ], [
   
 
