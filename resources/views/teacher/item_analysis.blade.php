@@ -84,7 +84,7 @@ background-color:snow;
     </div>
 </div>
    <div class="row">
-                <div class="col-lg-12 col-md-offset-0">
+                     <div class="col-lg-12 col-md-offset-0">
                         <div class="panel panel-default">
                 <div class="panel-heading" id="head">Results</div>
                 <br>
@@ -93,7 +93,7 @@ background-color:snow;
                                        
                                     <select  name="attempt" id="attempt" onchange="this.form.submit()">
                                         <option disabled selected value> -- select attempt -- </option>
-                                        @for($i=1; $i < $exams->get(0)->attempts;$i++)
+                                        @for($i=1; $i <= $exams->get(0)->attempts;$i++)
                                       <option value={{$i}}>Attempt {{$i}}</option>
                                       @endfor
                                     </select>
