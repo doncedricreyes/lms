@@ -180,7 +180,7 @@ right: 2%;
            
                         @foreach($class_students as $class_student)
               <tr>
-                  <td>{{$class_student->students->get(0)->name}}</td>
+                  <td>{{$loop->iteration}}. {{$class_student->students->get(0)->name}}</td>
                   <td>{{$class_student->students->get(0)->email}}</td>
                   <td> <a href="class/grades/{{$class_student->students->get(0)->id}}"><button type="button" class="btn btn-primary btn-xs"><span class="material-icons">
                       search</span></button></a></td>
