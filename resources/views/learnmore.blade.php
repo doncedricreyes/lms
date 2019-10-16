@@ -13,23 +13,23 @@
             <meta charset="utf-8">
             <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         
-            <!-- Bootstrap CSS -->
-            <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
-        
-            <!-- FontAwesome CSS -->
-            <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
-        
-            <!-- ElegantFonts CSS -->
-            <link rel="stylesheet" href="{{asset('bower_components/elegant-fonts.css')}}">
-        
-            <!-- themify-icons CSS -->
-            <link rel="stylesheet" href="{{asset('bower_components/themify-icons.css')}}">
-        
-            <!-- Swiper CSS -->
-            <link rel="stylesheet" href="{{asset('bower_components/swiper.min.css')}}">
-        
-            <!-- Styles -->
-            <link rel="stylesheet" href="{{asset('bower_components/style.css')}}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
+
+    <!-- ElegantFonts CSS -->
+    <link rel="stylesheet" href="{{asset('dist/css/elegant-fonts.css')}}">
+
+    <!-- themify-icons CSS -->
+    <link rel="stylesheet" href="{{asset('dist/css/themify-icons.css')}}">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="{{asset('dist/css/swiper.min.css')}}">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{asset('dist/css/style.css')}}">
 
 
     <style>  
@@ -307,11 +307,13 @@
                 </div><!-- .footer-bar -->
             </footer><!-- .site-footer -->
 
-            <script src="{{asset('bower_components/jquery.js')}}"></script>
-            <script src="{{asset('bower_components/swiper.min.js')}}"></script>
-            <script src="{{asset('bower_components/masonry.pkgd.min.js')}}"></script>
-            <script src="{{asset('bower_components/jquery.collapsible.min.js')}}"></script>
-            <script src="{{asset('bower_components/custom.js')}}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
+<script src="{{asset('bower_components/jquery.js')}}"></script>
+<script src="{{asset('bower_components/swiper.min.js')}}"></script>
+<script src="{{asset('bower_components/masonry.pkgd.min.js')}}"></script>
+<script src="{{asset('bower_components/jquery.collapsible.min.js')}}"></script>
+<script src="{{asset('bower_components/custom.js')}}"></script>
+
 
 </body>
 </html>
