@@ -78,7 +78,7 @@
                   <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
                       <div class="mdl-tabs__tab-bar">
                           <a href="#announcements-panel" class="mdl-tabs__tab is-active">Announcements</a>
-                        <a href="#resources-panel" class="mdl-tabs__tab">Resources</a>
+           
                         <a href="#grades-panel" class="mdl-tabs__tab">Grades</a>
                       </div>
 
@@ -120,25 +120,7 @@
                       
                 </div>
 
-                      <div class="mdl-tabs__panel" id="resources-panel">
-                 
-                     
-                      <legend>Assignments</legend>
-                     
-                      @foreach($assignments as $assignment)
-                      <a href="{{route('parent.assignment.show', $assignment->id)}}"><div class="icon material-icons">assignment</div>{{$assignment->title}}</a><br>
-                          @endforeach
-<br><br><br>
-
-                      <legend>Quizzes and Exams</legend>
-                      @foreach($exams as $exam)
-                    <p> <a href="{{route('parent.show.result', $exam->id)}}" ><div class="icon material-icons">label_important</div>{{$exam->title}} </a></p>
-                      @endforeach
-                      <br><br><br>
-                      </div>
-
-
-
+                      
               
                                              <div class="mdl-tabs__panel" id="grades-panel">
                           
