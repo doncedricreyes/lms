@@ -12,8 +12,8 @@
         left: 15%;
     }
     </style>
-<div class="container" id="view">
-        <div class="flash-message">
+    
+          <div class="flash-message">
                 @foreach (['danger', 'warning', 'success', 'info'] as $msg)
                   @if(Session::has('alert-' . $msg))
             
@@ -21,6 +21,17 @@
                   @endif
                 @endforeach
               </div> <!-- end .flash-message -->
+              @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+                @endif
+<div class="container" id="view">
+ 
         
     <form action="{{route('parent.edit.email')}}" method="post" enctype="multipart/form-data">
         {{csrf_field() }}
