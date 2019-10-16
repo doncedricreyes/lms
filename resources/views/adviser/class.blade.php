@@ -3,71 +3,55 @@
 @section('content')
 
 <style>
-   .demo-card-wide.mdl-card {
-     width: 100%;
-   }
-   .demo-card-wide {
-    
-     height: 200%;
-    
-   }
-   #delete{
-     position: absolute;
-     right: 2%;
-   }
+    .demo-card-wide.mdl-card {
+      width: 100%;
+    }
+    .demo-card-wide {
+     
+      height: 200%;
+     
+    }
+    #delete{
+position: absolute;
+right: 2%;
+    }
 
-   .table-responsive {
+.table-responsive {
     min-height: .01%;
     overflow-x: auto;
 }
-@media screen and (max-width: 767px) {
-    .table-responsive {
-        width: 100%;
-        margin-bottom: 15px;
-        overflow-y: hidden;
-        -ms-overflow-style: -ms-autohiding-scrollbar;
-        border: 1px solid #ddd;
+.demo-card-wide.mdl-card {
+      position: relative; 
+      left: 5%;
+      width: 90%;
+     
     }
-    .table-responsive > .table {
-        margin-bottom: 0;
-    }
-    .table-responsive > .table > thead > tr > th,
-    .table-responsive > .table > tbody > tr > th,
-    .table-responsive > .table > tfoot > tr > th,
-    .table-responsive > .table > thead > tr > td,
-    .table-responsive > .table > tbody > tr > td,
-    .table-responsive > .table > tfoot > tr > td {
-        white-space: nowrap;
-    }
-    .table-responsive > .table-bordered {
-        border: 0;
-    }
-    .table-responsive > .table-bordered > thead > tr > th:first-child,
-    .table-responsive > .table-bordered > tbody > tr > th:first-child,
-    .table-responsive > .table-bordered > tfoot > tr > th:first-child,
-    .table-responsive > .table-bordered > thead > tr > td:first-child,
-    .table-responsive > .table-bordered > tbody > tr > td:first-child,
-    .table-responsive > .table-bordered > tfoot > tr > td:first-child {
-        border-left: 0;
-    }
-    .table-responsive > .table-bordered > thead > tr > th:last-child,
-    .table-responsive > .table-bordered > tbody > tr > th:last-child,
-    .table-responsive > .table-bordered > tfoot > tr > th:last-child,
-    .table-responsive > .table-bordered > thead > tr > td:last-child,
-    .table-responsive > .table-bordered > tbody > tr > td:last-child,
-    .table-responsive > .table-bordered > tfoot > tr > td:last-child {
-        border-right: 0;
-    }
-    .table-responsive > .table-bordered > tbody > tr:last-child > th,
-    .table-responsive > .table-bordered > tfoot > tr:last-child > th,
-    .table-responsive > .table-bordered > tbody > tr:last-child > td,
-    .table-responsive > .table-bordered > tfoot > tr:last-child > td {
-        border-bottom: 0;
-    }
+    #searchbar{
+     
+     display: block;
+   text-align: center;
+   }
+  #search{
+    position: relative;
+    left: 37%;
+  }
+        .mdl-data-table th, td{
+ text-align: left !important;
+ font-size: 16px;
 }
- 
-   </style>
-
+#head {
+ background-color:#488cc7;
+ text-align: center !important;
+ font-size: 24px;
+ color: white;
+}
+#table{
+ background-color:snow;
+ position: relative;
+ width:90%;
+ left: 5%;
+}
+    </style>
 <div class="container" id ="view">
     <div class="flash-message">
         @foreach (['danger', 'warning', 'success', 'info'] as $msg)
@@ -78,20 +62,20 @@
         @endforeach
       </div> <!-- end .flash-message -->
    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-      <div class="mdl-card__title">
+      <div class="mdl-card__title" style=" background-color:#488cc7;">
         <h2 class="mdl-card__title-text"> 
-            <h2>Section: {{$classes->get(0)['year']}}-{{$classes->get(0)['section']}}
+            <h2 style="font-size:28px; color: white;">Section: {{$classes->get(0)['year']}}-{{$classes->get(0)['section']}}
            </h2>
                           </h2>
       </div>
   
-      <div class="mdl-card__actions mdl-card--border">
+      <div class="mdl-card__actions mdl-card--border" style=" background-color:snow;">
         <div class="mdl-card__supporting-text">
-            <p>Adviser:   <a href="profile/{{auth::user()->id}}" >{{auth::user()->name}}</a></p>
-          <p>Section Name:  {{$classes->get(0)['section_name']}}</p>
-        <p>School year: {{$classes->get(0)['school_year']}}</p>
-        <p>Time: {{$classes->get(0)['time']}}</p>
-        <p>Room: {{$classes->get(0)['room']}}</p>
+            <p style="font-size:16px;">Adviser:   <a href="profile/{{auth::user()->id}}" >{{auth::user()->name}}</a></p>
+          <p style="font-size:16px;">Section Name:  {{$classes->get(0)['section_name']}}</p>
+        <p style="font-size:16px;">School year: {{$classes->get(0)['school_year']}}</p>
+        <p style="font-size:16px;">Time: {{$classes->get(0)['time']}}</p>
+        <p style="font-size:16px;">Room: {{$classes->get(0)['room']}}</p>
      
         
         </div>
@@ -109,7 +93,7 @@
       <div class="mdl-tabs__panel is-active" id="announcements-panel">
               <br><br>
   
-           <legend><a href="{{route('announcement.create',$classes->get(0)['id'])}}" class="btn btn-primary">Create Announcement</a></legend>  
+           <legend style="position:relative; left:5%;"><a href="{{route('announcement.create',$classes->get(0)['id'])}}" class="btn btn-primary">Create Announcement</a></legend>  
 <br><br>
 @foreach($class_announcements as $announcement)
 <div class="demo-card-wide mdl-card mdl-shadow--2dp">
@@ -138,21 +122,21 @@
       
               <div class="card-head">
                  <br><br><br>   
-                 <legend>Subjects</legend>
+               
            
               </div>
               @foreach($class_subject_teachers as $subject)
               <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                <div class="mdl-card__title">
+                <div class="mdl-card__title" style=" background-color:#488cc7;">
                   <h2 class="mdl-card__title-text"> 
-                    <a href="subjects/{{$subject->id}}" ><h3>{{$subject->subjects->get(0)->title}}</h3></a>
+                    <a href="subjects/{{$subject->id}}" ><h3 style="font-size:28px; color: white;">{{$subject->subjects->get(0)->title}}</h3></a>
                                    </h2>
                 </div>
             
                 <div class="mdl-card__actions mdl-card--border">
                   <div class="mdl-card__supporting-text">
-                      <a href="profile/{{$subject->teachers->get(0)->id}}" > <h5>Teacher: {{$subject->teachers->get(0)->name}}</h5></a>
-                    <h5>Schedule: {{$subject->schedule}}</h5>
+                      <a href="profile/{{$subject->teachers->get(0)->id}}" > <h5 style="font-size:16px;">Teacher: {{$subject->teachers->get(0)->name}}</h5></a>
+                    <h5 style="font-size:16px;">Schedule: {{$subject->schedule}}</h5>
                   </div>
                 </div>
               </div>
@@ -172,7 +156,7 @@
          <div class="row">
           <div class="col-lg-12 col-md-offset-0">
           <div class="panel panel-default">
-              <div class="panel-heading">Students</div>
+              <div class="panel-heading" id="head">Students</div>
 
               <div class="panel-body">    
                   <div class = "table-responsive">
