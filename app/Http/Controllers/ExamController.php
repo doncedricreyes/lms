@@ -162,13 +162,17 @@ foreach($exams as $class_subject_teacher_id){
     $row12=[];
     
     foreach($questions as $question){
-        if(isset($students))
     $option_1 = Answer::with('students','exams','questions')
     ->where('quiz_attempt_id',$quiz_attempt->get(0)['id'])
     ->where('question_id',$question->id)
     ->where('answer',$question->option_1)
     ->count();
+        if($students != 0){
     $average_1 = ($option_1/$students)*100;
+        }
+        else{
+         $average_1 = 0;   
+        }
     $row[] = $option_1;
     $row2[]=$average_1;
     
@@ -177,7 +181,12 @@ foreach($exams as $class_subject_teacher_id){
     ->where('question_id',$question->id)
     ->where('answer',$question->option_2)
     ->count();
+         if($students != 0){
     $average_2 = ($option_2/$students)*100;
+         }
+        else{
+             $average_2 = 0;   
+        }
     $row3[] = $option_2;
     $row4[]=$average_2;
 
@@ -186,7 +195,12 @@ foreach($exams as $class_subject_teacher_id){
     ->where('question_id',$question->id)
     ->where('answer',$question->option_3)
     ->count();
+         if($students != 0){
     $average_3 = ($option_3/$students)*100;
+         }
+        else{
+             $average_3 = 0;  
+        }
     $row5[] = $option_3;
     $row6[]=$average_3;
 
@@ -195,7 +209,12 @@ foreach($exams as $class_subject_teacher_id){
     ->where('question_id',$question->id)
     ->where('answer',$question->option_4)
     ->count();
+        if($students != 0){
     $average_4 = ($option_4/$students)*100;
+        }
+         else{
+             $average_4 = 0;  
+        }
     $row7[] = $option_4;
     $row8[]=$average_4;
 
@@ -204,7 +223,12 @@ foreach($exams as $class_subject_teacher_id){
     ->where('question_id',$question->id)
     ->where('answer',$question->option_5)
     ->count();
+         if($students != 0){
     $average_5 = ($option_5/$students)*100;
+         }
+         else{
+             $average_5 = 0;  
+        }
     $row9[] = $option_5;
     $row10[]=$average_5;
 
@@ -213,11 +237,15 @@ foreach($exams as $class_subject_teacher_id){
     ->where('question_id',$question->id)
     ->where('answer',$question->answer)
     ->count();
+        if($students != 0){
     $average_6 = ($correct/$students)*100;
+        }
+         else{
+             $average_6 = 0;  
+        }
     $row11[] = $correct;
     $row12[]=$average_6;
         
- endisset
     }
 
 
