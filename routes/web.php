@@ -25,6 +25,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about');
 Route::get('/contact', 'HomeController@contact');
 Route::get('/learnmore', 'HomeController@learnmore');
+Route::post('/contact', 'HomeController@message')->name('message');
 
 Route::prefix('admin')->group(function()
 {
@@ -134,6 +135,7 @@ Route::put('/archive/admins/{id}','AdminController@status_archive_admin')->name(
 Route::put('/archive/teachers/{id}','AdminController@status_archive_teacher')->name('status_archive_teacher');
 Route::put('/archive/parents/{id}','AdminController@status_archive_parent')->name('status_archive_parent');
 Route::get('/archive/class','AdminController@archive_class');
+Route::get('/inquiry','AdminController@inquiry');
 });
 
 Route::prefix('teacher')->group(function()
