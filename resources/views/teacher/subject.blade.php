@@ -374,7 +374,7 @@ right: 2%;
                                           </thead>
                                           <tbody>
                                              
-                                <?php $i=1  ?>
+                                           <?php $i=1  ?>
                                             @foreach($class_students as $class_student)
                                   <tr>
                                       <td>{{$i}}. {{$class_student->students->get(0)->name}}</td>
@@ -385,9 +385,8 @@ right: 2%;
                                       <td> {{$class_student->final}}</td>
                                       @if($class_subject_teachers->get(0)->teacher_id == Auth::user()->id)
                                       <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-id="{!! $class_student->id !!}" data-target="#edit-{{$class_student->id}}"><span class="glyphicon glyphicon-pencil"></span></td>
-                                       
+                                        <?php $i++ ?>
                                   </tr>
-                                    <?php $i++ ?>
                                   <form action = "{{route('grade-subject.update',$class_student->id)}}" method="post" enctype="multipart/form-data">
                                       <input name="_method" type="hidden" value="PUT">
                                       {{csrf_field() }}
