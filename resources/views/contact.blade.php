@@ -131,14 +131,33 @@
             </div><!-- .col -->
 
             <div class="col-12 col-lg-6">
+               <br>
+                    <div class="flash-message">
+                            @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                              @if(Session::has('alert-' . $msg))
+                        
+                              <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+                              @endif
+                            @endforeach
+                          </div> <!-- end .flash-message -->
+                          @if ($errors->any())
+                          <div class="alert alert-danger">
+                              <ul>
+                                  @foreach ($errors->all() as $error)
+                                      <li>{{ $error }}</li>
+                                  @endforeach
+                              </ul>
+                          </div>
+                      @endif
                 <div class="contact-form">
                     <h3>Contact Form</h3>
 
-                    <form>
-                        <input type="text" placeholder="Your Name">
-                        <input type="email" placeholder="Your Email">
-                        <input type="text" placeholder="Subject">
-                        <textarea placeholder="Your Message" rows="4"></textarea>
+                    <form method="POST" action="{{ route('message') }}">
+                        @csrf
+                        <input type="text" placeholder="Your Name" name="name" id="name">
+                        <input type="email" placeholder="Your Email" name="email" id="email">
+                        <input type="text" placeholder="Subject" name="subject" id="subject">
+                        <textarea placeholder="Your Message" rows="4" name="message" id="message"></textarea>
                         <input type="submit" value="Send Message">
                     </form>
                 </div><!-- .contact-form -->
