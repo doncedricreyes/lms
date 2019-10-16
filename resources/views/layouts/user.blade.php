@@ -299,6 +299,7 @@ desired effect
             </ul>
           </li>
              <li><a href="/admin/account"><i class="fa fa-user"></i> <span>Account</span></a></li>
+               <li><a href="/admin/inquiry"><i class="fa fa-envelope"></i>  <span>Inquiry</span></a></li>
           <li><a href="/admin/logout"><i class="fa fa-sign-out"></i>  <span>Logout</span></a></li>
        
         </ul>
