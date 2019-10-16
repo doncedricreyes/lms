@@ -286,11 +286,11 @@
     </footer><!-- .site-footer -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> 
-<script src="{{asset('/js/jquery.js')}}"></script>
-<script src="{{asset('/js/swiper.min.js')}}"></script>
-<script src="{{asset('/js/masonry.pkgd.min.js')}}"></script>
-<script src="{{asset('/js/jquery.collapsible.min.js')}}"></script>
-<script src="{{asset('/js/custom.js')}}"></script>
+<script src="{{asset('bower_components/jquery.js')}}"></script>
+<script src="{{asset('bower_components/swiper.min.js')}}"></script>
+<script src="{{asset('bower_components/masonry.pkgd.min.js')}}"></script>
+<script src="{{asset('bower_components/jquery.collapsible.min.js')}}"></script>
+<script src="{{asset('bower_components/custom.js')}}"></script>
 
 
 </body>
