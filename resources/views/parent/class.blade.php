@@ -17,9 +17,9 @@
 <div class="container" id ="view">
     @foreach($class_students as $class_student)
    <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-      <div class="mdl-card__title">
+      <div class="mdl-card__title" style=" background-color:#488cc7;">
         <h2 class="mdl-card__title-text"> 
-           <a href="classes/{{$class_student->student_id}}"> <h1>
+           <a href="classes/{{$class_student->student_id}}" style="font-size:28px; color:white;"> <h1>
          {{$class_student->students->get(0)->name}}</h1></a>
                           </h2>
       </div>
