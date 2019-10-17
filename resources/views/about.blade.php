@@ -30,6 +30,10 @@
 
     <style>  
 
+  body{
+            position: relative;
+            overflow-y: scroll; overflow-x:hidden;
+        }
 
             img {
           position: absolute;
@@ -56,7 +60,7 @@
                         <div class="col-9 col-lg-3">
                                <img src="/storage/images/logo3.png" width="80" height="80">
                             <div class="site-branding">                       
-                                <h3 class="site-title"><a href="/html" rel="home">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SCCV-<span>LMS</span></a></h3>
+                                <h3 class="site-title"><a href="/" rel="home">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SCCV-<span>LMS</span></a></h3>
                             
                             </div><!-- .site-branding -->
                         </div><!-- .col -->
