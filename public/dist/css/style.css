@@ -287,7 +287,7 @@ a:hover, a:active {
     position: relative;
     top: 25%;
     
-    font-size: 5vw;
+    font-size: 32px;
     font-weight: 700;
     text-transform: uppercase;
     color: #19c880;
@@ -299,23 +299,21 @@ a:hover, a:active {
     top: 25%;
 
     margin-top: 12px;
-    font-size: 3vw;
+    font-size: 32px;
     font-weight: 500;
     text-transform: uppercase;
     width: 1000px;
     color: #fff;
 }
 
-@media screen and (max-width: 760px){
+@media screen and (max-width: 576px){
     .hero-content-wrap h4 {
-        font-size: 16px;
-        width:auto;
+        font-size: 24px;
     }
 }
-@media screen and (max-width: 760px){
+@media screen and (max-width: 576px){
     .hero-content-wrap h1 {
-        font-size: 16px;
-        width:auto;
+        font-size: 24px;
     }
 }
 
@@ -346,7 +344,27 @@ a:hover, a:active {
     width: auto;
 }
 
+@media screen and (max-width: 576px){
+    .hero-content-wrap #sccv {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 576px){
+    .hero-content-wrap #log {
+        font-size: 12px;
+    }
+}
 
+@media screen and (max-width: 576px){
+    .hero-content-wrap #login {
+        position: relative;
+        top:60%;
+        right:225%;
+        margin-top: 10px;
+        color: #fff;
+        width: 50%;
+    }
+}
 
 .hero-content-wrap .read-more {
     margin-top: 0px;
@@ -367,34 +385,6 @@ a:hover, a:active {
 
 .hero-content-wrap .read-more a:hover {
     background: #19c880;
-}
-
-@media screen and (max-width: 576px){
-    #sccv {
-          position: relative;
-    top:45%;
-    right:125%;
-    margin-top: 10px;
-    color: #fff;
-     width: 50%;
-    font-size: 6px;
-    }
-}
-@media screen and (max-width: 576px){
-   #log {
-        font-size: 12px;
-    }
-}
-
-@media screen and (max-width: 576px){
-  #login {
-        position: relative;
-        top:60%;
-        right:225%;
-        margin-top: 10px;
-        color: #fff;
-        width: 50%;
-    }
 }
 
 /*--------------------------------------------------------------
