@@ -17,7 +17,7 @@
     }
     #reply{
            
-           left: 90%;
+           left: 80%;
    }
 </style>
 
