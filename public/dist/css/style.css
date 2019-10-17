@@ -346,11 +346,9 @@ a:hover, a:active {
 
 @media screen and (max-width: 576px){
     .hero-content-wrap #sccv {
-          position: relative;
-    top:45%;
-    right:125%;
-        font-size: 12px;
-        width:300px;
+    
+        font-size: 11px;
+ 
      
     }
 }
