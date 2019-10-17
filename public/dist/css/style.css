@@ -9,7 +9,7 @@ body {
 
 img {
     max-width: 100%;
-  height: auto;
+    height: auto;
     vertical-align: baseline;
 }
 
@@ -48,7 +48,7 @@ a:hover, a:active {
 # Site Header
 --------------------------------------------------------------*/
 .site-header {
-    position: relative;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 9999;
@@ -287,7 +287,7 @@ a:hover, a:active {
     position: relative;
     top: 25%;
     
-    font-size: 18px;
+    font-size: 5vw;
     font-weight: 700;
     text-transform: uppercase;
     color: #19c880;
@@ -299,7 +299,7 @@ a:hover, a:active {
     top: 25%;
 
     margin-top: 12px;
-    font-size: 60px;
+    font-size: 3vw;
     font-weight: 500;
     text-transform: uppercase;
     width: 1000px;
