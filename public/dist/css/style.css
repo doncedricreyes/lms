@@ -311,7 +311,11 @@ a:hover, a:active {
         font-size: 32px;
     }
 }
-
+@media screen and (max-width: 576px){
+    #sccv {
+        font-size: 32px;
+    }
+}
 #sccv {
     position: relative;
     top:55%;
@@ -326,7 +330,7 @@ a:hover, a:active {
     top:70%;
     right:225%;
     margin-top: 10px;
-    font-size: 1.5vw;;
+    font-size: 1.5vw;
     color: #fff;
     width: 800px;
 }
