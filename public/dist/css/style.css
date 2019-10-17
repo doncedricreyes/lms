@@ -308,12 +308,12 @@ a:hover, a:active {
 
 @media screen and (max-width: 576px){
     .hero-content-wrap h4 {
-        font-size: 24px;
+        font-size: 22px;
     }
 }
 @media screen and (max-width: 576px){
     .hero-content-wrap h1 {
-        font-size: 24px;
+        font-size: 22px;
     }
 }
 
