@@ -180,9 +180,9 @@ span.psw {
                                     <footer class="userfooter">
                                      
                                        <ul class="nav nav-pills">
-        <!--diretso login na button dito--> <li role="presentation"><a href="teacher/login"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Teacher</a></li>
-                                            <li role="presentation"><a href="student/login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Student</a></li>
-                                            <li role="presentation"><a href="parent/login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Parent</a></li>
+        <!--diretso login na button dito--> <li role="presentation"><a href="/teacher/login"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Teacher</a></li>
+                                            <li role="presentation"><a href="/student/login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Student</a></li>
+                                            <li role="presentation"><a href="/parent/login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Parent</a></li>
                                           </ul>
                                     
         
