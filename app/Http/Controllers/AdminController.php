@@ -364,7 +364,7 @@ class AdminController extends Controller
     public function edit_email(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|string|email|max:255|unique:parents|unique:students|unique:teachers|unique:admins',
+            'email' => 'string|email|max:255|unique:parents|unique:students|unique:teachers|unique:admins',
         ], [
   
 
