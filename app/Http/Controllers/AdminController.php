@@ -160,7 +160,8 @@ class AdminController extends Controller
                         foreach ($data as $key => $value){
                             $classes =DB::table('classes')->where([
                                 ['year', '=', $value->year],
-                                ['section', '=', $value->section],   ])->first()->id;
+                                ['section', '=', $value->section], 
+                                ['status', '=', 'active'], ])->first()->id;
                                 if(count($classes)>0){
                             $student = new Student();
                             $student->role = 'student';
@@ -428,7 +429,7 @@ class AdminController extends Controller
         $classes =DB::table('classes')->where([
             ['year', '=', $year],
             ['section', '=', $section],
-
+            ['status', '=', 'active'],
 
         ])->first()->id;
         
@@ -527,6 +528,7 @@ class AdminController extends Controller
 
         $classes = AddClass::with('teachers')->where('year','=',$year)
         ->where('section','=',$section)
+         ->where('status','=','active')
         ->first();
 
         if(count($classes)>0)
