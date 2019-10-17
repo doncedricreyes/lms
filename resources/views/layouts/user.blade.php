@@ -103,7 +103,7 @@ desired effect
         <span class="sr-only">Toggle navigation</span>
       </a>
          <ul class="nav navbar-nav">
-      <li style="position:absolute; top:30%; color:white;font-size:28px; left:3%;">SCCV Learning Management System</li>
+      <li style="position:absolute; top:30%; color:white;font-size:28px; left:3%;">SCCV LMS</li>
       </ul>
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
