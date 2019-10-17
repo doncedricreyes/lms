@@ -45,14 +45,14 @@ body{
     margin-top: 10px;
     color: #fff;
     width: 800px;
-    font-size: 1.5vw;
+    font-size: 16px;
 }
 #log{
     position: relative;
     top:70%;
     right:225%;
     margin-top: 10px;
-    font-size: 1.5vw;
+    font-size: 16px;
     color: #fff;
     width: 800px;
 }
