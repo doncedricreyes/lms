@@ -59,6 +59,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     body{
       font-family:"raleway";
     }
+      #head{
+      position:relative;  padding-top: 15px; color:white;font-size:28px; right:105%;
+    }
+    @media screen and (max-width: 760px) {
+    #head {
+      position:relative;  padding-top: 15px; color:white; right:8%;
+        font-size: 16px;
+     
+    }
   </style>
 </head>
 <!--
@@ -102,13 +111,11 @@ desired effect
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
-         <ul class="nav navbar-nav">
-      <li style="position:relative;  padding-top: 15px; color:white;font-size:28px; left:3%;">SCCV Learning Management System</li>
-      </ul>
+ 
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-    
+     <li id="head">SCCV Learning Management System</li>
    
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
