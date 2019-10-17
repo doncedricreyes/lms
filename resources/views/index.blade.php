@@ -114,7 +114,7 @@ body{
                             </header><!-- .entry-header -->
 
                            <div class="entry-content">
-                                <p id="sccv"> St. Catherine College of Valenzuela Learning Management.<br>
+                                <p class="sccv"> St. Catherine College of Valenzuela Learning Management.<br>
                                     A technological and systematic approach to student's quality education.               
                                 </p>
                             </div>
