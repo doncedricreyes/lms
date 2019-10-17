@@ -33,7 +33,11 @@
     <link rel="stylesheet" href="{{asset('dist/css/style.css')}}">
 
     <style>  
-
+        
+        body{
+            position: relative;
+            overflow-y: scroll; overflow-x:hidden;
+        }
 
             img {
           position: absolute;
@@ -172,8 +176,8 @@
 
                     <ul class="p-0 m-0">
                         <li><span>Location:</span>Sto. Rosario Street, Mapulang Lupa, 1448 Valenzuela City, Metro Manila</li>
-                        <li><span>Email:</span><a href="#">st.catherinecollegeofvalenzuela@yahoo.com</a></li>
-                        <li><span>Phone:</span><a href="#">(02) 443 1860</a></li>
+                       <li><span>Email:</span>sccv.lms@gmail.com</li>
+                        <li><span>Phone:</span>(02) 443 1860</li>
                     </ul>
                 </div><!-- .contact-info -->
             </div><!-- .col -->
