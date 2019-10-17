@@ -3,18 +3,22 @@
 @extends('layouts.user')
 
 <style>
-    #inbox{
-        position: absolute;
+   #inbox{
+        position: relative;
         top: 10%;
-        left: 20%;
+        left: 10%;
         width: 80%;
     }
     #nav{
-        position: absolute;
+        position: relative;
         top: 10%;
         right: 25%;
         width: 80%;
     }
+    #reply{
+           
+           left: 90%;
+   }
 </style>
 
 @section('content')
