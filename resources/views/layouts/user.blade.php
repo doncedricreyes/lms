@@ -59,7 +59,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     body{
       font-family:"raleway";
     }
-      #head{
+      #lms{
       position:relative;  padding-top: 15px; color:white;font-size:28px; right:105%;
     }
     @media screen and (max-width: 760px) {
