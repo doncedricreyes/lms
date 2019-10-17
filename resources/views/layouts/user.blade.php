@@ -63,7 +63,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       position:relative;  padding-top: 15px; color:white;font-size:28px; right:105%;
     }
     @media screen and (max-width: 760px) {
-    #head {
+    #lms {
       position:relative;  padding-top: 15px; color:white; right:8%;
         font-size: 16px;
      
@@ -115,7 +115,7 @@ desired effect
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-     <li id="head">SCCV Learning Management System</li>
+     <li id="lms">SCCV Learning Management System</li>
    
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
