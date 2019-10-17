@@ -197,7 +197,7 @@ span.psw {
 
               
                 <div class="container" style="background-color:#f1f1f1">
-                  <button type="button" class="cancelbtn"><a href="/"></a>Cancel</button>
+                    <a href="/"> <button type="button" class="cancelbtn">Cancel</button></a>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   
                   <span class="psw"><a href="{{ route('teacher.password.request') }}">Forgot password? </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
