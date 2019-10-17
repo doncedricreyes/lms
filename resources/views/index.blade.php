@@ -34,7 +34,10 @@
     
    
     <style>  
-
+body{
+    position: relative;
+    overflow-y: scroll; overflow-x:hidden;
+}
 
     img {
   position: absolute;
