@@ -317,7 +317,7 @@ a:hover, a:active {
     }
 }
 
-.hero-content-wrap p {
+#sccv {
     position: relative;
     top:45%;
     right:125%;
@@ -345,7 +345,7 @@ a:hover, a:active {
 }
 
 @media screen and (max-width: 576px){
-    .hero-content-wrap p {
+    #sccv {
           position: relative;
     top:45%;
     right:125%;
@@ -356,13 +356,13 @@ a:hover, a:active {
     }
 }
 @media screen and (max-width: 576px){
-    .hero-content-wrap #log {
+   #log {
         font-size: 12px;
     }
 }
 
 @media screen and (max-width: 576px){
-    .hero-content-wrap #login {
+  #login {
         position: relative;
         top:60%;
         right:225%;
