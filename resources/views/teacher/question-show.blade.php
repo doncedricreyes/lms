@@ -31,13 +31,7 @@
         position: relative;
         height: 40%;
       }
-      #score{
-        position: absolute;
-        top:70%;
-        left:80%;
-      
-        
-      }
+   
      
         </style>
                
@@ -88,29 +82,26 @@
                 <input type="hidden" name="id" value={{$question->id}}>
             
                     @if(count($question->option_1)>0)
-                      <input type="radio" id="answer"  name="answer" value="{{$question->option_1}}"> {{$question->option_1}}<br>
+                      <input type="radio" id="answer"  name="answer" value="{{$question->option_1}}"> <label style="font-size: 16px;">&nbsp;{{$question->option_1}}</label><br>
                       @endif
                       @if(count($question->option_2)>0)
-                      <input type="radio" name="answer" value="{{$question->option_2}}"> {{$question->option_2}}<br>
+                      <input type="radio" name="answer" value="{{$question->option_2}}"> <label style="font-size: 16px;">&nbsp;{{$question->option_2}}</label><br>
                       @endif
                       @if(count($question->option_3)>0)
-                      <input type="radio" name="answer" value="{{$question->option_3}}"> {{$question->option_3}}<br>
+                      <input type="radio" name="answer" value="{{$question->option_3}}"> <label style="font-size: 16px;">&nbsp;{{$question->option_3}}</label><br>
                       @endif
                       @if(count($question->option_4)>0)
-                      <input type="radio" name="answer" value="{{$question->option_4}}"> {{$question->option_4}}<br>
+                      <input type="radio" name="answer" value="{{$question->option_4}}"> <label style="font-size: 16px;">&nbsp;{{$question->option_4}}</label><br>
                       @endif
                       @if(count($question->option_5)>0)
-                      <input type="radio" id="answer" name="answer" value="{{$question->option_5}}"> {{$question->option_5}}<br>
+                      <input type="radio" id="answer" name="answer" value="{{$question->option_5}}"> <label style="font-size: 16px;">&nbsp;{{$question->option_5}}</label><br>
                       @endif
                       @if(count($question->option_1)<=0 & count($question->option_2)<=0 && count($question->option_3)<=0 && count($question->option_4)<=0 && count($question->option_5)<=0)
                       <label for="answer">Answer:</label>
                       <input type="text" id="answer" name="answer" class="form-control"> <br>
                       
                       @endif
-                      <div id = "score" class="score">
-                      <h5>Correct Answer:   {{$question->answer}}</h5>
-                      <h5>Score:   {{$question->score}}</h5>
-                      </div>
+                <h5>Correct Answer: {{$question->answer}} &nbsp;  Score: {{$question->score}}</h5>
 
    
                       </div> 
