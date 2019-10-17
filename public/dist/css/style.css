@@ -317,13 +317,13 @@ a:hover, a:active {
     }
 }
 #sccv {
-    position: relative;
-    top:55%;
-    right:125%;
-    margin-top: 10px;
+  position: relative;
+    top: 25%;
+
+    margin-top: 12px;
+    font-size: 3vw;
+    width: 1000px;
     color: #fff;
-    width: 800px;
-    font-size: 1.5vw;
 }
 #log{
     position: relative;
