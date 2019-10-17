@@ -105,7 +105,7 @@
          <form action="{{route('store.result',$question->exam_id)}}" method="post">
             {{csrf_field() }}
             @endforeach
-              <input type="submit" id="finish" value="Finish" onclick="return confirm('Are you sure?') disabled"> 
+              <input type="submit" class="btn btn-primary" id="finish" value="Finish" onclick="return confirm('Are you sure?') disabled"> 
          </form>
               </div>
 
