@@ -451,10 +451,11 @@ a:hover, a:active {
 
 .icon-box .entry-title {
     margin-top: 12px;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .icon-box .entry-content p {
+    font-size: 11px;
     margin: 12px 0;
     color: #757686;
     line-height: 1.6;
