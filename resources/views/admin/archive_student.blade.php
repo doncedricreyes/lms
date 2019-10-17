@@ -54,7 +54,7 @@
                     
                             @foreach($students as $row)
                             <tr>
-                                <td>{{$row->name}}</td>
+                                <td>{{$loop->iteration}}. {{$row->name}}</td>
                                 <td>{{$row->username}}</td>
                                 <td>{{$row->email}}</td>
                                 <td>{{$row->status}}</td>
