@@ -85,6 +85,7 @@ class AddTeacherController extends Controller
                             $teacher->name = $value->name;
                             $teacher->username = $value->username;
                             $teacher->email = $value->email;
+                            $teacher->status = 'active';
                             $teacher->password = Hash::make($value->username);
                            
                             if ($teacher->save()){
