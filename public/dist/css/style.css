@@ -317,7 +317,7 @@ a:hover, a:active {
     }
 }
 
-#sccv {
+.sccv {
     position: relative;
     top:45%;
     right:125%;
@@ -345,7 +345,7 @@ a:hover, a:active {
 }
 
 @media screen and (max-width: 576px){
-    .hero-content-wrap #sccv {
+    .hero-content-wrap .sccv {
           position: relative;
     top:45%;
     right:125%;
