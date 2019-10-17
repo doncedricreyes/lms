@@ -248,7 +248,7 @@ $i =Auth::user()->id;
     public function edit_email(Request $request)
     {
         $this->validate($request, [
-            'email' => 'string|email|max:255|unique:parents|unique:students|unique:teachers|unique:admins',
+            'email' => 'nullable|string|email|max:255|unique:parents|unique:students|unique:teachers|unique:admins',
         ], [
   
 
