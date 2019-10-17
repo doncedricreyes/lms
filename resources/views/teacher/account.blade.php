@@ -2,14 +2,14 @@
 
 @section('content')
 <style>
-    #submit{
+   #submit{
         position: relative;
-        left: 45%;
-        top: 100%;
+        float: right;
     }
     #view{
         position: relative;
-        left: 15%;
+        right: 10%;
+        width:70%;
     }
     </style>
            <div class="flash-message">
@@ -36,7 +36,7 @@
         {{csrf_field() }}
 <div class="form-group">
     <label>Email:</label>
-    <input class="form-control" type="email" id="email" name="email" value="{{$teacher->get(0)->email}}" style="width:700px">
+    <input class="form-control" type="email" id="email" name="email" value="{{$teacher->get(0)->email}}">
   </div>
 
 <div class="col-lg-12 p-t-20">
@@ -49,10 +49,10 @@
 <form action="{{route('teacher.edit.pass')}}" method="post" enctype="multipart/form-data">
     {{csrf_field() }}
        <div class="form-group has-feedback">
-    <input id="oldpassword" type="password" placeholder="Password" class="form-control" name="oldpassword" required style="width:700px">
+    <input id="oldpassword" type="password" placeholder="Password" class="form-control" name="oldpassword" required >
     </div>
     <div class="form-group has-feedback">
-            <input id="password" type="password" placeholder="New Password" style="width:700px" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+            <input id="password" type="password" placeholder="New Password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
         
             @if ($errors->has('password'))
                 <span class="invalid-feedback" role="alert">
@@ -62,7 +62,7 @@
  
           </div>
           <div class="form-group has-feedback">
-                <input id="password-confirm" style="width:700px" type="password" placeholder="Confirm Password" class="form-control" name="password_confirmation" required>
+                <input id="password-confirm" type="password" placeholder="Confirm Password" class="form-control" name="password_confirmation" required>
           
               </div>
               <div class="form-group has-feedback">
