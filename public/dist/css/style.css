@@ -307,8 +307,62 @@ a:hover, a:active {
 }
 
 @media screen and (max-width: 576px){
+    .hero-content-wrap h4 {
+        font-size: 24px;
+    }
+}
+@media screen and (max-width: 576px){
     .hero-content-wrap h1 {
-        font-size: 32px;
+        font-size: 24px;
+    }
+}
+
+#sccv {
+    position: relative;
+    top:45%;
+    right:125%;
+    margin-top: 10px;
+    color: #fff;
+    width: 800px;
+    font-size: 16px;
+}
+#log{
+    position: relative;
+    top:55%;
+    right:225%;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #fff;
+    width: 800px;
+}
+#login{
+    position: relative;
+    top:60%;
+    right:225%;
+    margin-top: 10px;
+    color: #fff;
+    width: auto;
+}
+
+@media screen and (max-width: 576px){
+    .hero-content-wrap #sccv {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 576px){
+    .hero-content-wrap #log {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .hero-content-wrap #login {
+        position: relative;
+        top:60%;
+        right:225%;
+        margin-top: 10px;
+        color: #fff;
+        width: 50%;
     }
 }
 
