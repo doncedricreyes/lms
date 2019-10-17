@@ -31,14 +31,7 @@
                         
                     <div class="col-xl-12" >
                     <legend>{{$messages->get(0)->message_title}}</legend>
-                  From: 
-                    @foreach($messages as $message)
-                    {{$message->students->name}} 
-                        {{$message->parents->name}}
-                        {{$message->teachers->name}}
-                        {{$message->admins->name}} 
-                @endforeach
-                <br><br>
+
                 <div style="width:100%" class="mdl-card mdl-shadow--2dp demo-card-wide mdl-cell mdl-cell--6-col material">
                         <div class="mdl-card__title">
                                 <h2 class="mdl-card__title-text">    <h5> From: 
