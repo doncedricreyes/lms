@@ -102,6 +102,9 @@ desired effect
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
+         <ul class="nav navbar-nav">
+      <li style="position:absolute; top:30%; color:white;font-size:28px; left:3%;">SCCV Learning Management System</li>
+      </ul>
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
