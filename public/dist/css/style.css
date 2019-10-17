@@ -311,37 +311,6 @@ a:hover, a:active {
         font-size: 32px;
     }
 }
-@media screen and (max-width: 576px){
-    #sccv {
-        font-size: 16px;
-    }
-}
-#sccv {
-  position: relative;
-    top: 25%;
-
-    margin-top: 12px;
-    font-size: 3vw;
-    width: 1000px;
-    color: #fff;
-}
-#log{
-    position: relative;
-    top:70%;
-    right:225%;
-    margin-top: 10px;
-    font-size: 1.5vw;
-    color: #fff;
-    width: 800px;
-}
-#login{
-    position: relative;
-    top:70%;
-    right:225%;
-    margin-top: 10px;
-    color: #fff;
-    width: auto;
-}
 
 
 .hero-content-wrap .read-more {
