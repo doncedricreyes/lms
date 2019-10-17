@@ -38,6 +38,33 @@ body{
     position: relative;
     overflow-y: scroll; overflow-x:hidden;
 }
+#sccv {
+    position: relative;
+    top:55%;
+    right:125%;
+    margin-top: 10px;
+    color: #fff;
+    width: 800px;
+    font-size: 1.5vw;
+}
+#log{
+    position: relative;
+    top:70%;
+    right:225%;
+    margin-top: 10px;
+    font-size: 1.5vw;
+    color: #fff;
+    width: 800px;
+}
+#login{
+    position: relative;
+    top:70%;
+    right:225%;
+    margin-top: 10px;
+    color: #fff;
+    width: auto;
+}
+
 
     img {
   position: absolute;
