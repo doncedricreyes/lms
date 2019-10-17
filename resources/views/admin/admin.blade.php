@@ -58,7 +58,9 @@
                                   <div id="searchbar">
                                   <input type="text" class="form-control" name="search" id="search" placeholder="Search" >
                                   <br>
+                                    @if(Auth::user()->role == 'superadmin')
                                   <a href="" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-sm">Add Admin </a> 
+                                    @endif
                                     <br>
                                 </div> 
                                       </form>
