@@ -149,7 +149,7 @@ span.psw {
                   <img src="/storage/images/img_avatar2.png" class="rounded" height="100" width="100">
                 </div>
               
-                <h4><mark> LOGIN AS Student</mark></h4></p>
+                <h4><mark> LOGIN AS STUDENT</mark></h4></p>
                 <form method="POST" action="{{ route('student.login.submit') }}">
                   @csrf
                 <div class="container">
@@ -197,7 +197,7 @@ span.psw {
 
               
                 <div class="container" style="background-color:#f1f1f1">
-                  <button type="button" class="cancelbtn"><a href="/"></a>Cancel</button>
+                     <a href="/"> <button type="button" class="cancelbtn">Cancel</button></a>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   
                   <span class="psw"><a href="{{ route('student.password.request') }}">Forgot password? </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
