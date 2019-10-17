@@ -1,15 +1,14 @@
 @extends('layouts.user')
 <style>
-    #searchbar{
+   #searchbar{
      
-      display: block;
+    display: inline-block;
     text-align: center;
+    width:40%;
     }
-   #search{
-     position: relative;
-     left: 37%;
-   }
- 
+    #body{
+      text-align: center;
+    }
 
          .mdl-data-table th, td{
   text-align: left !important;
@@ -27,7 +26,7 @@
   </style>
 @section('content')
 
-    <div class="container" id="view">
+    <div class="container" id="body">
           
             <div class="flash-message">
                     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
@@ -57,7 +56,7 @@
                             <br>
                                 <form action = "{{route('search_admin')}}" role="search" method="get"enctype="multipart/form-data">
                                   <div id="searchbar">
-                                  <input type="text" class="form-control" name="search" id="search" placeholder="Search" style="width: 300px;">
+                                  <input type="text" class="form-control" name="search" id="search" placeholder="Search" >
                                   <br>
                                   <a href="" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-sm">Add Admin </a> 
                                     <br>
