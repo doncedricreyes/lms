@@ -344,33 +344,6 @@ a:hover, a:active {
     width: auto;
 }
 
-@media screen and (max-width: 576px){
-    #sccv {
-          position: relative;
-    top:45%;
-    right:125%;
-    margin-top: 10px;
-    color: #fff;
-    width: 100px;
-    font-size: 16px;
-    }
-}
-@media screen and (max-width: 576px){
-   #log {
-        font-size: 12px;
-    }
-}
-
-@media screen and (max-width: 576px){
-  #login {
-        position: relative;
-        top:60%;
-        right:225%;
-        margin-top: 10px;
-        color: #fff;
-        width: 50%;
-    }
-}
 
 
 .hero-content-wrap .read-more {
@@ -392,6 +365,34 @@ a:hover, a:active {
 
 .hero-content-wrap .read-more a:hover {
     background: #19c880;
+}
+
+@media screen and (max-width: 576px){
+    #sccv {
+          position: relative;
+    top:45%;
+    right:125%;
+    margin-top: 10px;
+    color: #fff;
+     width: 50%;
+    font-size: 6px;
+    }
+}
+@media screen and (max-width: 576px){
+   #log {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 576px){
+  #login {
+        position: relative;
+        top:60%;
+        right:225%;
+        margin-top: 10px;
+        color: #fff;
+        width: 50%;
+    }
 }
 
 /*--------------------------------------------------------------
