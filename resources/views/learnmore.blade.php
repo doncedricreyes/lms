@@ -64,17 +64,18 @@
                                          </div><!-- .site-branding -->
                                      </div><!-- .col -->
     
-                                <div class="col-3 col-lg-9 justify-content-end align-content-center">
+                                <div class="col-3 col-lg-9 justify-content-end align-content-center"> 
                                         <nav class="site-navigation flex justify-content-end align-items-center">
-                                            <ul class="flex flex-column flex-lg-row justify-content-end align-content-center">
-                                                <li><a href="index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home </span></a></li>
-                                                <li><a href="about"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> About</a></li>                   
-                                                <li><a href="contact"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Contact</a></li>  
-                                                <li class="current-menu-item"><a href="learnmore"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Learn More</a></li>
-                                                <li><a href="/student/login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login </a></li>
-                                                
-                                            </ul>                                       
-                                            </ul>
+           <ul class="nav navbar-nav justify-content-end align-content-center">
+                                    <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home </span></a></li>
+                                    <li><a href="about"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> About</a></li>                   
+                                    <li><a href="contact"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Contact</a></li>  
+                                    <li class="current-menu-item"><a href="learnmore"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Learn More</a></li>
+  <!--yung login button-->          <li><a href="student/login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login </a></li>
+   <!--pero login lang, pipili pa sila sa mismong login page ng role(?) 
+    or kung gusto mo lagyan mo na lang dropdown hah-->                                 
+                                </ul>                                       
+                                </ul>
             
                                           <div class="hamburger-menu d-md-none">
                                                 <span></span>
