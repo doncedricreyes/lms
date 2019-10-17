@@ -346,7 +346,7 @@ a:hover, a:active {
 
 @media screen and (max-width: 576px){
     .hero-content-wrap #sccv {
-        font-size: 12px;
+        font-size: 8px;
     }
 }
 @media screen and (max-width: 576px){
